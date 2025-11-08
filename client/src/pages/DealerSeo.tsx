@@ -1,4 +1,6 @@
 import { ProductPage, ProductPageProps } from "@/components/ProductPage";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Search, Brain, TrendingUp, Target, FileText, Sparkles } from "lucide-react";
 
 const dealerSeoContent: ProductPageProps = {
@@ -110,5 +112,13 @@ const dealerSeoContent: ProductPageProps = {
 };
 
 export default function DealerSeo() {
-  return <ProductPage {...dealerSeoContent} />;
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        <ProductPage {...dealerSeoContent} />
+      </main>
+      <Footer />
+    </div>
+  );
 }

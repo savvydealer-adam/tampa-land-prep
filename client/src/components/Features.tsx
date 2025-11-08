@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Facebook, TrendingUp, MousePointerClick, Globe } from "lucide-react";
+import { Link } from "wouter";
+import { Facebook, TrendingUp, MousePointerClick, Globe, ArrowRight } from "lucide-react";
 
 export function Features() {
   const products = [
@@ -79,6 +80,20 @@ export function Features() {
               </Button>
             </Card>
           ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            data-testid="button-view-all-products"
+          >
+            <Link href="/products" className="flex items-center gap-2">
+              View All Products
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

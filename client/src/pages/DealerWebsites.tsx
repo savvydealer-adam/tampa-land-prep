@@ -1,4 +1,6 @@
 import { ProductPage, ProductPageProps } from "@/components/ProductPage";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Zap, Globe, TrendingUp, Shield, Code, Smartphone } from "lucide-react";
 
 const dealerWebsitesContent: ProductPageProps = {
@@ -110,5 +112,13 @@ const dealerWebsitesContent: ProductPageProps = {
 };
 
 export default function DealerWebsites() {
-  return <ProductPage {...dealerWebsitesContent} />;
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        <ProductPage {...dealerWebsitesContent} />
+      </main>
+      <Footer />
+    </div>
+  );
 }

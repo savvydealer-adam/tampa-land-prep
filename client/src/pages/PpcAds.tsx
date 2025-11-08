@@ -1,4 +1,6 @@
 import { ProductPage, ProductPageProps } from "@/components/ProductPage";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Search, DollarSign, Target, TrendingUp, Zap, Settings } from "lucide-react";
 
 const ppcAdsContent: ProductPageProps = {
@@ -110,5 +112,13 @@ const ppcAdsContent: ProductPageProps = {
 };
 
 export default function PpcAds() {
-  return <ProductPage {...ppcAdsContent} />;
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        <ProductPage {...ppcAdsContent} />
+      </main>
+      <Footer />
+    </div>
+  );
 }

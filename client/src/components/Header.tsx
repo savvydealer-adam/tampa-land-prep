@@ -19,10 +19,12 @@ export function Header() {
   ];
 
   const productLinks = [
+    { label: "All Products", href: "/products" },
     { label: "Facebook Ads", href: "/facebook-ads" },
     { label: "PPC Ads", href: "/ppc-ads" },
     { label: "Dealer SEO", href: "/dealer-seo" },
     { label: "Dealer Websites", href: "/dealer-websites" },
+    { label: "Attribution AI", href: "/attribution-ai" },
   ];
 
   return (

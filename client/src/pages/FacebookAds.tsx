@@ -1,4 +1,6 @@
 import { ProductPage, ProductPageProps } from "@/components/ProductPage";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { Target, TrendingUp, Users, Zap, BarChart3, Clock } from "lucide-react";
 
 const facebookAdsContent: ProductPageProps = {
@@ -110,5 +112,13 @@ const facebookAdsContent: ProductPageProps = {
 };
 
 export default function FacebookAds() {
-  return <ProductPage {...facebookAdsContent} />;
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        <ProductPage {...facebookAdsContent} />
+      </main>
+      <Footer />
+    </div>
+  );
 }

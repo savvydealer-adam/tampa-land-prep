@@ -8,20 +8,24 @@ import Home from "@/pages/Home";
 import Admin from "@/pages/Admin";
 import AdminPages from "@/pages/AdminPages";
 import AdminSettings from "@/pages/AdminSettings";
+import Products from "@/pages/Products";
 import FacebookAds from "@/pages/FacebookAds";
 import PpcAds from "@/pages/PpcAds";
 import DealerWebsites from "@/pages/DealerWebsites";
 import DealerSeo from "@/pages/DealerSeo";
+import AttributionAI from "@/pages/AttributionAI";
 import NotFound from "@/pages/not-found";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/products" component={Products} />
       <Route path="/facebook-ads" component={FacebookAds} />
       <Route path="/ppc-ads" component={PpcAds} />
       <Route path="/dealer-websites" component={DealerWebsites} />
       <Route path="/dealer-seo" component={DealerSeo} />
+      <Route path="/attribution-ai" component={AttributionAI} />
       <Route path="/admin" component={Admin} />
       <Route path="/admin/pages" component={AdminPages} />
       <Route path="/admin/settings" component={AdminSettings} />
