@@ -44,7 +44,7 @@ export default function Products() {
     },
     {
       icon: Brain,
-      title: "Attribution AI",
+      title: "Anti-Dashboard AI",
       subtitle: "Coming February 2026",
       description: "Something big is coming at NADA 2026. Be among the first to see how AI will transform automotive attribution and analytics.",
       color: "hsl(var(--chart-5))",
