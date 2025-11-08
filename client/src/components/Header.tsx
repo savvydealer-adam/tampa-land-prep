@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
+import logoImage from "@assets/savvy-dealer-logo_1762641721511.png";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,13 +44,14 @@ export function Header() {
       <div className={`container mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-300 sm:px-8 lg:px-12 ${scrolled ? 'h-16' : 'h-20'}`}>
         <Link 
           href="/" 
-          className="flex items-center gap-2" 
+          className="flex items-center" 
           data-testid="link-home"
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-            <span className="font-serif text-lg font-bold text-primary-foreground">S</span>
-          </div>
-          <span className="font-serif text-xl font-bold">SavvyDealer</span>
+          <img 
+            src={logoImage} 
+            alt="Savvy Dealer" 
+            className={`transition-all duration-300 ${scrolled ? 'h-7' : 'h-9'} w-auto dark:brightness-100 brightness-0 dark:invert-0 invert`}
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">

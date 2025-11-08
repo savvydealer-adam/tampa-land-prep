@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import logoImage from "@assets/savvy-dealer-logo_1762641721511.png";
 
 export function Footer() {
   const productLinks = [
@@ -16,13 +17,14 @@ export function Footer() {
           <div className="space-y-6">
             <Link 
               href="/" 
-              className="flex items-center gap-2" 
+              className="flex items-center" 
               data-testid="link-footer-home"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary">
-                <span className="font-serif text-xl font-bold text-primary-foreground">S</span>
-              </div>
-              <span className="font-serif text-2xl font-bold">SavvyDealer</span>
+              <img 
+                src={logoImage} 
+                alt="Savvy Dealer" 
+                className="h-10 w-auto dark:brightness-100 brightness-0 dark:invert-0 invert"
+              />
             </Link>
             <p className="text-muted-foreground max-w-xs">
               Digital marketing for auto dealers. We don't outspend the competition — we outsmart them.
