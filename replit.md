@@ -90,10 +90,11 @@ Preferred communication style: Simple, everyday language.
 
 **Component Organization**
 - Presentational components in client/src/components
-  - Header: Desktop dropdown navigation + mobile menu for all 5 product pages plus "All Products" link
+  - Header: Desktop dropdown navigation + mobile menu for all 5 product pages plus "All Products" link, includes "AI Compatibility Test" button linking to ai-detect.savvydealer.com
   - Footer: Site-wide footer with logo and navigation links
   - ProductPage: Reusable component for consistent product page layouts
   - Hero, Features, PageCard, AdminSidebar: Supporting components
+  - Features: Homepage product showcase displaying all 5 products with dual-button layout (Learn More + Request Free Audit)
   - LeadFormModal: Dialog-based lead capture form with validation
 - Page components in client/src/pages
   - Home, Products, FacebookAds, PpcAds, DealerSeo, DealerWebsites, AttributionAI: Public pages
@@ -116,9 +117,14 @@ Preferred communication style: Simple, everyday language.
 - Context-based state management via LeadFormContext provider
 - Form fields: Name, Email, Phone, Dealership Name, Message (optional)
 - Client-side validation using react-hook-form + zod schemas
+- Backend integration via Resend API sending emails to support@savvydealer.com
 - Success state with auto-close after 3 seconds
-- Ready for backend integration (email service, CRM, database storage)
-- CTA locations: Homepage (hero, about, final), Header (desktop/mobile), All 5 product pages (hero, final), Products overview, Features section (4 cards)
+- CTA locations: Homepage (hero, about, final, 5 product cards in Features section), Header (desktop/mobile), All 5 product pages (hero, final), Products overview
+
+**AI Compatibility Test Button**
+- Blue button with white text linking to ai-detect.savvydealer.com
+- Available in desktop and mobile header navigation
+- Opens in new tab with rel="noopener noreferrer" for security
 
 ## External Dependencies
 
