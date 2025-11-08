@@ -19,19 +19,11 @@ import {
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle2 } from "lucide-react";
-
-const leadFormSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  dealership: z.string().min(2, "Dealership name is required"),
-  message: z.string().optional(),
-});
-
-type LeadFormData = z.infer<typeof leadFormSchema>;
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { leadFormSchema, type LeadFormSubmission } from "@shared/schema";
 
 interface LeadFormModalProps {
   open: boolean;
@@ -42,7 +34,7 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
 
-  const form = useForm<LeadFormData>({
+  const form = useForm<LeadFormSubmission>({
     resolver: zodResolver(leadFormSchema),
     defaultValues: {
       name: "",
@@ -53,10 +45,11 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
     },
   });
 
-  const onSubmit = async (data: LeadFormData) => {
-    try {
-      console.log("Lead form submission:", data);
-      
+  const submitLeadMutation = useMutation({
+    mutationFn: async (data: LeadFormSubmission) => {
+      return await apiRequest("POST", "/api/lead-form", data);
+    },
+    onSuccess: () => {
       setIsSubmitted(true);
       
       setTimeout(() => {
@@ -64,13 +57,18 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
         onOpenChange(false);
         form.reset();
       }, 3000);
-    } catch (error) {
+    },
+    onError: (error: any) => {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: error.message || "Failed to submit form. Please try again.",
         variant: "destructive",
       });
-    }
+    },
+  });
+
+  const onSubmit = async (data: LeadFormSubmission) => {
+    submitLeadMutation.mutate(data);
   };
 
   const handleClose = () => {
@@ -204,10 +202,10 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
                   <Button
                     type="submit"
                     className="flex-1"
-                    disabled={form.formState.isSubmitting}
+                    disabled={submitLeadMutation.isPending}
                     data-testid="button-submit"
                   >
-                    {form.formState.isSubmitting ? "Submitting..." : "Submit Request"}
+                    {submitLeadMutation.isPending ? "Submitting..." : "Submit Request"}
                   </Button>
                 </div>
               </form>
