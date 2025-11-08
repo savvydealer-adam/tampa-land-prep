@@ -47,7 +47,7 @@ export default function AttributionAI() {
               <Button
                 onClick={openLeadForm}
                 size="lg"
-                className="bg-purple-600 text-white hover:bg-purple-700"
+                className="bg-purple-600 text-white"
                 data-testid="button-schedule-demo"
               >
                 <Calendar className="mr-2 h-5 w-5" />
@@ -115,7 +115,7 @@ export default function AttributionAI() {
               <Button
                 onClick={openLeadForm}
                 size="lg"
-                className="bg-purple-600 text-white hover:bg-purple-700"
+                className="bg-purple-600 text-white"
                 data-testid="button-cta-schedule-demo"
               >
                 <Calendar className="mr-2 h-5 w-5" />
