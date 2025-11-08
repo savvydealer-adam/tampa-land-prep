@@ -91,7 +91,7 @@ export function Features() {
                     </span>
                   </div>
                   
-                  <h3 className="font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+                  <h3 className="font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">
                     {product.title}
                   </h3>
                   

@@ -23,7 +23,7 @@ export default function Home() {
           <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
             <div className="grid items-center gap-16 lg:grid-cols-2">
               <div className="order-2 lg:order-1">
-                <h2 className="mb-8 font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+                <h2 className="mb-8 font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">
                   How We Drive Your Sales
                 </h2>
                 <p className="mb-8 text-xl text-muted-foreground">
@@ -66,7 +66,7 @@ export default function Home() {
         <section className="py-32">
           <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
             <div className="mb-20 text-center">
-              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-6xl">
+              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-7xl">
                 What Dealers are Saying
               </h2>
               <p className="text-xl text-muted-foreground">
@@ -111,7 +111,7 @@ export default function Home() {
         <section id="contact" className="bg-card py-32">
           <div className="container mx-auto max-w-7xl px-6 text-center sm:px-8 lg:px-12">
             <div className="mx-auto max-w-3xl">
-              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-6xl">
+              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-7xl">
                 Ready to Dominate Your Market?
               </h2>
               <p className="mb-10 text-xl text-muted-foreground">
