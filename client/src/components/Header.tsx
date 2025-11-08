@@ -36,6 +36,7 @@ export function Header() {
     { label: "PPC Ads", href: "/ppc-ads" },
     { label: "Dealer SEO", href: "/dealer-seo" },
     { label: "Dealer Websites", href: "/dealer-websites" },
+    { label: "Independent Dealer Websites", href: "/independent-dealer-websites" },
     { label: "Attribution AI", href: "/attribution-ai" },
   ];
 

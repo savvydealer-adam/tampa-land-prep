@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Facebook, TrendingUp, MousePointerClick, Globe, Brain } from "lucide-react";
+import { Facebook, TrendingUp, MousePointerClick, Globe, Store, Brain } from "lucide-react";
 
 export default function Products() {
   const { openLeadForm } = useLeadForm();
@@ -41,6 +41,14 @@ export default function Products() {
       description: "SEO-first website architecture that accelerates your digital marketing efforts. Responsive, adaptable platforms that convert visitors into customers.",
       color: "hsl(var(--chart-4))",
       href: "/dealer-websites",
+    },
+    {
+      icon: Store,
+      title: "Independent Dealer Websites",
+      subtitle: "Built For Your Business",
+      description: "Premium websites for independent dealers and buy-here-pay-here lots. No franchise fees or restrictions—just powerful tools designed to sell more cars.",
+      color: "hsl(var(--chart-6))",
+      href: "/independent-dealer-websites",
     },
     {
       icon: Brain,

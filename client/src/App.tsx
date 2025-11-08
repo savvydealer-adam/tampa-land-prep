@@ -13,6 +13,7 @@ import Products from "@/pages/Products";
 import FacebookAds from "@/pages/FacebookAds";
 import PpcAds from "@/pages/PpcAds";
 import DealerWebsites from "@/pages/DealerWebsites";
+import IndependentDealerWebsites from "@/pages/IndependentDealerWebsites";
 import DealerSeo from "@/pages/DealerSeo";
 import AttributionAI from "@/pages/AttributionAI";
 import NotFound from "@/pages/not-found";
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/facebook-ads" component={FacebookAds} />
       <Route path="/ppc-ads" component={PpcAds} />
       <Route path="/dealer-websites" component={DealerWebsites} />
+      <Route path="/independent-dealer-websites" component={IndependentDealerWebsites} />
       <Route path="/dealer-seo" component={DealerSeo} />
       <Route path="/attribution-ai" component={AttributionAI} />
       <Route path="/admin" component={Admin} />

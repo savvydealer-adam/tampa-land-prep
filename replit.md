@@ -2,7 +2,7 @@
 
 ## Overview
 
-Savvy Dealer is a website management and digital marketing platform for automotive dealerships. The application provides a content management system for creating and managing website pages, along with showcasing digital marketing services including Facebook Ads, SEO, PPC, custom dealer websites, and Attribution AI. Built as a full-stack TypeScript application with React frontend and Express backend, it features an Apple-inspired design aesthetic with large-scale product imagery, dramatic typography, generous spacing, and smooth scroll animations. Each product line is represented by vibrant brand colors in full-width immersive showcase sections.
+Savvy Dealer is a website management and digital marketing platform for automotive dealerships. The application provides a content management system for creating and managing website pages, along with showcasing digital marketing services including Facebook Ads, SEO, PPC, custom dealer websites, independent dealer websites, and Anti-Dashboard AI. Built as a full-stack TypeScript application with React frontend and Express backend, it features an Apple-inspired design aesthetic with large-scale product imagery, dramatic typography, generous spacing, and smooth scroll animations. Each product line is represented by vibrant brand colors in full-width immersive showcase sections.
 
 ## User Preferences
 
@@ -28,7 +28,7 @@ Preferred communication style: Simple, everyday language.
 - Component-first architecture with isolated, reusable UI elements
 - Path aliases (@/, @shared/, @assets/) for clean import statements
 - Custom CSS variables for theming with HSL color format
-- Multi-color product scheme: Pink (Facebook Ads), Green (SEO), Orange (PPC), Blue (Websites), Purple (Attribution AI)
+- Multi-color product scheme: Pink (Facebook Ads), Green (SEO), Orange (PPC), Blue (Dealer Websites), Teal (Independent Dealer Websites), Purple (Anti-Dashboard AI)
 
 ### Backend Architecture
 
@@ -69,7 +69,7 @@ Preferred communication style: Simple, everyday language.
 
 **Routing Architecture**
 - Public marketing pages (/, /products)
-- Product pages (/facebook-ads, /ppc-ads, /dealer-seo, /dealer-websites, /attribution-ai)
+- Product pages (/facebook-ads, /ppc-ads, /dealer-seo, /dealer-websites, /independent-dealer-websites, /attribution-ai)
 - Admin dashboard (/admin) with nested routes
 - Admin pages management (/admin/pages)
 - Admin settings (/admin/settings)
@@ -77,27 +77,28 @@ Preferred communication style: Simple, everyday language.
 
 **Page Types**
 - Home: Hero section with product showcase, testimonials, and about content
-- Products Overview (/products): Card-based grid showcasing all 5 products with links to individual pages
+- Products Overview (/products): Card-based grid showcasing all 6 products with links to individual pages
 - Product Pages: Dedicated pages for each service using reusable ProductPage component, all wrapped with Header/Footer
   - Facebook Ads (/facebook-ads): Pink accent, $300/month pricing, "build backwards" methodology
   - PPC Ads (/ppc-ads): Orange accent, inventory prioritization, proven ROI-focused keywords
   - Dealer SEO (/dealer-seo): Green accent, SEO + GEO optimization for AI search visibility
-  - Dealer Websites (/dealer-websites): Blue accent, SEO-first architecture, 2x traffic claims
-  - Attribution AI (/attribution-ai): Purple accent teaser page for NADA 2026 announcement with demo scheduling CTAs
+  - Dealer Websites (/dealer-websites): Blue accent, SEO-first architecture, 2x traffic claims with Banner Chevy device mockups
+  - Independent Dealer Websites (/independent-dealer-websites): Teal accent, solutions for non-franchised dealers and buy-here-pay-here lots
+  - Anti-Dashboard AI (/attribution-ai): Purple accent teaser page for NADA 2026 announcement with demo scheduling CTAs
 - Admin Dashboard: Stats overview with metrics cards
 - Admin Pages: Page listing with search and CRUD operations (currently mock data)
 - Admin Settings: Site configuration management (currently mock data)
 
 **Component Organization**
 - Presentational components in client/src/components
-  - Header: Desktop dropdown navigation + mobile menu for all 5 product pages plus "All Products" link, includes "AI Compatibility Test" button linking to ai-detect.savvydealer.com
+  - Header: Desktop dropdown navigation + mobile menu for all 6 product pages plus "All Products" link, includes "AI Compatibility Test" button linking to ai-detect.savvydealer.com
   - Footer: Site-wide footer with logo and navigation links
   - ProductPage: Reusable component for consistent product page layouts
   - Hero, Features, PageCard, AdminSidebar: Supporting components
-  - Features: Homepage product showcase displaying all 5 products with dual-button layout (Learn More + Request Free Audit)
+  - Features: Homepage product showcase displaying all 6 products with dual-button layout (Learn More + Request Free Audit)
   - LeadFormModal: Dialog-based lead capture form with validation
 - Page components in client/src/pages
-  - Home, Products, FacebookAds, PpcAds, DealerSeo, DealerWebsites, AttributionAI: Public pages
+  - Home, Products, FacebookAds, PpcAds, DealerSeo, DealerWebsites, IndependentDealerWebsites, AttributionAI: Public pages
   - AdminDashboard, AdminPages, AdminSettings: Admin pages
 - Reusable UI primitives in client/src/components/ui
   - shadcn/ui components with custom theming
@@ -106,8 +107,8 @@ Preferred communication style: Simple, everyday language.
 
 **Navigation Implementation**
 - All navigation uses wouter Link component for SPA routing (no full page reloads)
-- Desktop: Dropdown menu with Products trigger showing "All Products" link plus all 5 individual product pages
-- Mobile: Hamburger menu with expandable "Our Products" section including "All Products" and all 5 products
+- Desktop: Dropdown menu with Products trigger showing "All Products" link plus all 6 individual product pages
+- Mobile: Hamburger menu with expandable "Our Products" section including "All Products" and all 6 products
 - All Link components properly implement SPA semantics without nested anchors
 - Logo links in header and footer navigate to homepage via SPA routing
 - "View All Products" CTA button on homepage Features section links to /products overview
@@ -119,7 +120,7 @@ Preferred communication style: Simple, everyday language.
 - Client-side validation using react-hook-form + zod schemas
 - Backend integration via Resend API sending emails to support@savvydealer.com
 - Success state with auto-close after 3 seconds
-- CTA locations: Homepage (hero, about, final, 5 product cards in Features section), Header (desktop/mobile), All 5 product pages (hero, final), Products overview
+- CTA locations: Homepage (hero, about, final, 6 product cards in Features section), Header (desktop/mobile), All 6 product pages (hero, final), Products overview
 
 **AI Compatibility Test Button**
 - Blue button with white text linking to ai-detect.savvydealer.com

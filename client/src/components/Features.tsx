@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Facebook, TrendingUp, MousePointerClick, Globe, Brain, ArrowRight } from "lucide-react";
+import { Facebook, TrendingUp, MousePointerClick, Globe, Brain, Store, ArrowRight } from "lucide-react";
 import facebookAdsImage from "@assets/generated_images/Facebook_Ads_pink_theme_3fd45300.png";
 import ppcAdsImage from "@assets/generated_images/PPC_Ads_orange_theme_7bcb5a76.png";
 import seoImage from "@assets/generated_images/SEO_green_theme_1cae63d8.png";
 import websitesImage from "@assets/generated_images/Banner_Chevy_multi-device_mockup_9dc25bbf.png";
+import independentWebsitesImage from "@assets/generated_images/Independent_dealer_websites_teal_theme_c62d8ebd.png";
 import aiImage from "@assets/generated_images/Anti-Dashboard_AI_purple_theme_4cd41597.png";
 
 export function Features() {
@@ -47,6 +48,15 @@ export function Features() {
       color: "hsl(var(--chart-4))",
       href: "/dealer-websites",
       image: websitesImage,
+    },
+    {
+      icon: Store,
+      title: "Independent Dealer Websites",
+      subtitle: "Built For Your Business",
+      description: "Premium websites for independent dealers and buy-here-pay-here lots. No franchise fees, no corporate restrictions—just powerful tools to sell more cars.",
+      color: "hsl(var(--chart-6))",
+      href: "/independent-dealer-websites",
+      image: independentWebsitesImage,
     },
     {
       icon: Brain,
