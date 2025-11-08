@@ -5,7 +5,7 @@ import { Facebook, TrendingUp, MousePointerClick, Globe, Brain, ArrowRight } fro
 import facebookAdsImage from "@assets/generated_images/Facebook_Ads_pink_theme_3fd45300.png";
 import ppcAdsImage from "@assets/generated_images/PPC_Ads_orange_theme_7bcb5a76.png";
 import seoImage from "@assets/generated_images/SEO_green_theme_1cae63d8.png";
-import websitesImage from "@assets/generated_images/Multi-device_website_mockup_e5b6cfa6.png";
+import websitesImage from "@assets/generated_images/Banner_Chevy_multi-device_mockup_9dc25bbf.png";
 import aiImage from "@assets/generated_images/Anti-Dashboard_AI_purple_theme_4cd41597.png";
 
 export function Features() {
