@@ -28,11 +28,9 @@ export function AdminSidebar() {
             className="w-full"
             data-testid="button-new-page"
           >
-            <Link href="/admin/pages/new">
-              <a className="flex items-center gap-2">
-                <Plus className="h-4 w-4" />
-                New Page
-              </a>
+            <Link href="/admin/pages/new" className="flex items-center gap-2">
+              <Plus className="h-4 w-4" />
+              New Page
             </Link>
           </Button>
         </div>
@@ -50,11 +48,9 @@ export function AdminSidebar() {
                 className="w-full justify-start"
                 data-testid={`button-nav-${item.label.toLowerCase()}`}
               >
-                <Link href={item.href}>
-                  <a className="flex items-center gap-3">
-                    <item.icon className="h-4 w-4" />
-                    {item.label}
-                  </a>
+                <Link href={item.href} className="flex items-center gap-3">
+                  <item.icon className="h-4 w-4" />
+                  {item.label}
                 </Link>
               </Button>
             );

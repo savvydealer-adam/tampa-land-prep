@@ -69,22 +69,41 @@ Preferred communication style: Simple, everyday language.
 
 **Routing Architecture**
 - Public marketing pages (/, features, about, contact)
+- Product pages (/facebook-ads, /ppc-ads, /dealer-seo, /dealer-websites)
 - Admin dashboard (/admin) with nested routes
 - Admin pages management (/admin/pages)
 - Admin settings (/admin/settings)
 - 404 handling via catch-all route
 
 **Page Types**
-- Home: Hero section with product showcase and about content
+- Home: Hero section with product showcase, testimonials, and about content
+- Product Pages: Dedicated pages for each service using reusable ProductPage component
+  - Facebook Ads (/facebook-ads): Pink accent, $300/month pricing, "build backwards" methodology
+  - PPC Ads (/ppc-ads): Orange accent, inventory prioritization, proven ROI-focused keywords
+  - Dealer SEO (/dealer-seo): Green accent, SEO + GEO optimization for AI search visibility
+  - Dealer Websites (/dealer-websites): Blue accent, SEO-first architecture, 2x traffic claims
 - Admin Dashboard: Stats overview with metrics cards
 - Admin Pages: Page listing with search and CRUD operations (currently mock data)
 - Admin Settings: Site configuration management (currently mock data)
 
 **Component Organization**
 - Presentational components in client/src/components
+  - Header: Desktop dropdown navigation + mobile menu for product pages
+  - Footer: Site-wide footer with logo and navigation links
+  - ProductPage: Reusable component for consistent product page layouts
+  - Hero, Features, PageCard, AdminSidebar: Supporting components
 - Page components in client/src/pages
+  - Home, FacebookAds, PpcAds, DealerSeo, DealerWebsites: Public pages
+  - AdminDashboard, AdminPages, AdminSettings: Admin pages
 - Reusable UI primitives in client/src/components/ui
-- Example components for Storybook-style development
+  - shadcn/ui components with custom theming
+
+**Navigation Implementation**
+- All navigation uses wouter Link component for SPA routing (no full page reloads)
+- Desktop: Dropdown menu with Products trigger showing all 4 product pages
+- Mobile: Hamburger menu with expandable "Our Products" section
+- All Link components properly implement SPA semantics without nested anchors
+- Logo links in header and footer navigate to homepage via SPA routing
 
 ## External Dependencies
 

@@ -79,11 +79,9 @@ export default function AdminPages() {
               />
             </div>
             <Button asChild data-testid="button-create-page">
-              <Link href="/admin/pages/new">
-                <a className="flex items-center gap-2">
-                  <Plus className="h-4 w-4" />
-                  New Page
-                </a>
+              <Link href="/admin/pages/new" className="flex items-center gap-2">
+                <Plus className="h-4 w-4" />
+                New Page
               </Link>
             </Button>
           </div>
@@ -105,7 +103,7 @@ export default function AdminPages() {
               <p className="mb-4 text-lg text-muted-foreground">No pages found</p>
               <Button asChild data-testid="button-create-first-page">
                 <Link href="/admin/pages/new">
-                  <a>Create Your First Page</a>
+                  Create Your First Page
                 </Link>
               </Button>
             </div>
