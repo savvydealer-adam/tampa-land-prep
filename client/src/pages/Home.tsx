@@ -46,7 +46,7 @@ export default function Home() {
                   We don't outspend the competition — <span className="text-primary">we outsmart them.</span>
                 </p>
                 <Button asChild size="lg" data-testid="button-about-cta">
-                  <a href="/free-audit">Request Free Audit</a>
+                  <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
                 </Button>
               </div>
               <div className="order-1 lg:order-2">
@@ -117,7 +117,7 @@ export default function Home() {
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Button asChild size="lg" data-testid="button-cta-get-started">
-                  <a href="/free-audit">Request Free Audit</a>
+                  <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
                 </Button>
                 <Button asChild variant="outline" size="lg" data-testid="button-cta-contact">
                   <a href="tel:8135013229">Call Now: (813) 501-3229</a>

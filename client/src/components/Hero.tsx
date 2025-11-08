@@ -46,7 +46,7 @@ export function Hero() {
               className="w-full bg-background/90 backdrop-blur-sm hover:bg-background/95 sm:w-auto"
               data-testid="button-hero-get-started"
             >
-              <a href="/free-audit" className="flex items-center gap-2">
+              <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                 Request Free Audit
                 <ArrowRight className="h-4 w-4" />
               </a>

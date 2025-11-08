@@ -89,7 +89,7 @@ export function Header() {
             className="hidden md:inline-flex"
             data-testid="button-get-started"
           >
-            <a href="/free-audit">Request Free Audit</a>
+            <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
           </Button>
           <Button
             variant="ghost"
@@ -134,7 +134,7 @@ export function Header() {
               ))}
             </div>
             <Button asChild className="w-full" data-testid="button-mobile-get-started">
-              <a href="/free-audit">Request Free Audit</a>
+              <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
             </Button>
           </nav>
         </div>

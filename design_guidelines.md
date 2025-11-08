@@ -66,7 +66,7 @@
 - H1: "The Savvy Dealer Difference"
 - Tagline emphasizing "leads aren't created — they're captured"
 - Supporting copy about SEO/GEO strategy and outsmarting competition
-- Dual CTA: "Request Free Audit" (primary) + "Our Products" (outline)
+- Dual CTA: "Request Free Audit" (primary, links to https://ai-detect.savvydealer.com) + "Our Products" (outline)
 - Subtle scroll indicator at bottom
 
 ### Product Suite Section
@@ -77,8 +77,8 @@
   - Product title (bold, 2xl)
   - Subtitle (uppercase, small, muted)
   - Description paragraph (actual service copy)
-  - "Request Free Audit" CTA button (consistent across all products)
-- Products: Facebook Ads (Pink), Dealer SEO (Green), PPC Ads (Orange), Dealer Websites (Blue)
+  - "Request Free Audit" CTA button (links to https://ai-detect.savvydealer.com, opens in new tab)
+- Products: Facebook Ads (Pink), Dealer SEO (Green), PPC Ads (Orange), Dealer Websites (Blue), Attribution AI (Purple)
 
 ### Testimonials Section
 - "What Dealers are Saying About Us" heading
@@ -94,7 +94,7 @@
 - Two-column layout with image
 - Bullet points about SEO/GEO strategy
 - Emphasis on "We don't outspend the competition — we outsmart them"
-- CTA: "Request Free Audit"
+- CTA: "Request Free Audit" (links to https://ai-detect.savvydealer.com)
 
 ### Footer
 - Multi-column layout (4 columns desktop, stack mobile)

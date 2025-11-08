@@ -76,7 +76,7 @@ export function Features() {
                 className="w-full"
                 data-testid={`button-request-audit-${index}`}
               >
-                <a href="/free-audit">Request Free Audit</a>
+                <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
               </Button>
             </Card>
           ))}

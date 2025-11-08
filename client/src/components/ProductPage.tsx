@@ -93,7 +93,7 @@ export function ProductPage({
               className="backdrop-blur-sm"
               data-testid="button-hero-cta"
             >
-              <a href="/free-audit">Request Free Audit</a>
+              <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
             </Button>
             <Button
               asChild
@@ -235,7 +235,7 @@ export function ProductPage({
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button asChild size="lg" data-testid="button-cta-final">
-                <a href="/free-audit">Request Free Audit</a>
+                <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
               </Button>
               <Button
                 asChild

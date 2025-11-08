@@ -112,7 +112,7 @@ export default function Products() {
                 Join successful dealers who choose performance over promises
               </p>
               <Button asChild size="lg" data-testid="button-cta-request-audit">
-                <a href="/free-audit">Request Free Audit</a>
+                <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
               </Button>
             </div>
           </div>
