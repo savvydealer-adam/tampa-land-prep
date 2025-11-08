@@ -7,6 +7,7 @@ export function Footer() {
     { label: "PPC Ads", href: "/ppc-ads" },
     { label: "Dealer SEO", href: "/dealer-seo" },
     { label: "Dealer Websites", href: "/dealer-websites" },
+    { label: "Independent Dealer Websites", href: "/independent-dealer-websites" },
     { label: "Attribution AI", href: "/attribution-ai" },
   ];
 
@@ -49,8 +50,17 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide">Contact</h3>
+            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide">Company</h3>
             <ul className="space-y-4">
+              <li>
+                <Link
+                  href="/blog/marketing-roi-evaluation"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  data-testid="link-footer-blog"
+                >
+                  Blog
+                </Link>
+              </li>
               <li>
                 <a
                   href="#about"

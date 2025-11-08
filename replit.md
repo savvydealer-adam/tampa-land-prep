@@ -70,6 +70,7 @@ Preferred communication style: Simple, everyday language.
 **Routing Architecture**
 - Public marketing pages (/, /products)
 - Product pages (/facebook-ads, /ppc-ads, /dealer-seo, /dealer-websites, /independent-dealer-websites, /attribution-ai)
+- Blog pages (/blog/marketing-roi-evaluation)
 - Admin dashboard (/admin) with nested routes
 - Admin pages management (/admin/pages)
 - Admin settings (/admin/settings)
@@ -84,7 +85,9 @@ Preferred communication style: Simple, everyday language.
   - Dealer SEO (/dealer-seo): Green accent, SEO + GEO optimization for AI search visibility
   - Dealer Websites (/dealer-websites): Blue accent, SEO-first architecture, 2x traffic claims with Banner Chevy device mockups
   - Independent Dealer Websites (/independent-dealer-websites): Teal accent, solutions for non-franchised dealers and buy-here-pay-here lots
-  - Anti-Dashboard AI (/attribution-ai): Purple accent teaser page for NADA 2026 announcement with demo scheduling CTAs
+  - Anti-Dashboard AI (/attribution-ai): Purple accent teaser page with Apple-inspired design for NADA 2026 announcement
+- Blog: Long-form content pages with Apple-inspired typography and clean readability
+  - Marketing ROI Evaluation (/blog/marketing-roi-evaluation): 12 practical moves for evaluating marketing ROI and agencies
 - Admin Dashboard: Stats overview with metrics cards
 - Admin Pages: Page listing with search and CRUD operations (currently mock data)
 - Admin Settings: Site configuration management (currently mock data)
@@ -107,11 +110,12 @@ Preferred communication style: Simple, everyday language.
 
 **Navigation Implementation**
 - All navigation uses wouter Link component for SPA routing (no full page reloads)
-- Desktop: Dropdown menu with Products trigger showing "All Products" link plus all 6 individual product pages
-- Mobile: Hamburger menu with expandable "Our Products" section including "All Products" and all 6 products
+- Desktop: Dropdown menu with Products trigger showing "All Products" link plus all 6 individual product pages, plus Blog, About, Contact links
+- Mobile: Hamburger menu with Blog, About, Contact links, plus expandable "Our Products" section including "All Products" and all 6 products
 - All Link components properly implement SPA semantics without nested anchors
 - Logo links in header and footer navigate to homepage via SPA routing
 - "View All Products" CTA button on homepage Features section links to /products overview
+- Footer includes "Company" section with Blog, About, phone, and email links
 
 **Lead Form Modal System**
 - Global modal triggered by all "Request Free Audit" CTAs across the site

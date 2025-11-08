@@ -26,6 +26,7 @@ export function Header() {
   }, []);
 
   const navItems = [
+    { label: "Blog", href: "/blog/marketing-roi-evaluation" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ];
@@ -80,6 +81,13 @@ export function Header() {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+          <Link
+            href="/blog/marketing-roi-evaluation"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            data-testid="link-blog"
+          >
+            Blog
+          </Link>
           <a
             href="#about"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
@@ -133,17 +141,30 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="border-t md:hidden">
           <nav className="container mx-auto flex flex-col gap-4 px-4 py-4">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                onClick={() => setMobileMenuOpen(false)}
-                data-testid={`link-mobile-${item.label.toLowerCase()}`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isInternalLink = item.href.startsWith('/');
+              return isInternalLink ? (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  onClick={() => setMobileMenuOpen(false)}
+                  data-testid={`link-mobile-${item.label.toLowerCase()}`}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  onClick={() => setMobileMenuOpen(false)}
+                  data-testid={`link-mobile-${item.label.toLowerCase()}`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
             <div className="border-t pt-4">
               <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Our Products

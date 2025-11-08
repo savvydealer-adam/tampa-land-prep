@@ -16,6 +16,7 @@ import DealerWebsites from "@/pages/DealerWebsites";
 import IndependentDealerWebsites from "@/pages/IndependentDealerWebsites";
 import DealerSeo from "@/pages/DealerSeo";
 import AttributionAI from "@/pages/AttributionAI";
+import BlogPost from "@/pages/BlogPost";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -29,6 +30,7 @@ function Router() {
       <Route path="/independent-dealer-websites" component={IndependentDealerWebsites} />
       <Route path="/dealer-seo" component={DealerSeo} />
       <Route path="/attribution-ai" component={AttributionAI} />
+      <Route path="/blog/marketing-roi-evaluation" component={BlogPost} />
       <Route path="/admin" component={Admin} />
       <Route path="/admin/pages" component={AdminPages} />
       <Route path="/admin/settings" component={AdminSettings} />
