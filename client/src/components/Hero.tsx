@@ -45,7 +45,7 @@ export function Hero() {
             <Button
               size="lg"
               onClick={openLeadForm}
-              className="w-full bg-background/90 backdrop-blur-sm hover:bg-background/95 sm:w-auto"
+              className="w-full bg-background/90 backdrop-blur-sm hover:bg-background/95 sm:w-auto text-[#0088ff]"
               data-testid="button-hero-get-started"
             >
               <span className="flex items-center gap-2">

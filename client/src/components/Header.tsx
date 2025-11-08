@@ -86,6 +86,19 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
+          <a 
+            href="https://ai-detect.savvydealer.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex"
+          >
+            <Button
+              className="bg-blue-600 text-white hover:bg-blue-700"
+              data-testid="button-ai-compatibility"
+            >
+              AI Compatibility Test
+            </Button>
+          </a>
           <Button
             onClick={openLeadForm}
             className="hidden md:inline-flex"
@@ -135,6 +148,19 @@ export function Header() {
                 </Link>
               ))}
             </div>
+            <a 
+              href="https://ai-detect.savvydealer.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full"
+            >
+              <Button
+                className="w-full bg-blue-600 text-white hover:bg-blue-700"
+                data-testid="button-mobile-ai-compatibility"
+              >
+                AI Compatibility Test
+              </Button>
+            </a>
             <Button 
               onClick={() => {
                 openLeadForm();
