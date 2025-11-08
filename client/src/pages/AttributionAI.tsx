@@ -1,9 +1,9 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { Brain, Sparkles, Calendar, MapPin, Rocket } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import aiImage from "@assets/generated_images/Anti-Dashboard_AI_purple_theme_4cd41597.png";
 
 export default function AttributionAI() {
   const { openLeadForm } = useLeadForm();
@@ -12,118 +12,138 @@ export default function AttributionAI() {
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        <section className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-background to-purple-50/30 py-24 dark:from-purple-950/20 dark:via-background dark:to-purple-950/10">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-4xl text-center">
-              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-6 py-3 backdrop-blur-sm">
-                <Sparkles className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-                <span className="font-semibold text-purple-600 dark:text-purple-400">
-                  Exclusive Preview
+        {/* Hero Section - Apple-style dramatic intro */}
+        <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-background via-purple-50/30 to-background dark:from-background dark:via-purple-950/10 dark:to-background">
+          <div className="container mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-5xl text-center">
+              {/* Minimal badge */}
+              <div className="mb-12 inline-flex items-center gap-2 rounded-full bg-purple-100/80 px-5 py-2 backdrop-blur-sm dark:bg-purple-900/30">
+                <Sparkles className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                <span className="text-sm font-medium text-purple-600 dark:text-purple-400">
+                  NADA 2026
                 </span>
               </div>
 
-              <h1 className="mb-6 font-serif text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
-                Something Big is Coming
-                <br />
-                <span className="text-purple-600 dark:text-purple-400">at NADA 2026</span>
+              {/* Massive headline - Apple style */}
+              <h1 className="mb-8 font-serif text-7xl font-bold leading-[1.05] tracking-tight sm:text-8xl lg:text-9xl">
+                Anti-Dashboard
               </h1>
+              
+              <h2 className="mb-12 font-serif text-5xl font-bold leading-tight text-purple-600 sm:text-6xl lg:text-7xl dark:text-purple-400">
+                Something big is coming.
+              </h2>
 
-              <p className="mb-8 text-xl text-muted-foreground sm:text-2xl">
-                The future of automotive attribution and analytics is about to change forever.
+              {/* Clean, minimal subhead */}
+              <p className="mb-16 text-2xl text-muted-foreground sm:text-3xl">
+                February 2026
               </p>
 
-              <div className="mb-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Calendar className="h-5 w-5" />
-                  <span className="font-medium">February 2026</span>
-                </div>
-                <div className="hidden h-1 w-1 rounded-full bg-muted-foreground sm:block" />
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <MapPin className="h-5 w-5" />
-                  <span className="font-medium">NADA Show 2026</span>
-                </div>
-              </div>
-
+              {/* Single, prominent CTA */}
               <Button
                 onClick={openLeadForm}
                 size="lg"
-                className="bg-purple-600 text-white"
+                className="h-14 bg-purple-600 px-8 text-lg font-medium text-white hover:bg-purple-700"
                 data-testid="button-schedule-demo"
               >
-                <Calendar className="mr-2 h-5 w-5" />
-                Schedule Your Exclusive Demo at NADA
+                Schedule a Demo
               </Button>
             </div>
           </div>
+
+          {/* Subtle gradient overlay at bottom */}
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
         </section>
 
-        <section className="py-24">
+        {/* Large Image Section */}
+        <section className="py-32">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                What to Expect
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                A revolutionary approach to understanding your dealership's complete performance story
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-3">
-              <Card className="overflow-visible p-8 hover-elevate">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-md bg-purple-500/10">
-                  <Brain className="h-7 w-7 text-purple-600 dark:text-purple-400" />
-                </div>
-                <h3 className="mb-3 text-xl font-bold">AI-Powered Intelligence</h3>
-                <p className="text-muted-foreground">
-                  Advanced AI that understands automotive data like never before, finding insights humans miss.
-                </p>
-              </Card>
-
-              <Card className="overflow-visible p-8 hover-elevate">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-md bg-purple-500/10">
-                  <Sparkles className="h-7 w-7 text-purple-600 dark:text-purple-400" />
-                </div>
-                <h3 className="mb-3 text-xl font-bold">Unified Attribution</h3>
-                <p className="text-muted-foreground">
-                  See the complete customer journey across all touchpoints, finally solving the attribution puzzle.
-                </p>
-              </Card>
-
-              <Card className="overflow-visible p-8 hover-elevate">
-                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-md bg-purple-500/10">
-                  <Rocket className="h-7 w-7 text-purple-600 dark:text-purple-400" />
-                </div>
-                <h3 className="mb-3 text-xl font-bold">Proactive Action</h3>
-                <p className="text-muted-foreground">
-                  Get notified before problems become crises, with clear instructions on exactly what to fix.
-                </p>
-              </Card>
+            <div className="overflow-hidden rounded-3xl">
+              <img
+                src={aiImage}
+                alt="Anti-Dashboard AI"
+                className="h-auto w-full"
+                data-testid="img-attribution-ai"
+              />
             </div>
           </div>
         </section>
 
-        <section className="bg-card py-24">
-          <div className="container mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-3xl">
-              <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl">
-                Be Among the First to Experience It
+        {/* What to Expect - Simplified Apple style */}
+        <section className="py-32">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="mb-6 font-serif text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
+                AI that knows
+                <br />
+                what matters.
               </h2>
-              <p className="mb-8 text-lg text-muted-foreground">
-                Limited demo slots available at NADA 2026. Schedule your exclusive preview today
-                and discover how Attribution AI will transform your dealership's performance.
+              <p className="text-xl text-muted-foreground sm:text-2xl">
+                Advanced intelligence that understands your entire customer journey.
+                <br />
+                Insights you've never seen. Action you can take immediately.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Three Features - Clean layout without cards */}
+        <section className="py-32 bg-card">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-24 md:gap-32 lg:grid-cols-3">
+              {/* Feature 1 */}
+              <div className="text-center">
+                <div className="mb-6 text-6xl">🧠</div>
+                <h3 className="mb-4 font-serif text-2xl font-bold sm:text-3xl">
+                  AI-Powered
+                </h3>
+                <p className="text-lg text-muted-foreground">
+                  Intelligence that finds what humans miss
+                </p>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="text-center">
+                <div className="mb-6 text-6xl">✨</div>
+                <h3 className="mb-4 font-serif text-2xl font-bold sm:text-3xl">
+                  Complete View
+                </h3>
+                <p className="text-lg text-muted-foreground">
+                  Every touchpoint, finally unified
+                </p>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="text-center">
+                <div className="mb-6 text-6xl">🚀</div>
+                <h3 className="mb-4 font-serif text-2xl font-bold sm:text-3xl">
+                  Proactive
+                </h3>
+                <p className="text-lg text-muted-foreground">
+                  Fix problems before they happen
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA - Clean and minimal */}
+        <section className="py-32">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="mb-6 font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+                Be among the first.
+              </h2>
+              <p className="mb-12 text-xl text-muted-foreground sm:text-2xl">
+                Limited demo slots at NADA 2026.
               </p>
               <Button
                 onClick={openLeadForm}
                 size="lg"
-                className="bg-purple-600 text-white"
+                className="h-14 bg-purple-600 px-8 text-lg font-medium text-white hover:bg-purple-700"
                 data-testid="button-cta-schedule-demo"
               >
-                <Calendar className="mr-2 h-5 w-5" />
-                Reserve Your Demo Slot Now
+                Reserve Your Spot
               </Button>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Full details will be revealed at NADA 2026
-              </p>
             </div>
           </div>
         </section>
