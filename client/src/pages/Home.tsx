@@ -22,19 +22,19 @@ export default function Home() {
             <div className="grid items-center gap-12 lg:grid-cols-2">
               <div className="order-2 lg:order-1">
                 <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl">
-                  Manage Your Website with Confidence
+                  How We Drive Your Sales
                 </h2>
-                <p className="mb-6 text-lg text-muted-foreground">
-                  Our intuitive content management system puts you in complete control. 
-                  Create stunning pages, manage your content, and publish changes instantly—all 
-                  without touching a single line of code.
+                <p className="mb-6 text-lg">
+                  By aligning our SEO and GEO (Generative Engine Optimization) strategies, we ensure 
+                  your dealership doesn't just compete — it <strong>appears first and performs faster</strong> wherever 
+                  shoppers are searching, from Google to ChatGPT.
                 </p>
                 <ul className="mb-8 space-y-3">
                   {[
-                    "Visual page editor with drag-and-drop",
-                    "Real-time preview as you build",
-                    "Pre-built professional templates",
-                    "Advanced SEO controls built-in",
+                    "Counter competitor tactics effectively",
+                    "Dominate in search and generative AI results",
+                    "AI-optimized websites that convert",
+                    "Transparent reporting you can trust",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <CheckCircle2 className="h-6 w-6 shrink-0 text-primary" />
@@ -42,10 +42,11 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                <p className="mb-6 text-lg font-semibold">
+                  We don't outspend the competition — <span className="text-primary">we outsmart them.</span>
+                </p>
                 <Button asChild size="lg" data-testid="button-about-cta">
-                  <Link href="/admin">
-                    <a>Start Building Now</a>
-                  </Link>
+                  <a href="/free-audit">Request Free Audit</a>
                 </Button>
               </div>
               <div className="order-1 lg:order-2">
@@ -62,40 +63,45 @@ export default function Home() {
 
         <section className="py-24">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid items-center gap-12 lg:grid-cols-2">
-              <div>
-                <img
-                  src={teamImage}
-                  alt="Team collaboration"
-                  className="rounded-lg"
-                  data-testid="img-team"
-                />
-              </div>
-              <div>
-                <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl">
-                  Built for Modern Businesses
-                </h2>
-                <p className="mb-6 text-lg text-muted-foreground">
-                  Whether you're a small business owner, entrepreneur, or creative professional, 
-                  our platform gives you the tools to build a website that represents your brand 
-                  perfectly.
-                </p>
-                <div className="grid gap-6 sm:grid-cols-2">
-                  {[
-                    { number: "99.9%", label: "Uptime guarantee" },
-                    { number: "< 1s", label: "Page load time" },
-                    { number: "24/7", label: "Support available" },
-                    { number: "SSL", label: "Security included" },
-                  ].map((stat, index) => (
-                    <Card key={stat.label} className="overflow-visible p-6" data-testid={`card-stat-${index}`}>
-                      <div className="mb-2 font-serif text-3xl font-bold text-primary">
-                        {stat.number}
-                      </div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
-                    </Card>
-                  ))}
-                </div>
-              </div>
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
+                What Dealers are Saying About Us
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Consistent performance improvements and trusted partnerships
+              </p>
+            </div>
+            
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  quote: "Savvy Dealer nailed the essentials: a high‑performing website, marketing that delivers results, consistent service, and reporting that makes decisions obvious. The outcome is steady, consistent performance improvements across traffic quality, conversions, and paid efficiency. Savvy Dealer is a partner that goes above and beyond every time.",
+                  name: "Josh Mead",
+                  title: "General Manager",
+                  company: "Brighton Ford"
+                },
+                {
+                  quote: "We've been working with Savvy Dealer for over a year, and Savvy Dealer has been a major contributor for Banner Fords success. Our website is faster and converts better, and we see consistent performance improvements across SEO and paid media. The custom reporting makes results crystal clear and helps us shift budget with confidence.",
+                  name: "Greg Jones",
+                  title: "General Manager",
+                  company: "Banner Ford"
+                },
+                {
+                  quote: "Savvy Dealer is the ideal partner for our dealerships. Month after month we see consistent performance improvements across website conversions, SEO visibility, and paid media. Attribution is clear, budgets are transparent, and it's obvious which campaigns are moving appointments and sold units.",
+                  name: "David Blake",
+                  title: "General Manager",
+                  company: "Lake Powell Ford and Alamo Ford"
+                },
+              ].map((testimonial, index) => (
+                <Card key={index} className="overflow-visible p-6" data-testid={`card-testimonial-${index}`}>
+                  <p className="mb-6 text-muted-foreground italic">&ldquo;{testimonial.quote}&rdquo;</p>
+                  <div className="border-t pt-4">
+                    <p className="font-semibold">{testimonial.name}</p>
+                    <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                    <p className="text-sm font-medium text-primary">{testimonial.company}</p>
+                  </div>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
@@ -104,19 +110,17 @@ export default function Home() {
           <div className="container mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
             <div className="mx-auto max-w-2xl">
               <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                Ready to Get Started?
+                Ready to Dominate Your Market?
               </h2>
               <p className="mb-8 text-lg text-muted-foreground">
-                Join thousands of businesses building their online presence with our platform
+                Join successful dealers who choose performance over promises
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Button asChild size="lg" data-testid="button-cta-get-started">
-                  <Link href="/admin">
-                    <a>Get Started Free</a>
-                  </Link>
+                  <a href="/free-audit">Request Free Audit</a>
                 </Button>
                 <Button asChild variant="outline" size="lg" data-testid="button-cta-contact">
-                  <a href="mailto:hello@savvydealer.com">Contact Sales</a>
+                  <a href="tel:8135013229">Call Now: (813) 501-3229</a>
                 </Button>
               </div>
             </div>

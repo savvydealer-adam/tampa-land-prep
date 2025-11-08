@@ -1,10 +1,10 @@
-# Design Guidelines for Modern Website with CMS
+# Design Guidelines for Savvy Dealer
 
 ## Design Approach
 
-**Hybrid Strategy**: Contemporary business site aesthetic for public pages (inspired by Stripe, Linear) + clean dashboard patterns for admin (Material Design principles).
+**Brand Identity**: Automotive digital marketing agency with bold, energetic personality. Vibrant multi-color scheme representing each core product. Professional yet dynamic, emphasizing performance and results.
 
-**Core Philosophy**: Professional, trustworthy, and effortless to navigate. Emphasis on content clarity and modern visual refinement.
+**Core Philosophy**: "We don't outspend the competition — we outsmart them." Bold, confident, and data-driven. Emphasis on capturing leads, dominating search results, and delivering measurable ROI for auto dealerships.
 
 ## Typography
 
@@ -13,11 +13,33 @@
 - Accent: Space Grotesk (500, 700) for headings and impact text
 
 **Hierarchy**:
-- H1: 3xl to 5xl, Space Grotesk Bold, tight leading
-- H2: 2xl to 4xl, Space Grotesk Medium
-- H3: xl to 2xl, Inter Semibold
-- Body: base to lg, Inter Regular
-- Small/Meta: sm, Inter Medium
+- H1: 3xl to 6xl, Space Grotesk Bold, tight leading - Used for hero headlines
+- H2: 2xl to 4xl, Space Grotesk Medium - Section headers
+- H3: xl to 2xl, Inter Semibold - Product/feature titles
+- Body: base to lg, Inter Regular - Main content, descriptions
+- Small/Meta: sm, Inter Medium - Labels, captions, metadata
+
+## Color System
+
+**Primary Brand Color**: Electric Blue (#0088FF / HSL: 208, 100%, 50%)
+- Used for primary CTAs, links, and brand elements
+- Represents trust, technology, and dealer websites
+
+**Product Colors** (each representing a core service):
+1. **Pink/Magenta** (#FF4081 / HSL: 340, 100%, 63%) - Facebook Ads
+   - Social, engaging, captures attention
+2. **Bright Green** (#00E676 / HSL: 151, 100%, 45%) - Dealer SEO
+   - Growth, organic, long-term results
+3. **Vibrant Orange** (#FF6B35 / HSL: 16, 100%, 60%) - PPC Ads
+   - Energy, urgency, immediate conversions
+4. **Electric Blue** (#0088FF / HSL: 208, 100%, 50%) - Dealer Websites
+   - Trust, technology, digital foundation
+
+**Usage Guidelines**:
+- Each product card/section uses its designated color for icons and accents
+- Primary CTAs use Electric Blue across the site
+- Color backgrounds at 10-15% opacity with full-color icons
+- Maintain accessibility with proper contrast ratios
 
 ## Layout System
 
@@ -40,14 +62,39 @@
 - Full-width section with large hero image background
 - Height: 85vh on desktop, 70vh mobile
 - Content overlay with backdrop blur on buttons
-- H1 + supporting paragraph + dual CTA buttons (primary + secondary ghost)
+- Badge: "Digital Marketing for Auto Dealers"
+- H1: "The Savvy Dealer Difference"
+- Tagline emphasizing "leads aren't created — they're captured"
+- Supporting copy about SEO/GEO strategy and outsmarting competition
+- Dual CTA: "Request Free Audit" (primary) + "Our Products" (outline)
 - Subtle scroll indicator at bottom
 
-### Content Sections
-- Alternating full-width and contained sections
-- 2-3 column feature grids on desktop (stack mobile)
-- Card components with subtle shadow and hover lift effect
-- Mixed media: text blocks, image galleries, statistics displays
+### Product Suite Section
+- "Savvy Product Suite" heading
+- 2x2 grid on desktop, stack on mobile
+- Each product card includes:
+  - Color-coded icon (14x14 container with 10-15% opacity background)
+  - Product title (bold, 2xl)
+  - Subtitle (uppercase, small, muted)
+  - Description paragraph (actual service copy)
+  - "Request Free Audit" CTA button (consistent across all products)
+- Products: Facebook Ads (Pink), Dealer SEO (Green), PPC Ads (Orange), Dealer Websites (Blue)
+
+### Testimonials Section
+- "What Dealers are Saying About Us" heading
+- 3-column grid of testimonial cards
+- Each card includes:
+  - Quote text (italic, muted foreground)
+  - Border separator
+  - Name (bold), Title, Company (primary color)
+- Real dealer testimonials from Brighton Ford, Banner Ford, Lake Powell Ford
+
+### About Section
+- "How We Drive Your Sales" heading
+- Two-column layout with image
+- Bullet points about SEO/GEO strategy
+- Emphasis on "We don't outspend the competition — we outsmart them"
+- CTA: "Request Free Audit"
 
 ### Footer
 - Multi-column layout (4 columns desktop, stack mobile)

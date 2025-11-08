@@ -1,64 +1,82 @@
 import { Card } from "@/components/ui/card";
-import { Layout, Palette, Zap, Globe, Lock, Smartphone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Facebook, TrendingUp, MousePointerClick, Globe } from "lucide-react";
 
 export function Features() {
-  const features = [
+  const products = [
     {
-      icon: Layout,
-      title: "Visual Page Builder",
-      description: "Drag and drop components to build beautiful pages. No coding required.",
+      icon: Facebook,
+      title: "Facebook Ads",
+      subtitle: "Capture Traffic / Drive Sales",
+      description: "We don't just run ads. We hand build Facebook Ads that lead the industry in performance. We hand select the vehicles that will perform the best and give you top reports on the performance of your inventory both on Facebook and beyond.",
+      color: "hsl(var(--chart-1))",
+      link: "/facebook-advertising",
     },
     {
-      icon: Palette,
-      title: "Beautiful Themes",
-      description: "Choose from professionally designed themes or customize your own.",
+      icon: TrendingUp,
+      title: "Dealer SEO",
+      subtitle: "Fuel Long-Term Site Growth",
+      description: "We don't just write content. We optimize your site to create a user experience that works, both for Google and the visitors you want. Fuel your website's organic growth with regular infusions of well-written content.",
+      color: "hsl(var(--chart-2))",
+      link: "/dealer-seo",
     },
     {
-      icon: Zap,
-      title: "Lightning Fast",
-      description: "Optimized for speed. Your website loads instantly for visitors.",
+      icon: MousePointerClick,
+      title: "PPC Ads",
+      subtitle: "Turbocharge Your PPC",
+      description: "We know what to target and how to bid to win in Automotive PPC. We run some of the most successful Google Ad and Bing Ad campaigns in the industry. We focus on what you have in stock and prioritize each vehicle individually.",
+      color: "hsl(var(--chart-3))",
+      link: "/automotive-paid-search",
     },
     {
       icon: Globe,
-      title: "SEO Optimized",
-      description: "Built-in SEO tools help your website rank higher in search results.",
-    },
-    {
-      icon: Lock,
-      title: "Secure & Reliable",
-      description: "Enterprise-grade security keeps your content safe and protected.",
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Responsive",
-      description: "Your website looks perfect on all devices, from phones to desktops.",
+      title: "Dealer Website",
+      subtitle: "Dominate Your Online Market",
+      description: "We don't just build sites. We accelerate your SEO and SEM efforts with a customized website platform that is responsive and adaptable to your dealership's needs and to your customer's experience.",
+      color: "hsl(var(--chart-4))",
+      link: "/dealer-websites",
     },
   ];
 
   return (
-    <section id="features" className="py-24">
+    <section id="products" className="py-24">
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="font-serif text-3xl font-bold sm:text-4xl">
-            Everything You Need to Succeed
+            Savvy Product Suite
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Powerful features designed to help you create amazing websites
+            At Savvy Dealer, we customize our marketing packages to meet your needs, not ours. 
+            We believe that a three-pronged approach to digital makes the most sense for your business.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature, index) => (
+        <div className="grid gap-8 md:grid-cols-2">
+          {products.map((product, index) => (
             <Card
-              key={feature.title}
-              className="group overflow-visible p-6 transition-all hover-elevate"
-              data-testid={`card-feature-${index}`}
+              key={product.title}
+              className="group overflow-visible p-8 transition-all hover-elevate"
+              data-testid={`card-product-${index}`}
             >
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-md bg-primary/10">
-                <feature.icon className="h-6 w-6 text-primary" />
+              <div 
+                className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-md"
+                style={{ backgroundColor: product.color, opacity: 0.15 }}
+              >
+                <product.icon className="h-7 w-7" style={{ color: product.color }} />
               </div>
-              <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
+              <h3 className="mb-1 text-2xl font-bold">{product.title}</h3>
+              <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                {product.subtitle}
+              </p>
+              <p className="mb-6 text-muted-foreground">{product.description}</p>
+              <Button
+                asChild
+                variant="outline"
+                className="w-full"
+                data-testid={`button-request-audit-${index}`}
+              >
+                <a href="/free-audit">Request Free Audit</a>
+              </Button>
             </Card>
           ))}
         </div>

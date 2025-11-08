@@ -21,18 +21,22 @@ export function Hero() {
         <div className="mx-auto max-w-4xl space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border bg-background/40 px-4 py-2 text-sm backdrop-blur-sm">
             <Sparkles className="h-4 w-4 text-primary" />
-            <span className="font-medium">No coding required</span>
+            <span className="font-medium">Digital Marketing for Auto Dealers</span>
           </div>
 
           <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-            Build Your Modern Website
-            <br />
-            <span className="text-primary">Without Writing Code</span>
+            The Savvy Dealer Difference
           </h1>
 
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            Professional website management made simple. Create, edit, and publish pages
-            with our intuitive visual editor. No technical knowledge needed.
+          <p className="mx-auto max-w-2xl text-lg sm:text-xl">
+            Savvy Dealer partners with Franchised and Independent Dealers who know that{" "}
+            <strong>leads aren't created — they're captured.</strong>
+          </p>
+          
+          <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg">
+            Our full-service digital marketing, AI-optimized websites, and transparent reporting 
+            work together to counter competitor tactics and dominate in both search and generative 
+            AI results. We don't outspend the competition — <strong>we outsmart them.</strong>
           </p>
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -42,12 +46,10 @@ export function Hero() {
               className="w-full bg-background/90 backdrop-blur-sm hover:bg-background/95 sm:w-auto"
               data-testid="button-hero-get-started"
             >
-              <Link href="/admin">
-                <a className="flex items-center gap-2">
-                  Get Started Free
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-              </Link>
+              <a href="/free-audit" className="flex items-center gap-2">
+                Request Free Audit
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </Button>
             <Button
               asChild
@@ -56,7 +58,7 @@ export function Hero() {
               className="w-full bg-background/40 backdrop-blur-sm sm:w-auto"
               data-testid="button-hero-learn-more"
             >
-              <a href="#features">Learn More</a>
+              <a href="#products">Our Products</a>
             </Button>
           </div>
         </div>
