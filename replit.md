@@ -83,7 +83,7 @@ Preferred communication style: Simple, everyday language.
   - PPC Ads (/ppc-ads): Orange accent, inventory prioritization, proven ROI-focused keywords
   - Dealer SEO (/dealer-seo): Green accent, SEO + GEO optimization for AI search visibility
   - Dealer Websites (/dealer-websites): Blue accent, SEO-first architecture, 2x traffic claims
-  - Attribution AI (/attribution-ai): Purple accent, "anti-dashboard dashboard", AI-powered analytics consolidation
+  - Attribution AI (/attribution-ai): Purple accent teaser page for NADA 2026 announcement with demo scheduling CTAs
 - Admin Dashboard: Stats overview with metrics cards
 - Admin Pages: Page listing with search and CRUD operations (currently mock data)
 - Admin Settings: Site configuration management (currently mock data)
@@ -125,6 +125,18 @@ Preferred communication style: Simple, everyday language.
 - Blue button with white text linking to ai-detect.savvydealer.com
 - Available in desktop and mobile header navigation
 - Opens in new tab with rel="noopener noreferrer" for security
+
+**Attribution AI Teaser (NADA 2026 Announcement)**
+- Attribution AI treated as unreleased product with teaser experience
+- Homepage & Products page cards display: "Coming February 2026" subtitle with teaser messaging
+- Card buttons: "View Teaser" (primary) and "Schedule Demo at NADA" (outline)
+- Dedicated teaser landing page at /attribution-ai featuring:
+  - Purple gradient hero with "Something Big is Coming at NADA 2026" headline
+  - "Exclusive Preview" badge with event details (February 2026, NADA Show 2026)
+  - "What to Expect" section with 3 benefit cards (AI-Powered Intelligence, Unified Attribution, Proactive Action)
+  - Two demo scheduling CTAs: "Schedule Your Exclusive Demo at NADA" (hero) and "Reserve Your Demo Slot Now" (bottom)
+  - Both CTAs open lead form modal for demo scheduling
+  - Purple accent color (#9333EA) consistent with Attribution AI branding
 
 ## External Dependencies
 
