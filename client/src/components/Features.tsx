@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Facebook, TrendingUp, MousePointerClick, Globe, ArrowRight } from "lucide-react";
+import { Facebook, TrendingUp, MousePointerClick, Globe, Brain, ArrowRight } from "lucide-react";
 
 export function Features() {
   const { openLeadForm } = useLeadForm();
@@ -14,7 +14,7 @@ export function Features() {
       subtitle: "Capture Traffic / Drive Sales",
       description: "We don't just run ads. We hand build Facebook Ads that lead the industry in performance. We hand select the vehicles that will perform the best and give you top reports on the performance of your inventory both on Facebook and beyond.",
       color: "hsl(var(--chart-1))",
-      link: "/facebook-advertising",
+      href: "/facebook-ads",
     },
     {
       icon: TrendingUp,
@@ -22,7 +22,7 @@ export function Features() {
       subtitle: "Fuel Long-Term Site Growth",
       description: "We don't just write content. We optimize your site to create a user experience that works, both for Google and the visitors you want. Fuel your website's organic growth with regular infusions of well-written content.",
       color: "hsl(var(--chart-2))",
-      link: "/dealer-seo",
+      href: "/dealer-seo",
     },
     {
       icon: MousePointerClick,
@@ -30,15 +30,23 @@ export function Features() {
       subtitle: "Turbocharge Your PPC",
       description: "We know what to target and how to bid to win in Automotive PPC. We run some of the most successful Google Ad and Bing Ad campaigns in the industry. We focus on what you have in stock and prioritize each vehicle individually.",
       color: "hsl(var(--chart-3))",
-      link: "/automotive-paid-search",
+      href: "/ppc-ads",
     },
     {
       icon: Globe,
-      title: "Dealer Website",
+      title: "Dealer Websites",
       subtitle: "Dominate Your Online Market",
       description: "We don't just build sites. We accelerate your SEO and SEM efforts with a customized website platform that is responsive and adaptable to your dealership's needs and to your customer's experience.",
       color: "hsl(var(--chart-4))",
-      link: "/dealer-websites",
+      href: "/dealer-websites",
+    },
+    {
+      icon: Brain,
+      title: "Attribution AI",
+      subtitle: "Anti-Dashboard Dashboard",
+      description: "Unified data warehouse with AI that analyzes marketing, sales, inventory, and phone calls. Finds issues before they impact your business and alerts your team with actionable fixes.",
+      color: "hsl(var(--chart-5))",
+      href: "/attribution-ai",
     },
   ];
 
@@ -55,11 +63,11 @@ export function Features() {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product, index) => (
             <Card
               key={product.title}
-              className="group overflow-visible p-8 transition-all hover-elevate"
+              className="group flex flex-col overflow-visible p-8 transition-all hover-elevate"
               data-testid={`card-product-${index}`}
             >
               <div 
@@ -72,15 +80,24 @@ export function Features() {
               <p className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                 {product.subtitle}
               </p>
-              <p className="mb-6 text-muted-foreground">{product.description}</p>
-              <Button
-                onClick={openLeadForm}
-                variant="outline"
-                className="w-full"
-                data-testid={`button-request-audit-${index}`}
-              >
-                Request Free Audit
-              </Button>
+              <p className="mb-6 flex-1 text-muted-foreground">{product.description}</p>
+              <div className="flex flex-col gap-2">
+                <Button
+                  asChild
+                  className="w-full"
+                  data-testid={`button-learn-more-${index}`}
+                >
+                  <Link href={product.href}>Learn More</Link>
+                </Button>
+                <Button
+                  onClick={openLeadForm}
+                  variant="outline"
+                  className="w-full"
+                  data-testid={`button-request-audit-${index}`}
+                >
+                  Request Free Audit
+                </Button>
+              </div>
             </Card>
           ))}
         </div>
