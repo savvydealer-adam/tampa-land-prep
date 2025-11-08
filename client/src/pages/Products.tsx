@@ -45,10 +45,11 @@ export default function Products() {
     {
       icon: Brain,
       title: "Attribution AI",
-      subtitle: "Anti-Dashboard Dashboard",
-      description: "Unified data warehouse with AI that analyzes marketing, sales, inventory, and phone calls. Finds issues before they impact your business and alerts your team with actionable fixes.",
+      subtitle: "Coming February 2026",
+      description: "Something big is coming at NADA 2026. Be among the first to see how AI will transform automotive attribution and analytics.",
       color: "hsl(var(--chart-5))",
       href: "/attribution-ai",
+      isTeaser: true,
     },
   ];
 
@@ -97,7 +98,9 @@ export default function Products() {
                     className="w-full"
                     data-testid={`button-learn-more-${index}`}
                   >
-                    <Link href={product.href}>Learn More</Link>
+                    <Link href={product.href}>
+                      {(product as any).isTeaser ? "View Teaser" : "Learn More"}
+                    </Link>
                   </Button>
                 </Card>
               ))}

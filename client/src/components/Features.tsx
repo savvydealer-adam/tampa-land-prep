@@ -43,10 +43,11 @@ export function Features() {
     {
       icon: Brain,
       title: "Attribution AI",
-      subtitle: "Anti-Dashboard Dashboard",
-      description: "Unified data warehouse with AI that analyzes marketing, sales, inventory, and phone calls. Finds issues before they impact your business and alerts your team with actionable fixes.",
+      subtitle: "Coming February 2026",
+      description: "Something big is coming at NADA 2026. Be among the first to see how AI will transform automotive attribution and analytics. Schedule your exclusive demo today.",
       color: "hsl(var(--chart-5))",
       href: "/attribution-ai",
+      isTeaser: true,
     },
   ];
 
@@ -87,7 +88,9 @@ export function Features() {
                   className="w-full"
                   data-testid={`button-learn-more-${index}`}
                 >
-                  <Link href={product.href}>Learn More</Link>
+                  <Link href={product.href}>
+                    {(product as any).isTeaser ? "View Teaser" : "Learn More"}
+                  </Link>
                 </Button>
                 <Button
                   onClick={openLeadForm}
@@ -95,7 +98,7 @@ export function Features() {
                   className="w-full"
                   data-testid={`button-request-audit-${index}`}
                 >
-                  Request Free Audit
+                  {(product as any).isTeaser ? "Schedule Demo at NADA" : "Request Free Audit"}
                 </Button>
               </div>
             </Card>

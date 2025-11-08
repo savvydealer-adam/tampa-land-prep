@@ -1,122 +1,132 @@
-import { ProductPage, ProductPageProps } from "@/components/ProductPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Brain, Database, Bell, Zap, BarChart3, Shield } from "lucide-react";
-
-const attributionAIContent: ProductPageProps = {
-  badge: "AI-Powered Analytics",
-  title: "Attribution AI",
-  subtitle: "The Anti-Dashboard Dashboard",
-  heroDescription:
-    "Stop drowning in dashboards. Attribution AI consolidates all your dealership data into one intelligent warehouse, using custom AI to analyze marketing, sales, inventory, and phone calls—finding issues before they impact your business and alerting the right people with actionable instructions.",
-  accentColor: "#9333EA",
-  benefits: {
-    title: "Why Your Dealership Needs Attribution AI",
-    items: [
-      "Stop wasting time jumping between multiple dashboards",
-      "Catch problems before they cost you money",
-      "Empower your team with clear, actionable guidance",
-      "Make data-driven decisions with confidence",
-      "See the complete picture of your dealership's performance",
-      "Reduce manual reporting and analysis time by 80%+",
-      "Get alerted to issues automatically—no more guesswork",
-      "Every alert includes step-by-step fix instructions",
-    ],
-  },
-  features: {
-    title: "How Attribution AI Works",
-    description:
-      "A comprehensive AI system that monitors your entire operation and provides proactive guidance before issues become crises.",
-    items: [
-      {
-        title: "Unified Data Warehouse",
-        description:
-          "All your data in one place—marketing metrics, sales performance, inventory levels, and phone call analytics seamlessly integrated.",
-        icon: Database,
-      },
-      {
-        title: "Custom AI Analysis",
-        description:
-          "Proprietary AI trained on automotive data continuously monitors your entire operation, identifying patterns and anomalies that humans miss.",
-        icon: Brain,
-      },
-      {
-        title: "Proactive Alerts",
-        description:
-          "Get notified before problems become crises. Our AI detects issues early and alerts the right department or employee automatically.",
-        icon: Bell,
-      },
-      {
-        title: "Actionable Instructions",
-        description:
-          "No more guessing. Every alert includes specific, step-by-step instructions to fix the problem—so your team knows exactly what to do.",
-        icon: Zap,
-      },
-      {
-        title: "Real-Time Insights",
-        description:
-          "Monitor your entire operation from a single view. See what's working, what's not, and why—all in real-time with AI-powered explanations.",
-        icon: BarChart3,
-      },
-      {
-        title: "Risk Prevention",
-        description:
-          "Identify revenue leaks, inventory issues, marketing inefficiencies, and sales bottlenecks before they impact your bottom line.",
-        icon: Shield,
-      },
-    ],
-  },
-  proof: {
-    title: "Attribution AI Impact",
-    items: [
-      { stat: "80%+", label: "reduction in reporting time" },
-      { stat: "1", label: "unified data warehouse" },
-      { stat: "24/7", label: "AI monitoring & alerts" },
-      { stat: "100%", label: "actionable insights" },
-    ],
-  },
-  process: {
-    title: "How We Deploy Attribution AI",
-    steps: [
-      {
-        number: "1",
-        title: "Data Integration Audit",
-        description:
-          "We assess your current systems—CRM, DMS, marketing platforms, phone systems—and plan the optimal data warehouse architecture.",
-      },
-      {
-        number: "2",
-        title: "Custom AI Training",
-        description:
-          "Our AI is trained on your specific dealership data and goals, learning what's normal for your operation and what signals a problem.",
-      },
-      {
-        number: "3",
-        title: "Unified Warehouse Setup",
-        description:
-          "All data sources are consolidated into one warehouse with real-time syncing, giving you a single source of truth.",
-      },
-      {
-        number: "4",
-        title: "Alert System Activation",
-        description:
-          "AI monitoring begins, with customized alerts sent to the right people with specific instructions on how to resolve each issue.",
-      },
-    ],
-  },
-  cta: {
-    title: "Ready to Stop Drowning in Data?",
-    description:
-      "Get a free audit of your current reporting systems and discover how Attribution AI can save your team hours every week while preventing costly issues.",
-  },
-};
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { useLeadForm } from "@/contexts/LeadFormContext";
+import { Brain, Sparkles, Calendar, MapPin, Rocket } from "lucide-react";
 
 export default function AttributionAI() {
+  const { openLeadForm } = useLeadForm();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
-        <ProductPage {...attributionAIContent} />
+        <section className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-background to-purple-50/30 py-24 dark:from-purple-950/20 dark:via-background dark:to-purple-950/10">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-4xl text-center">
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-purple-500/20 bg-purple-500/10 px-6 py-3 backdrop-blur-sm">
+                <Sparkles className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                <span className="font-semibold text-purple-600 dark:text-purple-400">
+                  Exclusive Preview
+                </span>
+              </div>
+
+              <h1 className="mb-6 font-serif text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
+                Something Big is Coming
+                <br />
+                <span className="text-purple-600 dark:text-purple-400">at NADA 2026</span>
+              </h1>
+
+              <p className="mb-8 text-xl text-muted-foreground sm:text-2xl">
+                The future of automotive attribution and analytics is about to change forever.
+              </p>
+
+              <div className="mb-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Calendar className="h-5 w-5" />
+                  <span className="font-medium">February 2026</span>
+                </div>
+                <div className="hidden h-1 w-1 rounded-full bg-muted-foreground sm:block" />
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-5 w-5" />
+                  <span className="font-medium">NADA Show 2026</span>
+                </div>
+              </div>
+
+              <Button
+                onClick={openLeadForm}
+                size="lg"
+                className="bg-purple-600 text-white hover:bg-purple-700"
+                data-testid="button-schedule-demo"
+              >
+                <Calendar className="mr-2 h-5 w-5" />
+                Schedule Your Exclusive Demo at NADA
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
+                What to Expect
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                A revolutionary approach to understanding your dealership's complete performance story
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-3">
+              <Card className="overflow-visible p-8 hover-elevate">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-md bg-purple-500/10">
+                  <Brain className="h-7 w-7 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold">AI-Powered Intelligence</h3>
+                <p className="text-muted-foreground">
+                  Advanced AI that understands automotive data like never before, finding insights humans miss.
+                </p>
+              </Card>
+
+              <Card className="overflow-visible p-8 hover-elevate">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-md bg-purple-500/10">
+                  <Sparkles className="h-7 w-7 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold">Unified Attribution</h3>
+                <p className="text-muted-foreground">
+                  See the complete customer journey across all touchpoints, finally solving the attribution puzzle.
+                </p>
+              </Card>
+
+              <Card className="overflow-visible p-8 hover-elevate">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-md bg-purple-500/10">
+                  <Rocket className="h-7 w-7 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h3 className="mb-3 text-xl font-bold">Proactive Action</h3>
+                <p className="text-muted-foreground">
+                  Get notified before problems become crises, with clear instructions on exactly what to fix.
+                </p>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-card py-24">
+          <div className="container mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl">
+              <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl">
+                Be Among the First to Experience It
+              </h2>
+              <p className="mb-8 text-lg text-muted-foreground">
+                Limited demo slots available at NADA 2026. Schedule your exclusive preview today
+                and discover how Attribution AI will transform your dealership's performance.
+              </p>
+              <Button
+                onClick={openLeadForm}
+                size="lg"
+                className="bg-purple-600 text-white hover:bg-purple-700"
+                data-testid="button-cta-schedule-demo"
+              >
+                <Calendar className="mr-2 h-5 w-5" />
+                Reserve Your Demo Slot Now
+              </Button>
+              <p className="mt-4 text-sm text-muted-foreground">
+                Full details will be revealed at NADA 2026
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
