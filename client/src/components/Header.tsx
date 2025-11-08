@@ -50,7 +50,7 @@ export function Header() {
           <img 
             src={logoImage} 
             alt="Savvy Dealer" 
-            className={`transition-all duration-300 ${scrolled ? 'h-7' : 'h-9'} w-auto dark:brightness-100 brightness-0 dark:invert-0 invert`}
+            className={`transition-all duration-300 ${scrolled ? 'h-7' : 'h-9'} w-auto invert dark:invert-0`}
           />
         </Link>
 

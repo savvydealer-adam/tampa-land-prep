@@ -23,7 +23,7 @@ export function Footer() {
               <img 
                 src={logoImage} 
                 alt="Savvy Dealer" 
-                className="h-10 w-auto dark:brightness-100 brightness-0 dark:invert-0 invert"
+                className="h-10 w-auto invert dark:invert-0"
               />
             </Link>
             <p className="text-muted-foreground max-w-xs">
