@@ -1,9 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
 import { Facebook, TrendingUp, MousePointerClick, Globe, ArrowRight } from "lucide-react";
 
 export function Features() {
+  const { openLeadForm } = useLeadForm();
+
   const products = [
     {
       icon: Facebook,
@@ -71,12 +74,12 @@ export function Features() {
               </p>
               <p className="mb-6 text-muted-foreground">{product.description}</p>
               <Button
-                asChild
+                onClick={openLeadForm}
                 variant="outline"
                 className="w-full"
                 data-testid={`button-request-audit-${index}`}
               >
-                <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
+                Request Free Audit
               </Button>
             </Card>
           ))}

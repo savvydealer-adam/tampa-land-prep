@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useLeadForm } from "@/contexts/LeadFormContext";
 import heroImage from "@assets/generated_images/Professional_hero_background_image_8c13e03a.png";
 
 export function Hero() {
+  const { openLeadForm } = useLeadForm();
+
   return (
     <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden">
       <div
@@ -41,15 +43,15 @@ export function Hero() {
 
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
-              asChild
               size="lg"
+              onClick={openLeadForm}
               className="w-full bg-background/90 backdrop-blur-sm hover:bg-background/95 sm:w-auto"
               data-testid="button-hero-get-started"
             >
-              <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+              <span className="flex items-center gap-2">
                 Request Free Audit
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </span>
             </Button>
             <Button
               asChild

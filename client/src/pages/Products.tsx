@@ -2,10 +2,13 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
 import { Facebook, TrendingUp, MousePointerClick, Globe, Brain } from "lucide-react";
 
 export default function Products() {
+  const { openLeadForm } = useLeadForm();
+
   const products = [
     {
       icon: Facebook,
@@ -111,8 +114,8 @@ export default function Products() {
               <p className="mb-8 text-lg text-muted-foreground">
                 Join successful dealers who choose performance over promises
               </p>
-              <Button asChild size="lg" data-testid="button-cta-request-audit">
-                <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
+              <Button onClick={openLeadForm} size="lg" data-testid="button-cta-request-audit">
+                Request Free Audit
               </Button>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
+import { useLeadForm } from "@/contexts/LeadFormContext";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +13,7 @@ import { useState } from "react";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openLeadForm } = useLeadForm();
 
   const navItems = [
     { label: "About", href: "#about" },
@@ -85,11 +87,11 @@ export function Header() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Button
-            asChild
+            onClick={openLeadForm}
             className="hidden md:inline-flex"
             data-testid="button-get-started"
           >
-            <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
+            Request Free Audit
           </Button>
           <Button
             variant="ghost"
@@ -133,8 +135,15 @@ export function Header() {
                 </Link>
               ))}
             </div>
-            <Button asChild className="w-full" data-testid="button-mobile-get-started">
-              <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
+            <Button 
+              onClick={() => {
+                openLeadForm();
+                setMobileMenuOpen(false);
+              }}
+              className="w-full" 
+              data-testid="button-mobile-get-started"
+            >
+              Request Free Audit
             </Button>
           </nav>
         </div>

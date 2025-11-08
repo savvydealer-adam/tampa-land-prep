@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { useLeadForm } from "@/contexts/LeadFormContext";
+import { CheckCircle2 } from "lucide-react";
 import heroImage from "@assets/generated_images/Professional_hero_background_image_8c13e03a.png";
 
 export interface ProductPageProps {
@@ -56,6 +57,8 @@ export function ProductPage({
   process,
   cta,
 }: ProductPageProps) {
+  const { openLeadForm } = useLeadForm();
+
   return (
     <div className="flex-1">
       <section
@@ -88,12 +91,12 @@ export function ProductPage({
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button
-              asChild
+              onClick={openLeadForm}
               size="lg"
               className="backdrop-blur-sm"
               data-testid="button-hero-cta"
             >
-              <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
+              Request Free Audit
             </Button>
             <Button
               asChild
@@ -234,8 +237,8 @@ export function ProductPage({
               {cta.description}
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button asChild size="lg" data-testid="button-cta-final">
-                <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
+              <Button onClick={openLeadForm} size="lg" data-testid="button-cta-final">
+                Request Free Audit
               </Button>
               <Button
                 asChild

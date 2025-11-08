@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LeadFormProvider } from "@/contexts/LeadFormContext";
 import Home from "@/pages/Home";
 import Admin from "@/pages/Admin";
 import AdminPages from "@/pages/AdminPages";
@@ -39,8 +40,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <TooltipProvider>
-          <Toaster />
-          <Router />
+          <LeadFormProvider>
+            <Toaster />
+            <Router />
+          </LeadFormProvider>
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>

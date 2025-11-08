@@ -4,12 +4,14 @@ import { Features } from "@/components/Features";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Link } from "wouter";
+import { useLeadForm } from "@/contexts/LeadFormContext";
 import { CheckCircle2 } from "lucide-react";
 import workspaceImage from "@assets/generated_images/Feature_section_workspace_image_6c209941.png";
 import teamImage from "@assets/generated_images/Team_collaboration_image_765209cf.png";
 
 export default function Home() {
+  const { openLeadForm } = useLeadForm();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -45,8 +47,8 @@ export default function Home() {
                 <p className="mb-6 text-lg font-semibold">
                   We don't outspend the competition — <span className="text-primary">we outsmart them.</span>
                 </p>
-                <Button asChild size="lg" data-testid="button-about-cta">
-                  <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
+                <Button onClick={openLeadForm} size="lg" data-testid="button-about-cta">
+                  Request Free Audit
                 </Button>
               </div>
               <div className="order-1 lg:order-2">
@@ -116,8 +118,8 @@ export default function Home() {
                 Join successful dealers who choose performance over promises
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Button asChild size="lg" data-testid="button-cta-get-started">
-                  <a href="https://ai-detect.savvydealer.com" target="_blank" rel="noopener noreferrer">Request Free Audit</a>
+                <Button onClick={openLeadForm} size="lg" data-testid="button-cta-get-started">
+                  Request Free Audit
                 </Button>
                 <Button asChild variant="outline" size="lg" data-testid="button-cta-contact">
                   <a href="tel:8135013229">Call Now: (813) 501-3229</a>

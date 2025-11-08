@@ -94,11 +94,14 @@ Preferred communication style: Simple, everyday language.
   - Footer: Site-wide footer with logo and navigation links
   - ProductPage: Reusable component for consistent product page layouts
   - Hero, Features, PageCard, AdminSidebar: Supporting components
+  - LeadFormModal: Dialog-based lead capture form with validation
 - Page components in client/src/pages
   - Home, Products, FacebookAds, PpcAds, DealerSeo, DealerWebsites, AttributionAI: Public pages
   - AdminDashboard, AdminPages, AdminSettings: Admin pages
 - Reusable UI primitives in client/src/components/ui
   - shadcn/ui components with custom theming
+- Context providers in client/src/contexts
+  - LeadFormContext: Global state management for lead form modal
 
 **Navigation Implementation**
 - All navigation uses wouter Link component for SPA routing (no full page reloads)
@@ -107,6 +110,15 @@ Preferred communication style: Simple, everyday language.
 - All Link components properly implement SPA semantics without nested anchors
 - Logo links in header and footer navigate to homepage via SPA routing
 - "View All Products" CTA button on homepage Features section links to /products overview
+
+**Lead Form Modal System**
+- Global modal triggered by all "Request Free Audit" CTAs across the site
+- Context-based state management via LeadFormContext provider
+- Form fields: Name, Email, Phone, Dealership Name, Message (optional)
+- Client-side validation using react-hook-form + zod schemas
+- Success state with auto-close after 3 seconds
+- Ready for backend integration (email service, CRM, database storage)
+- CTA locations: Homepage (hero, about, final), Header (desktop/mobile), All 5 product pages (hero, final), Products overview, Features section (4 cards)
 
 ## External Dependencies
 
