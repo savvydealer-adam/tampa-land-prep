@@ -2,7 +2,7 @@
 
 ## Overview
 
-Savvy Dealer is a website management and digital marketing platform for automotive dealerships. The application provides a content management system for creating and managing website pages, along with showcasing digital marketing services including Facebook Ads, SEO, PPC, custom dealer websites, and Attribution AI. Built as a full-stack TypeScript application with React frontend and Express backend, it emphasizes a bold, multi-color brand identity representing different product lines.
+Savvy Dealer is a website management and digital marketing platform for automotive dealerships. The application provides a content management system for creating and managing website pages, along with showcasing digital marketing services including Facebook Ads, SEO, PPC, custom dealer websites, and Attribution AI. Built as a full-stack TypeScript application with React frontend and Express backend, it features an Apple-inspired design aesthetic with large-scale product imagery, dramatic typography, generous spacing, and smooth scroll animations. Each product line is represented by vibrant brand colors in full-width immersive showcase sections.
 
 ## User Preferences
 

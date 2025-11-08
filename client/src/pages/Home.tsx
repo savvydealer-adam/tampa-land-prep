@@ -19,35 +19,35 @@ export default function Home() {
         <Hero />
         <Features />
 
-        <section id="about" className="bg-card py-24">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid items-center gap-12 lg:grid-cols-2">
+        <section id="about" className="bg-card py-32">
+          <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+            <div className="grid items-center gap-16 lg:grid-cols-2">
               <div className="order-2 lg:order-1">
-                <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl">
+                <h2 className="mb-8 font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
                   How We Drive Your Sales
                 </h2>
-                <p className="mb-6 text-lg">
+                <p className="mb-8 text-xl text-muted-foreground">
                   By aligning our SEO and GEO (Generative Engine Optimization) strategies, we ensure 
-                  your dealership doesn't just compete — it <strong>appears first and performs faster</strong> wherever 
+                  your dealership doesn't just compete — it <strong className="text-foreground">appears first and performs faster</strong> wherever 
                   shoppers are searching, from Google to ChatGPT.
                 </p>
-                <ul className="mb-8 space-y-3">
+                <ul className="mb-10 space-y-4">
                   {[
                     "Counter competitor tactics effectively",
                     "Dominate in search and generative AI results",
                     "AI-optimized websites that convert",
                     "Transparent reporting you can trust",
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
+                    <li key={item} className="flex items-start gap-4">
                       <CheckCircle2 className="h-6 w-6 shrink-0 text-primary" />
-                      <span className="text-muted-foreground">{item}</span>
+                      <span className="text-lg text-muted-foreground">{item}</span>
                     </li>
                   ))}
                 </ul>
-                <p className="mb-6 text-lg font-semibold">
+                <p className="mb-8 text-xl font-semibold">
                   We don't outspend the competition — <span className="text-primary">we outsmart them.</span>
                 </p>
-                <Button onClick={openLeadForm} size="lg" data-testid="button-about-cta">
+                <Button onClick={openLeadForm} size="lg" className="min-h-12 rounded-full px-8" data-testid="button-about-cta">
                   Request Free Audit
                 </Button>
               </div>
@@ -55,7 +55,7 @@ export default function Home() {
                 <img
                   src={workspaceImage}
                   alt="Modern workspace"
-                  className="rounded-lg"
+                  className="rounded-3xl"
                   data-testid="img-workspace"
                 />
               </div>
@@ -63,13 +63,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-24">
-          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-16 text-center">
-              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                What Dealers are Saying About Us
+        <section className="py-32">
+          <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+            <div className="mb-20 text-center">
+              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-6xl">
+                What Dealers are Saying
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-xl text-muted-foreground">
                 Consistent performance improvements and trusted partnerships
               </p>
             </div>
@@ -95,12 +95,12 @@ export default function Home() {
                   company: "Lake Powell Ford and Alamo Ford"
                 },
               ].map((testimonial, index) => (
-                <Card key={index} className="overflow-visible p-6" data-testid={`card-testimonial-${index}`}>
-                  <p className="mb-6 text-muted-foreground italic">&ldquo;{testimonial.quote}&rdquo;</p>
-                  <div className="border-t pt-4">
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.title}</p>
-                    <p className="text-sm font-medium text-primary">{testimonial.company}</p>
+                <Card key={index} className="overflow-visible p-8" data-testid={`card-testimonial-${index}`}>
+                  <p className="mb-8 text-lg text-muted-foreground italic leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
+                  <div className="border-t pt-6">
+                    <p className="font-semibold text-lg">{testimonial.name}</p>
+                    <p className="text-muted-foreground">{testimonial.title}</p>
+                    <p className="font-medium text-primary">{testimonial.company}</p>
                   </div>
                 </Card>
               ))}
@@ -108,20 +108,20 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="bg-card py-24">
-          <div className="container mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-2xl">
-              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
+        <section id="contact" className="bg-card py-32">
+          <div className="container mx-auto max-w-7xl px-6 text-center sm:px-8 lg:px-12">
+            <div className="mx-auto max-w-3xl">
+              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-6xl">
                 Ready to Dominate Your Market?
               </h2>
-              <p className="mb-8 text-lg text-muted-foreground">
+              <p className="mb-10 text-xl text-muted-foreground">
                 Join successful dealers who choose performance over promises
               </p>
-              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Button onClick={openLeadForm} size="lg" data-testid="button-cta-get-started">
+              <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+                <Button onClick={openLeadForm} size="lg" className="min-h-14 rounded-full px-10" data-testid="button-cta-get-started">
                   Request Free Audit
                 </Button>
-                <Button asChild variant="outline" size="lg" data-testid="button-cta-contact">
+                <Button asChild variant="outline" size="lg" className="min-h-14 rounded-full px-10" data-testid="button-cta-contact">
                   <a href="tel:8135013229">Call Now: (813) 501-3229</a>
                 </Button>
               </div>
