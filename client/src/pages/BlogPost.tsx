@@ -3,6 +3,9 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { CheckCircle2 } from "lucide-react";
+import searchResultsImage from "@assets/generated_images/Google_search_Silverado_results_47f1aa37.png";
+import adsResultsImage from "@assets/generated_images/Google_Ads_automotive_search_a2017ee9.png";
+import shoppingResultsImage from "@assets/generated_images/Google_Shopping_vehicle_listings_614ed11c.png";
 
 export default function BlogPost() {
   const { openLeadForm } = useLeadForm();
@@ -78,6 +81,17 @@ export default function BlogPost() {
                     If you're invisible on your money terms, fix that before anything else.
                   </p>
                 </div>
+                
+                <div className="my-8 overflow-hidden rounded-xl border">
+                  <img 
+                    src={searchResultsImage} 
+                    alt="Example Google search results showing automotive search visibility in both Search and Shopping results"
+                    className="w-full"
+                  />
+                  <p className="bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+                    Example: Strong visibility across both organic search and Google Shopping for model searches
+                  </p>
+                </div>
               </section>
 
               {/* Move 2 */}
@@ -89,10 +103,21 @@ export default function BlogPost() {
                   When agencies optimize only for "get people into the dealership," algorithms often find the 
                   <strong> cheapest</strong> path—service traffic. That yields a packed service lane and a quiet showroom.
                 </p>
-                <p className="mt-4 text-lg leading-relaxed">
+                <p className="mt-4 mb-6 text-lg leading-relaxed">
                   Make sure your campaigns, goals, and bidding strategies are aligned to <strong>sales</strong> intent 
                   (model terms, SRP → VDP engagement, phone calls, forms), not generic "store visits."
                 </p>
+                
+                <div className="my-8 overflow-hidden rounded-xl border">
+                  <img 
+                    src={shoppingResultsImage} 
+                    alt="Example Google Shopping results showing vehicle inventory listings with photos, pricing, and dealer information"
+                    className="w-full"
+                  />
+                  <p className="bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+                    Google Shopping: Your inventory should be prominently displayed for high-intent model searches
+                  </p>
+                </div>
               </section>
 
               {/* Move 3 */}
@@ -170,10 +195,21 @@ export default function BlogPost() {
                   <li>• Count the <strong>pop-ups</strong>. Do widgets interrupt the purchase path?</li>
                   <li>• Try to submit a lead. How many steps/fields? Any dead ends on mobile?</li>
                 </ul>
-                <p className="text-lg leading-relaxed">
+                <p className="mb-6 text-lg leading-relaxed">
                   You'll quickly see friction you stopped noticing—and tricks some third parties use (e.g., their 
                   search bars sitting on top of your SRP to drive <em>their</em> leads, not your sales).
                 </p>
+                
+                <div className="my-8 overflow-hidden rounded-xl border">
+                  <img 
+                    src={adsResultsImage} 
+                    alt="Example Google Ads search results showing multiple dealership PPC ads competing for visibility"
+                    className="w-full"
+                  />
+                  <p className="bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+                    Mystery shop your ads: Are you visible for your top model searches? How do your ads compare to competitors?
+                  </p>
+                </div>
               </section>
 
               {/* Move 6 */}
