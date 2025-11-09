@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
 import { Facebook, TrendingUp, MousePointerClick, Globe, Brain, Store, ArrowRight } from "lucide-react";
@@ -11,6 +13,15 @@ import aiImage from "@assets/generated_images/Anti-Dashboard_AI_purple_theme_4cd
 
 export function Features() {
   const { openLeadForm } = useLeadForm();
+  const [showNadaHighlight, setShowNadaHighlight] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowNadaHighlight(false);
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const products = [
     {
@@ -85,20 +96,32 @@ export function Features() {
 
       {products.map((product, index) => {
         const isReversed = index % 2 === 1;
+        const isNadaTeaser = (product as any).isTeaser;
         return (
           <div
             key={product.title}
-            className="relative py-24"
+            className={`relative py-24 ${isNadaTeaser && showNadaHighlight ? 'nada-highlight-animation' : ''}`}
             data-testid={`section-product-${index}`}
           >
             <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
               <div className={`grid items-center gap-12 lg:grid-cols-2 ${isReversed ? 'lg:grid-flow-dense' : ''}`}>
                 <div className={`space-y-6 ${isReversed ? 'lg:col-start-2' : ''}`}>
-                  <div className="inline-flex items-center gap-3 rounded-full border px-4 py-2">
-                    <product.icon className="h-5 w-5" style={{ color: product.color }} />
-                    <span className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                      {product.subtitle}
-                    </span>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <div className="inline-flex items-center gap-3 rounded-full border px-4 py-2">
+                      <product.icon className="h-5 w-5" style={{ color: product.color }} />
+                      <span className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                        {product.subtitle}
+                      </span>
+                    </div>
+                    {isNadaTeaser && (
+                      <Badge 
+                        variant="default" 
+                        className="bg-[hsl(var(--chart-5))] text-white border-0"
+                        data-testid="badge-nada-exclusive"
+                      >
+                        NADA 2026 Exclusive
+                      </Badge>
+                    )}
                   </div>
                   
                   <h3 className="font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">

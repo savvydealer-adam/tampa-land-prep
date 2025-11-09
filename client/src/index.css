@@ -385,4 +385,28 @@
   *:focus-visible {
     scroll-margin-top: 5rem;
   }
+
+  /* NADA Show Highlight Animation - Subtle pulse and glow for first few seconds */
+  @keyframes nada-highlight {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 transparent;
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px 5px hsl(var(--chart-5) / 0.3);
+    }
+  }
+
+  .nada-highlight-animation {
+    animation: nada-highlight 2s ease-in-out 2;
+    animation-fill-mode: both;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .nada-highlight-animation {
+      animation: none;
+    }
+  }
 }
