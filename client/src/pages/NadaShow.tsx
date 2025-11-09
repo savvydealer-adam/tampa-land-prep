@@ -15,6 +15,7 @@ import {
   Calendar,
 } from "lucide-react";
 import nadaLogo from "@assets/NADA2026_SavvyDealer_Booth6760N_ext_black_1762695345140.png";
+import nadaMap from "@assets/nada map_1762701202953.png";
 
 const reasons = [
   {
@@ -141,6 +142,56 @@ export default function NadaShow() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Floor Map Section */}
+        <section className="bg-background py-16 sm:py-24">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
+                Find Us at Booth 6760N
+              </h2>
+              <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+                Located in the North Hall of the Las Vegas Convention Center. Look for us near the center aisle.
+              </p>
+            </div>
+            
+            <div className="relative rounded-lg border bg-card p-4 sm:p-6 lg:p-8">
+              <div className="mb-6 flex items-start gap-4 rounded-lg bg-primary/10 p-4">
+                <MapPin className="h-6 w-6 shrink-0 text-primary" />
+                <div>
+                  <h3 className="mb-1 font-semibold text-primary">
+                    Booth 6760N - North Hall
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Find booth 6760N marked on the floor plan below. We're centrally located for easy access.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="overflow-auto rounded-lg border bg-white">
+                <img
+                  src={nadaMap}
+                  alt="NADA Show 2026 North Hall Floor Plan - Booth 6760N Location"
+                  className="w-full h-auto"
+                  data-testid="img-floor-map"
+                />
+              </div>
+              
+              <div className="mt-6 text-center">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Need directions or have questions about visiting our booth?
+                </p>
+                <Button
+                  onClick={() => setIsBookingOpen(true)}
+                  variant="outline"
+                  data-testid="button-book-from-map"
+                >
+                  Book Your Visit to Booth 6760N
+                </Button>
+              </div>
             </div>
           </div>
         </section>
