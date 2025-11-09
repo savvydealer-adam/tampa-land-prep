@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LeadFormProvider } from "@/contexts/LeadFormContext";
+import { HelmetProvider } from "react-helmet-async";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Admin from "@/pages/Admin";
@@ -43,16 +44,18 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <TooltipProvider>
-          <LeadFormProvider>
-            <Toaster />
-            <Router />
-          </LeadFormProvider>
-        </TooltipProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <TooltipProvider>
+            <LeadFormProvider>
+              <Toaster />
+              <Router />
+            </LeadFormProvider>
+          </TooltipProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }
 
