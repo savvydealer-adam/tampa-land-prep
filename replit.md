@@ -21,7 +21,7 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
 ### Feature Specifications
 
 - **Product Pages**: Dedicated pages for each marketing service with consistent layouts and branding.
-- **NADA Show Landing Page**: Includes event details, reasons to visit the booth, and strategically placed "Book a Demo" CTAs.
+- **NADA Show Landing Page** (/nada-show): Trade show landing page for NADA Show 2026 (February 4-6, 2026, Las Vegas). Features hero section with NADA logo, event details for Booth 6760N, 6 reason cards, interactive North Hall floor map with pulsing marker highlighting booth location, and 4 "Book a Demo" CTAs integrated with DemoBookingModal.
 - **Attribution AI Teaser**: A dedicated teaser page for an unreleased product, hinting at a NADA 2026 announcement with Apple-inspired design.
 - **Blog**: Long-form content pages with emphasis on readability.
 - **Admin Dashboard**: For managing pages, settings, and viewing site statistics.
