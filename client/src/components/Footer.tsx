@@ -62,13 +62,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#about"
+                <Link
+                  href="/about"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                   data-testid="link-footer-about"
                 >
                   About
-                </a>
+                </Link>
               </li>
               <li>
                 <a

@@ -27,7 +27,7 @@ export function Header() {
 
   const navItems = [
     { label: "Blog", href: "/blog/marketing-roi-evaluation" },
-    { label: "About", href: "#about" },
+    { label: "About", href: "/about" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -88,13 +88,13 @@ export function Header() {
           >
             Blog
           </Link>
-          <a
-            href="#about"
+          <Link
+            href="/about"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             data-testid="link-about"
           >
             About
-          </a>
+          </Link>
           <a
             href="#contact"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"

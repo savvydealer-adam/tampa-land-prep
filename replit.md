@@ -68,7 +68,7 @@ Preferred communication style: Simple, everyday language.
 ### Application Structure
 
 **Routing Architecture**
-- Public marketing pages (/, /products)
+- Public marketing pages (/, /products, /about)
 - Product pages (/facebook-ads, /ppc-ads, /dealer-seo, /dealer-websites, /independent-dealer-websites, /attribution-ai)
 - Blog pages (/blog/marketing-roi-evaluation)
 - Admin dashboard (/admin) with nested routes
@@ -78,6 +78,7 @@ Preferred communication style: Simple, everyday language.
 
 **Page Types**
 - Home: Hero section with product showcase, testimonials, and about content
+- About (/about): Team member profiles, mission, values, and company overview with placeholder photos for Adam Gillrie (Director), Nick (VP of Sales), David Frost (CTO), Emily Schultz (Head of Operations)
 - Products Overview (/products): Card-based grid showcasing all 6 products with links to individual pages
 - Product Pages: Dedicated pages for each service using reusable ProductPage component, all wrapped with Header/Footer
   - Facebook Ads (/facebook-ads): Pink accent, $300/month pricing, "build backwards" methodology
@@ -87,7 +88,7 @@ Preferred communication style: Simple, everyday language.
   - Independent Dealer Websites (/independent-dealer-websites): Teal accent, solutions for non-franchised dealers and buy-here-pay-here lots
   - Anti-Dashboard AI (/attribution-ai): Purple accent teaser page with Apple-inspired design for NADA 2026 announcement
 - Blog: Long-form content pages with Apple-inspired typography and clean readability
-  - Marketing ROI Evaluation (/blog/marketing-roi-evaluation): 12 practical moves for evaluating marketing ROI and agencies
+  - Marketing ROI Evaluation (/blog/marketing-roi-evaluation): 12 practical moves for evaluating marketing ROI and agencies with search result graphics
 - Admin Dashboard: Stats overview with metrics cards
 - Admin Pages: Page listing with search and CRUD operations (currently mock data)
 - Admin Settings: Site configuration management (currently mock data)

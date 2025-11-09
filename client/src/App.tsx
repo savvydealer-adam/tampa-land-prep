@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LeadFormProvider } from "@/contexts/LeadFormContext";
 import Home from "@/pages/Home";
+import About from "@/pages/About";
 import Admin from "@/pages/Admin";
 import AdminPages from "@/pages/AdminPages";
 import AdminSettings from "@/pages/AdminSettings";
@@ -23,6 +24,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
       <Route path="/products" component={Products} />
       <Route path="/facebook-ads" component={FacebookAds} />
       <Route path="/ppc-ads" component={PpcAds} />
