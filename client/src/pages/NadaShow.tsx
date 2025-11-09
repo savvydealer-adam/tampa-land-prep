@@ -20,9 +20,9 @@ import nadaMap from "@assets/nada map_1762701202953.png";
 const reasons = [
   {
     icon: Sparkles,
-    title: "EXCLUSIVE FIRST LOOK: AI Analytics Dashboard",
+    title: "EXCLUSIVE FIRST LOOK: Anti-Dashboard",
     description:
-      "Be among the first to see our new AI-powered analytics platform that turns your marketing data into actionable intelligence. Launch exclusive to NADA Show attendees.",
+      "Be among the first to see our new Anti-Dashboard that turns your marketing data into actionable intelligence. Launch exclusive to NADA Show attendees.",
   },
   {
     icon: Target,
@@ -63,7 +63,7 @@ export default function NadaShow() {
     <div className="flex min-h-screen flex-col">
       <SEO
         title="NADA Show 2026 - Visit Savvy Dealer at Booth 6760N"
-        description="Join us at NADA Show 2026 in Las Vegas, February 4-6. Visit Booth 6760N for exclusive demos of our AI analytics dashboard, GEO strategies, and transparent reporting tools."
+        description="Join us at NADA Show 2026 in Las Vegas, February 4-6. Visit Booth 6760N for exclusive demos of our Anti-Dashboard, GEO strategies, and transparent reporting tools."
         canonical="https://savvydealer.com/nada-show"
         schemas={organizationSchema}
       />
@@ -103,7 +103,7 @@ export default function NadaShow() {
               </h1>
 
               <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-                Get exclusive access to our AI-powered analytics, master GEO before your
+                Get exclusive access to our Anti-Dashboard, master GEO before your
                 competitors, and discover strategies from top-performing dealers.
               </p>
 
