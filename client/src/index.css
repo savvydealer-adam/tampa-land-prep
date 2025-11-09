@@ -373,4 +373,16 @@
   header {
     z-index: 100;
   }
+
+  /* Ensure focused elements scroll into view below sticky header (WCAG 2.4.11) */
+  /* scroll-padding-top tells the browser to offset scroll position by header height */
+  html {
+    scroll-padding-top: 5rem;
+  }
+
+  /* scroll-margin-top ensures individual elements also respect the header offset */
+  *:focus,
+  *:focus-visible {
+    scroll-margin-top: 5rem;
+  }
 }
