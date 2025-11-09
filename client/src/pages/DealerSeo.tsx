@@ -129,7 +129,7 @@ export default function DealerSeo() {
         schemas={[organizationSchema, serviceSchema]}
       />
       <Header />
-      <main className="flex-1">
+      <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         <ProductPage {...dealerSeoContent} />
       </main>
       <Footer />

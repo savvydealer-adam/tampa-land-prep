@@ -65,7 +65,7 @@ export default function AdminPages() {
           </div>
           <ThemeToggle />
         </header>
-        <main className="flex-1 overflow-y-auto p-6">
+        <main id="main-content" role="main" tabIndex={-1} className="flex-1 overflow-y-auto p-6">
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="relative flex-1 sm:max-w-sm">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />

@@ -48,7 +48,7 @@ export default function About() {
         schemas={[organizationSchema, ...personSchemas]}
       />
       <Header />
-      <main className="flex-1">
+      <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         {/* Hero Section */}
         <section className="bg-gradient-to-b from-background to-muted/30 py-32">
           <div className="container mx-auto max-w-5xl px-6 text-center sm:px-8 lg:px-12">

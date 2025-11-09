@@ -35,7 +35,7 @@ export default function BlogPost() {
         schemas={[organizationSchema, blogSchema]}
       />
       <Header />
-      <main className="flex-1">
+      <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         {/* Hero Section */}
         <section className="bg-card py-24">
           <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

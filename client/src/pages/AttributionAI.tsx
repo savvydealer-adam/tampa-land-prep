@@ -19,7 +19,7 @@ export default function AttributionAI() {
         schemas={organizationSchema}
       />
       <Header />
-      <main className="flex-1">
+      <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         {/* Hero Section - Apple-style dramatic intro */}
         <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-background via-purple-50/30 to-background dark:from-background dark:via-purple-950/10 dark:to-background">
           <div className="container mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8">

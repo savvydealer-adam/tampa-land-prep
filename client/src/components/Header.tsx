@@ -42,21 +42,22 @@ export function Header() {
   ];
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? 'border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70' : 'bg-transparent'}`}>
+    <header role="banner" className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled ? 'border-b bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70' : 'bg-transparent'}`}>
       <div className={`container mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-300 sm:px-8 lg:px-12 ${scrolled ? 'h-16' : 'h-20'}`}>
         <Link 
           href="/" 
           className="flex items-center" 
           data-testid="link-home"
+          aria-label="Savvy Dealer home"
         >
           <img 
             src={logoImage} 
-            alt="Savvy Dealer" 
+            alt="Savvy Dealer logo" 
             className={`transition-all duration-300 ${scrolled ? 'h-7' : 'h-9'} w-auto invert dark:invert-0`}
           />
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav aria-label="Main navigation" className="hidden items-center gap-6 md:flex">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
@@ -132,15 +133,18 @@ export function Header() {
             className="md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             data-testid="button-mobile-menu"
+            aria-label={mobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <span className="sr-only">{mobileMenuOpen ? "Close menu" : "Open menu"}</span>
           </Button>
         </div>
       </div>
 
       {mobileMenuOpen && (
         <div className="border-t md:hidden">
-          <nav className="container mx-auto flex flex-col gap-4 px-4 py-4">
+          <nav aria-label="Mobile navigation" className="container mx-auto flex flex-col gap-4 px-4 py-4">
             {navItems.map((item) => {
               const isInternalLink = item.href.startsWith('/');
               return isInternalLink ? (

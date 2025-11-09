@@ -33,7 +33,7 @@ export default function Home() {
         schemas={[organizationSchema, websiteSchema]}
       />
       <Header />
-      <main className="flex-1">
+      <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         <Hero />
         <Features />
 

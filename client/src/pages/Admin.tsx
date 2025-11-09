@@ -46,7 +46,7 @@ export default function Admin() {
           </div>
           <ThemeToggle />
         </header>
-        <main className="flex-1 overflow-y-auto p-6">
+        <main id="main-content" role="main" tabIndex={-1} className="flex-1 overflow-y-auto p-6">
           <div className="mb-8">
             <h2 className="mb-4 text-lg font-semibold">Overview</h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

@@ -198,6 +198,27 @@ Preferred communication style: Simple, everyday language.
 - **Coverage**: All public pages have unique titles, descriptions, canonical URLs, and appropriate schemas
 - **Future Enhancements**: Add social media URLs to organizationSchema.sameAs when available
 
+### Accessibility & ADA Compliance (WCAG 2.2 AA)
+- **Skip Navigation**: client/src/components/SkipNavigation.tsx - keyboard-only visible skip link to main content
+- **Focus Indicators**: Enhanced 2px outlines with 3:1 contrast ratio on all interactive elements
+- **ARIA Landmarks**: Comprehensive landmark structure across all pages
+  - role="banner" on Header component
+  - role="main" with id="main-content" on all page main elements
+  - role="contentinfo" on Footer component
+  - Labeled navigation regions (aria-label="Main navigation", "Mobile navigation")
+- **Screen Reader Support**:
+  - .sr-only utility class for screen reader only content
+  - Descriptive aria-labels on interactive elements
+  - aria-expanded states on collapsible menus
+  - Enhanced alt text on all images
+- **Keyboard Navigation**: Full keyboard accessibility with visible focus states
+- **WCAG Compliance**:
+  - 2.4.1 Bypass Blocks (Level A) - Skip navigation
+  - 2.4.7 Focus Visible (Level A) - Visible focus indicators
+  - 1.4.11 Non-Text Contrast (Level AA) - 3:1 contrast on focus indicators
+  - 2.4.11 Focus Not Obscured (Level AA) - Focus management
+  - 1.3.1 Info and Relationships (Level A) - ARIA landmarks
+
 ### Environment Requirements
 - DATABASE_URL environment variable for PostgreSQL connection
 - Node.js environment with ESM module support

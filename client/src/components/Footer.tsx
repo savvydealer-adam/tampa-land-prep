@@ -12,7 +12,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="border-t bg-background py-20">
+    <footer role="contentinfo" className="border-t bg-background py-20">
       <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           <div className="space-y-6">
@@ -20,10 +20,11 @@ export function Footer() {
               href="/" 
               className="flex items-center" 
               data-testid="link-footer-home"
+              aria-label="Savvy Dealer home"
             >
               <img 
                 src={logoImage} 
-                alt="Savvy Dealer" 
+                alt="Savvy Dealer logo" 
                 className="h-10 w-auto invert dark:invert-0"
               />
             </Link>

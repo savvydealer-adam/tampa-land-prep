@@ -28,7 +28,7 @@ export default function AdminSettings() {
           </div>
           <ThemeToggle />
         </header>
-        <main className="flex-1 overflow-y-auto p-6">
+        <main id="main-content" role="main" tabIndex={-1} className="flex-1 overflow-y-auto p-6">
           <div className="mx-auto max-w-2xl space-y-6">
             <Card className="overflow-visible">
               <CardHeader>

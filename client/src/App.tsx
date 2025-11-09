@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LeadFormProvider } from "@/contexts/LeadFormContext";
 import { HelmetProvider } from "react-helmet-async";
+import { SkipNavigation } from "@/components/SkipNavigation";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Admin from "@/pages/Admin";
@@ -49,6 +50,7 @@ function App() {
         <ThemeProvider>
           <TooltipProvider>
             <LeadFormProvider>
+              <SkipNavigation />
               <Toaster />
               <Router />
             </LeadFormProvider>

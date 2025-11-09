@@ -71,7 +71,7 @@ export default function Products() {
         schemas={organizationSchema}
       />
       <Header />
-      <main className="flex-1">
+      <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         <section className="bg-card py-16">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
