@@ -2,6 +2,15 @@ import { ProductPage, ProductPageProps } from "@/components/ProductPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Target, TrendingUp, Users, Zap, BarChart3, Clock } from "lucide-react";
+import { SEO, organizationSchema, createServiceSchema } from "@/components/SEO";
+
+const serviceSchema = createServiceSchema({
+  id: "facebook-ads",
+  name: "Facebook Advertising for Auto Dealers",
+  description: "Hand-built, high-performing Facebook ads that target your current inventory. Dynamic targeting with hundreds of vehicles and organic-style ads that prevent user blocking.",
+  url: "/facebook-ads",
+  price: "300",
+});
 
 const facebookAdsContent: ProductPageProps = {
   badge: "Social Media Advertising",
@@ -114,6 +123,12 @@ const facebookAdsContent: ProductPageProps = {
 export default function FacebookAds() {
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        title="Facebook Advertising for Auto Dealers"
+        description="Hand-built, high-performing Facebook ads that target your current inventory. Starting at $300/month. Capture leads while your competitors sleep with our proven build backwards methodology."
+        canonical="https://savvydealer.com/facebook-ads"
+        schemas={[organizationSchema, serviceSchema]}
+      />
       <Header />
       <main className="flex-1">
         <ProductPage {...facebookAdsContent} />

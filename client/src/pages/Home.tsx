@@ -6,14 +6,32 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { CheckCircle2 } from "lucide-react";
+import { SEO, organizationSchema } from "@/components/SEO";
 import workspaceImage from "@assets/generated_images/Feature_section_workspace_image_6c209941.png";
 import teamImage from "@assets/generated_images/Team_collaboration_image_765209cf.png";
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://savvydealer.com/#website",
+  "url": "https://savvydealer.com",
+  "name": "Savvy Dealer",
+  "description": "Expert digital marketing for automotive dealerships",
+  "publisher": {
+    "@id": "https://savvydealer.com/#organization",
+  },
+};
 
 export default function Home() {
   const { openLeadForm } = useLeadForm();
 
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        canonical="https://savvydealer.com/"
+        description="Expert digital marketing for automotive dealerships. Specializing in Facebook Ads, PPC, SEO/GEO optimization, and AI-powered dealer websites. Start driving real results with proven strategies."
+        schemas={[organizationSchema, websiteSchema]}
+      />
       <Header />
       <main className="flex-1">
         <Hero />

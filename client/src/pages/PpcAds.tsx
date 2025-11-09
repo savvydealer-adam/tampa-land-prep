@@ -2,6 +2,14 @@ import { ProductPage, ProductPageProps } from "@/components/ProductPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Search, DollarSign, Target, TrendingUp, Zap, Settings } from "lucide-react";
+import { SEO, organizationSchema, createServiceSchema } from "@/components/SEO";
+
+const serviceSchema = createServiceSchema({
+  id: "ppc-ads",
+  name: "PPC & SEM Advertising for Auto Dealers",
+  description: "Custom PPC platform built for dealerships. Target your in-stock inventory with proven ROI-focused keywords and competitive bidding strategies designed to dominate your market.",
+  url: "/ppc-ads",
+});
 
 const ppcAdsContent: ProductPageProps = {
   badge: "Paid Search Advertising",
@@ -114,6 +122,12 @@ const ppcAdsContent: ProductPageProps = {
 export default function PpcAds() {
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        title="PPC & SEM Advertising for Auto Dealers"
+        description="Custom PPC platform built for dealerships. Target in-stock inventory with proven ROI keywords. Competitive bidding strategies that shut down competitors and dominate paid search."
+        canonical="https://savvydealer.com/ppc-ads"
+        schemas={[organizationSchema, serviceSchema]}
+      />
       <Header />
       <main className="flex-1">
         <ProductPage {...ppcAdsContent} />

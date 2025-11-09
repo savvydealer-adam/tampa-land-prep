@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Sparkles } from "lucide-react";
+import { SEO, organizationSchema } from "@/components/SEO";
 import aiImage from "@assets/generated_images/Anti-Dashboard_AI_purple_theme_4cd41597.png";
 
 export default function AttributionAI() {
@@ -10,6 +11,13 @@ export default function AttributionAI() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        title="Anti-Dashboard AI - Coming February 2026"
+        description="Something big is coming at NADA 2026. Be among the first to see how AI will transform automotive attribution and analytics. Schedule your exclusive demo today."
+        canonical="https://savvydealer.com/attribution-ai"
+        robots="index, follow"
+        schemas={organizationSchema}
+      />
       <Header />
       <main className="flex-1">
         {/* Hero Section - Apple-style dramatic intro */}

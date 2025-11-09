@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Target, Handshake, Lightbulb } from "lucide-react";
+import { SEO, organizationSchema, createPersonSchema } from "@/components/SEO";
 
 export default function About() {
   const { openLeadForm } = useLeadForm();
@@ -30,8 +31,22 @@ export default function About() {
     },
   ];
 
+  const personSchemas = teamMembers.map((member) =>
+    createPersonSchema({
+      name: member.name,
+      jobTitle: member.title,
+      description: member.bio,
+    })
+  );
+
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        title="About Us"
+        description="Meet the team behind Savvy Dealer. We don't outspend the competition—we outsmart them. Learn about our mission, values, and approach to automotive digital marketing."
+        canonical="https://savvydealer.com/about"
+        schemas={[organizationSchema, ...personSchemas]}
+      />
       <Header />
       <main className="flex-1">
         {/* Hero Section */}

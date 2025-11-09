@@ -2,6 +2,14 @@ import { ProductPage, ProductPageProps } from "@/components/ProductPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Zap, Globe, TrendingUp, Shield, Code, Smartphone } from "lucide-react";
+import { SEO, organizationSchema, createServiceSchema } from "@/components/SEO";
+
+const serviceSchema = createServiceSchema({
+  id: "dealer-websites",
+  name: "AI-Optimized Dealer Websites",
+  description: "SEO-first architecture with lightning-fast load times. Custom dealer websites deliver 2x the traffic of average dealer sites while meeting Google's Core Web Vitals.",
+  url: "/dealer-websites",
+});
 
 const dealerWebsitesContent: ProductPageProps = {
   badge: "Website Solutions",
@@ -114,6 +122,12 @@ const dealerWebsitesContent: ProductPageProps = {
 export default function DealerWebsites() {
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        title="AI-Optimized Dealer Websites - Built For Performance"
+        description="SEO-first dealer websites with lightning-fast load times. Meet Google Core Web Vitals. Deliver 2x average traffic. No OEM restrictions. Custom features sales managers actually request."
+        canonical="https://savvydealer.com/dealer-websites"
+        schemas={[organizationSchema, serviceSchema]}
+      />
       <Header />
       <main className="flex-1">
         <ProductPage {...dealerWebsitesContent} />

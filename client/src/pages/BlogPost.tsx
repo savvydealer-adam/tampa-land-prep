@@ -3,15 +3,37 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { CheckCircle2 } from "lucide-react";
+import { SEO, organizationSchema, createBlogPostSchema } from "@/components/SEO";
 import searchResultsImage from "@assets/generated_images/Google_search_Silverado_results_47f1aa37.png";
 import adsResultsImage from "@assets/generated_images/Google_Ads_automotive_search_a2017ee9.png";
 import shoppingResultsImage from "@assets/generated_images/Google_Shopping_vehicle_listings_614ed11c.png";
+
+const blogSchema = createBlogPostSchema({
+  headline: "How Dealers Should Evaluate Marketing ROI and Agencies: 12 Practical Moves",
+  description:
+    "Focus your spend on shoppers who are ready right now, validate with human-readable metrics, and tie every campaign to calls and conversations. A practical guide for automotive dealers.",
+  url: "/blog/marketing-roi-evaluation",
+  publishedDate: "2025-01-15",
+  author: "Savvy Dealer Team",
+});
 
 export default function BlogPost() {
   const { openLeadForm } = useLeadForm();
 
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        title="How Dealers Should Evaluate Marketing ROI and Agencies"
+        description="Focus your spend on shoppers who are ready right now. 12 practical moves for evaluating marketing ROI, validating agency performance, and driving real conversations that lead to sales."
+        canonical="https://savvydealer.com/blog/marketing-roi-evaluation"
+        ogType="article"
+        article={{
+          publishedTime: "2025-01-15T00:00:00Z",
+          author: "Savvy Dealer Team",
+          section: "Marketing Strategy",
+        }}
+        schemas={[organizationSchema, blogSchema]}
+      />
       <Header />
       <main className="flex-1">
         {/* Hero Section */}

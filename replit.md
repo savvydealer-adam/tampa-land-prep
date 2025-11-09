@@ -176,6 +176,28 @@ Preferred communication style: Simple, everyday language.
 - **Color System**: Four primary product colors with HSL-based theming
 - **Guidelines**: Documented in design_guidelines.md
 
+### SEO & Structured Data
+- **SEO Management**: react-helmet-async for dynamic document head management
+- **SEO Component**: Comprehensive component at client/src/components/SEO.tsx supporting:
+  - Page titles and meta descriptions
+  - Canonical URLs
+  - Open Graph tags (title, description, image, locale)
+  - Twitter Card tags with alt text
+  - Article metadata for blog posts
+  - Multiple schema.org structured data per page
+- **Schema.org Implementation**:
+  - Organization schema (type: Organization + ProfessionalService) with contactPoint, knowsAbout, areaServed
+  - WebSite schema for homepage
+  - Service schemas for all 6 product pages with provider references
+  - BlogPosting schema for blog articles
+  - Person schemas for team members on About page
+- **Helper Functions**:
+  - createServiceSchema(): Generate Service type structured data
+  - createBlogPostSchema(): Generate BlogPosting structured data
+  - createPersonSchema(): Generate Person structured data
+- **Coverage**: All public pages have unique titles, descriptions, canonical URLs, and appropriate schemas
+- **Future Enhancements**: Add social media URLs to organizationSchema.sameAs when available
+
 ### Environment Requirements
 - DATABASE_URL environment variable for PostgreSQL connection
 - Node.js environment with ESM module support

@@ -2,6 +2,14 @@ import { ProductPage, ProductPageProps } from "@/components/ProductPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Search, Brain, TrendingUp, Target, FileText, Sparkles } from "lucide-react";
+import { SEO, organizationSchema, createServiceSchema } from "@/components/SEO";
+
+const serviceSchema = createServiceSchema({
+  id: "dealer-seo",
+  name: "Dealer SEO + GEO Strategy",
+  description: "By aligning SEO and GEO (Generative Engine Optimization), we ensure your dealership appears first in Google AND ChatGPT. Dominate traditional search and AI-powered results.",
+  url: "/dealer-seo",
+});
 
 const dealerSeoContent: ProductPageProps = {
   badge: "Search Engine Optimization",
@@ -114,6 +122,12 @@ const dealerSeoContent: ProductPageProps = {
 export default function DealerSeo() {
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        title="Dealer SEO + GEO Strategy - Appear First in Google AND ChatGPT"
+        description="Combined SEO and GEO (Generative Engine Optimization) ensures your dealership appears first in traditional Google search AND AI-powered results from ChatGPT, Gemini, and Perplexity."
+        canonical="https://savvydealer.com/dealer-seo"
+        schemas={[organizationSchema, serviceSchema]}
+      />
       <Header />
       <main className="flex-1">
         <ProductPage {...dealerSeoContent} />

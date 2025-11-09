@@ -2,6 +2,14 @@ import { ProductPage, ProductPageProps } from "@/components/ProductPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Users, Zap, TrendingUp, Shield, DollarSign, Smartphone } from "lucide-react";
+import { SEO, organizationSchema, createServiceSchema } from "@/components/SEO";
+
+const serviceSchema = createServiceSchema({
+  id: "independent-dealer-websites",
+  name: "Independent Dealer Websites",
+  description: "Premium websites for independent dealers and buy-here-pay-here lots. No franchise requirements or corporate restrictions—just powerful tools designed to sell more cars.",
+  url: "/independent-dealer-websites",
+});
 
 const independentDealerWebsitesContent: ProductPageProps = {
   badge: "Independent Dealer Solutions",
@@ -114,6 +122,12 @@ const independentDealerWebsitesContent: ProductPageProps = {
 export default function IndependentDealerWebsites() {
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        title="Independent Dealer Websites - Premium Sites for Non-Franchised Dealers"
+        description="Purpose-built websites for independent dealers and buy-here-pay-here lots. No franchise fees or restrictions. Built-in financing tools, inventory management, and lead capture."
+        canonical="https://savvydealer.com/independent-dealer-websites"
+        schemas={[organizationSchema, serviceSchema]}
+      />
       <Header />
       <main className="flex-1">
         <ProductPage {...independentDealerWebsitesContent} />

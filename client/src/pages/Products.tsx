@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
 import { Facebook, TrendingUp, MousePointerClick, Globe, Store, Brain } from "lucide-react";
+import { SEO, organizationSchema } from "@/components/SEO";
 
 export default function Products() {
   const { openLeadForm } = useLeadForm();
@@ -63,6 +64,12 @@ export default function Products() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <SEO
+        title="Our Product Suite"
+        description="Comprehensive digital marketing solutions for automotive dealerships. Facebook Ads, PPC, SEO/GEO, AI-powered dealer websites, and more. Discover proven strategies that drive real results."
+        canonical="https://savvydealer.com/products"
+        schemas={organizationSchema}
+      />
       <Header />
       <main className="flex-1">
         <section className="bg-card py-16">
