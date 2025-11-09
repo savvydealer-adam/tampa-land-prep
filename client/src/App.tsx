@@ -15,6 +15,7 @@ import AdminSettings from "@/pages/AdminSettings";
 import Products from "@/pages/Products";
 import FacebookAds from "@/pages/FacebookAds";
 import PpcAds from "@/pages/PpcAds";
+import VehicleAds from "@/pages/VehicleAds";
 import DealerWebsites from "@/pages/DealerWebsites";
 import IndependentDealerWebsites from "@/pages/IndependentDealerWebsites";
 import DealerSeo from "@/pages/DealerSeo";
@@ -31,6 +32,7 @@ function Router() {
       <Route path="/products" component={Products} />
       <Route path="/facebook-ads" component={FacebookAds} />
       <Route path="/ppc-ads" component={PpcAds} />
+      <Route path="/vehicle-ads" component={VehicleAds} />
       <Route path="/dealer-websites" component={DealerWebsites} />
       <Route path="/independent-dealer-websites" component={IndependentDealerWebsites} />
       <Route path="/dealer-seo" component={DealerSeo} />

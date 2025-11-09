@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Facebook, TrendingUp, MousePointerClick, Globe, Brain, Store, ArrowRight } from "lucide-react";
+import { Facebook, TrendingUp, MousePointerClick, Globe, Brain, Store, Car, ArrowRight } from "lucide-react";
 import facebookAdsImage from "@assets/generated_images/Facebook_Ads_pink_theme_3fd45300.png";
 import ppcAdsImage from "@assets/generated_images/PPC_Ads_orange_theme_7bcb5a76.png";
 import seoImage from "@assets/generated_images/SEO_green_theme_1cae63d8.png";
+import vehicleAdsImage from "@assets/generated_images/Vehicle_Ads_teal_theme_1273b0d6.png";
 import websitesImage from "@assets/generated_images/Banner_Chevy_multi-device_mockup_9dc25bbf.png";
 import independentWebsitesImage from "@assets/generated_images/Independent_dealer_websites_teal_theme_c62d8ebd.png";
 import aiImage from "@assets/generated_images/Anti-Dashboard_AI_purple_theme_4cd41597.png";
@@ -50,6 +51,15 @@ export function Features() {
       color: "hsl(var(--chart-3))",
       href: "/ppc-ads",
       image: ppcAdsImage,
+    },
+    {
+      icon: Car,
+      title: "Vehicle Ads",
+      subtitle: "Stop Wasting Your VLA Budget",
+      description: "Reclaim thousands wasted on Google's Display Network. Expert Performance Max management that forces your ad spend to compete where it matters: high-intent Search and Shopping.",
+      color: "hsl(var(--chart-7))",
+      href: "/vehicle-ads",
+      image: vehicleAdsImage,
     },
     {
       icon: Globe,

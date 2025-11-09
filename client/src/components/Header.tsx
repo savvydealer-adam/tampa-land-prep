@@ -36,6 +36,7 @@ export function Header() {
     { label: "All Products", href: "/products" },
     { label: "Facebook Ads", href: "/facebook-ads" },
     { label: "PPC Ads", href: "/ppc-ads" },
+    { label: "Vehicle Ads", href: "/vehicle-ads" },
     { label: "Dealer SEO", href: "/dealer-seo" },
     { label: "Dealer Websites", href: "/dealer-websites" },
     { label: "Independent Dealer Websites", href: "/independent-dealer-websites" },
