@@ -2,7 +2,7 @@
 
 ## Overview
 
-Savvy Dealer is a digital marketing platform for automotive dealerships, offering website management and showcasing services like Facebook Ads, SEO, PPC, and custom dealer websites. The platform features an Apple-inspired design with a focus on large product imagery, dramatic typography, and smooth animations. Each product is highlighted with vibrant brand colors in immersive sections. The project aims to provide a comprehensive solution for dealerships' online presence and marketing needs.
+Savvy Dealer is a digital marketing platform for automotive dealerships, offering website management and showcasing services like Facebook Ads, SEO, PPC, Google Vehicle Ads, and custom dealer websites. The platform features an Apple-inspired design with a focus on large product imagery, dramatic typography, and smooth animations. Each product is highlighted with vibrant brand colors in immersive sections. The project aims to provide a comprehensive solution for dealerships' online presence and marketing needs.
 
 ## User Preferences
 
@@ -12,7 +12,7 @@ Preferred communication style: Simple, everyday language.
 
 ### UI/UX Decisions
 
-The design aesthetic is inspired by Apple, featuring large-scale product imagery, dramatic typography (Inter and Space Grotesk), generous spacing, and smooth scroll animations. A multi-color scheme is used for product lines: Pink (Facebook Ads), Green (SEO), Orange (PPC), Blue (Dealer Websites), Teal (Independent Dealer Websites), and Purple (Anti-Dashboard AI). The system supports light/dark modes and uses `shadcn/ui` with heavy customization on top of Radix UI primitives for an accessible component foundation. Accessibility (WCAG 2.2 AA) is a core focus, including skip navigation, visible focus indicators, ARIA landmarks, screen reader support, and respect for `prefers-reduced-motion`. Special homepage feature: Anti-Dashboard AI section includes a subtle pulse-glow animation (4 seconds on page load) and "NADA 2026 Exclusive" badge to draw attention to the NADA Show announcement.
+The design aesthetic is inspired by Apple, featuring large-scale product imagery, dramatic typography (Inter and Space Grotesk), generous spacing, and smooth scroll animations. A multi-color scheme is used for product lines: Pink (Facebook Ads), Green (SEO), Orange (PPC), Cyan (Google Vehicle Ads), Blue (Dealer Websites), Teal (Independent Dealer Websites), and Purple (Anti-Dashboard AI). The system supports light/dark modes and uses `shadcn/ui` with heavy customization on top of Radix UI primitives for an accessible component foundation. Accessibility (WCAG 2.2 AA) is a core focus, including skip navigation, visible focus indicators, ARIA landmarks, screen reader support, and respect for `prefers-reduced-motion`. Special homepage feature: Anti-Dashboard AI section includes a subtle pulse-glow animation (4 seconds on page load) and "NADA 2026 Exclusive" badge to draw attention to the NADA Show announcement.
 
 ### Technical Implementations
 
@@ -20,7 +20,7 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
 
 ### Feature Specifications
 
-- **Product Pages**: Dedicated pages for each marketing service with consistent layouts and branding.
+- **Product Pages**: Dedicated pages for each marketing service with consistent layouts and branding. Products include Facebook Ads, Dealer SEO, PPC Ads, Google Vehicle Ads (VLAs), Dealer Websites, Independent Dealer Websites, and Anti-Dashboard AI (NADA 2026 teaser).
 - **NADA Show Landing Page** (/nada-show): Trade show landing page for NADA Show 2026 (February 4-6, 2026, Las Vegas). Features hero section with NADA logo, event details for Booth 6760N, 6 reason cards, interactive North Hall floor map with pulsing marker highlighting booth location, and 4 "Book a Demo" CTAs integrated with DemoBookingModal.
 - **Attribution AI Teaser**: A dedicated teaser page for an unreleased product, hinting at a NADA 2026 announcement with Apple-inspired design.
 - **Blog**: Long-form content pages with emphasis on readability.
