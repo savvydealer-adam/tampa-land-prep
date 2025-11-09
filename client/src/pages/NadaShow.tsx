@@ -171,13 +171,44 @@ export default function NadaShow() {
                 </div>
               </div>
               
-              <div className="overflow-auto rounded-lg border bg-white">
-                <img
-                  src={nadaMap}
-                  alt="NADA Show 2026 North Hall Floor Plan - Booth 6760N Location"
-                  className="w-full h-auto"
-                  data-testid="img-floor-map"
-                />
+              <div className="rounded-lg border bg-white p-2 sm:p-4">
+                <div className="relative w-full">
+                  <img
+                    src={nadaMap}
+                    alt="NADA Show 2026 North Hall Floor Plan - Booth 6760N Location"
+                    className="w-full h-auto"
+                    data-testid="img-floor-map"
+                  />
+                  {/* Booth Location Marker - positioned at booth 6760N */}
+                  <div 
+                    className="absolute z-10 flex items-center gap-2 rounded-lg bg-primary px-3 py-2 text-primary-foreground shadow-lg"
+                    style={{ 
+                      top: '23%', 
+                      left: '52%',
+                      transform: 'translate(-50%, -50%)',
+                      animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }}
+                    data-testid="marker-booth-location"
+                    aria-label="Booth 6760N location marker"
+                  >
+                    <MapPin className="h-5 w-5 shrink-0" aria-hidden="true" />
+                    <span className="font-semibold whitespace-nowrap text-sm sm:text-base">
+                      Booth 6760N
+                    </span>
+                  </div>
+                  {/* Pointer line from marker to booth */}
+                  <div
+                    className="absolute z-10 w-0.5 bg-primary"
+                    style={{
+                      top: '27%',
+                      left: '52%',
+                      height: '32px',
+                      transform: 'translateX(-50%)',
+                    }}
+                    data-testid="marker-pointer-line"
+                    aria-hidden="true"
+                  />
+                </div>
               </div>
               
               <div className="mt-6 text-center">
