@@ -20,6 +20,7 @@ import IndependentDealerWebsites from "@/pages/IndependentDealerWebsites";
 import DealerSeo from "@/pages/DealerSeo";
 import AttributionAI from "@/pages/AttributionAI";
 import BlogPost from "@/pages/BlogPost";
+import NadaShow from "@/pages/NadaShow";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/dealer-seo" component={DealerSeo} />
       <Route path="/attribution-ai" component={AttributionAI} />
       <Route path="/blog/marketing-roi-evaluation" component={BlogPost} />
+      <Route path="/nada-show" component={NadaShow} />
       <Route path="/admin" component={Admin} />
       <Route path="/admin/pages" component={AdminPages} />
       <Route path="/admin/settings" component={AdminSettings} />

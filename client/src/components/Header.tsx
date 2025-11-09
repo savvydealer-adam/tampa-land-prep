@@ -26,6 +26,7 @@ export function Header() {
   }, []);
 
   const navItems = [
+    { label: "NADA Show", href: "/nada-show" },
     { label: "Blog", href: "/blog/marketing-roi-evaluation" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "#contact" },
@@ -82,6 +83,13 @@ export function Header() {
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
+          <Link
+            href="/nada-show"
+            className="text-sm font-medium text-primary transition-colors hover:text-primary/80"
+            data-testid="link-nada-show"
+          >
+            NADA Show
+          </Link>
           <Link
             href="/blog/marketing-roi-evaluation"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
