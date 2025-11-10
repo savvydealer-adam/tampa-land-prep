@@ -1,4 +1,4 @@
-import { Home, FileText, Settings, LogOut, Plus } from "lucide-react";
+import { Home, FileText, Settings, LogOut, Plus, BookOpen } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -9,6 +9,7 @@ export function AdminSidebar() {
   const menuItems = [
     { icon: Home, label: "Dashboard", href: "/admin" },
     { icon: FileText, label: "Pages", href: "/admin/pages" },
+    { icon: BookOpen, label: "Blog", href: "/admin/blog" },
     { icon: Settings, label: "Settings", href: "/admin/settings" },
   ];
 

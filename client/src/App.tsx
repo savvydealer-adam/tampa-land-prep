@@ -11,6 +11,7 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Admin from "@/pages/Admin";
 import AdminPages from "@/pages/AdminPages";
+import AdminBlog from "@/pages/AdminBlog";
 import AdminSettings from "@/pages/AdminSettings";
 import Products from "@/pages/Products";
 import FacebookAds from "@/pages/FacebookAds";
@@ -20,6 +21,7 @@ import DealerWebsites from "@/pages/DealerWebsites";
 import IndependentDealerWebsites from "@/pages/IndependentDealerWebsites";
 import DealerSeo from "@/pages/DealerSeo";
 import AttributionAI from "@/pages/AttributionAI";
+import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import NadaShow from "@/pages/NadaShow";
 import NotFound from "@/pages/not-found";
@@ -37,10 +39,12 @@ function Router() {
       <Route path="/independent-dealer-websites" component={IndependentDealerWebsites} />
       <Route path="/dealer-seo" component={DealerSeo} />
       <Route path="/attribution-ai" component={AttributionAI} />
-      <Route path="/blog/marketing-roi-evaluation" component={BlogPost} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/nada-show" component={NadaShow} />
       <Route path="/admin" component={Admin} />
       <Route path="/admin/pages" component={AdminPages} />
+      <Route path="/admin/blog" component={AdminBlog} />
       <Route path="/admin/settings" component={AdminSettings} />
       <Route component={NotFound} />
     </Switch>

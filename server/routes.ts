@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { Resend } from "resend";
-import { leadFormSchema, demoBookingSchema } from "@shared/schema";
+import { leadFormSchema, demoBookingSchema, insertBlogPostSchema, insertBlogTagSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -104,6 +104,164 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ 
         error: "Failed to book demo. Please try again." 
       });
+    }
+  });
+
+  app.get("/api/blog/posts", async (req, res) => {
+    try {
+      const { published, category, tag, limit } = req.query;
+      const options = {
+        published: published === 'true' ? true : published === 'false' ? false : undefined,
+        category: category as string | undefined,
+        tag: tag as string | undefined,
+        limit: limit ? parseInt(limit as string) : undefined,
+      };
+      
+      const posts = await storage.getAllBlogPosts(options);
+      res.json(posts);
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+      res.status(500).json({ error: "Failed to fetch blog posts" });
+    }
+  });
+
+  app.get("/api/blog/posts/:slug", async (req, res) => {
+    try {
+      const { slug } = req.params;
+      const post = await storage.getBlogPostBySlug(slug);
+      
+      if (!post) {
+        return res.status(404).json({ error: "Blog post not found" });
+      }
+      
+      const tags = await storage.getPostTags(post.id);
+      res.json({ ...post, tags });
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ error: "Failed to fetch blog post" });
+    }
+  });
+
+  app.post("/api/blog/posts", async (req, res) => {
+    // TODO: Add authentication middleware when authentication is implemented
+    // if (!req.isAuthenticated || !req.isAuthenticated()) {
+    //   return res.status(401).json({ error: "Authentication required" });
+    // }
+
+    try {
+      const validationResult = insertBlogPostSchema.safeParse(req.body);
+      
+      if (!validationResult.success) {
+        const validationError = fromZodError(validationResult.error);
+        return res.status(400).json({ error: validationError.message });
+      }
+
+      const post = await storage.createBlogPost(validationResult.data);
+      res.json(post);
+    } catch (error) {
+      console.error("Error creating blog post:", error);
+      res.status(500).json({ error: "Failed to create blog post" });
+    }
+  });
+
+  app.patch("/api/blog/posts/:id", async (req, res) => {
+    // TODO: Add authentication middleware when authentication is implemented
+    // if (!req.isAuthenticated || !req.isAuthenticated()) {
+    //   return res.status(401).json({ error: "Authentication required" });
+    // }
+
+    try {
+      const { id } = req.params;
+      const post = await storage.updateBlogPost(id, req.body);
+      
+      if (!post) {
+        return res.status(404).json({ error: "Blog post not found" });
+      }
+      
+      res.json(post);
+    } catch (error) {
+      console.error("Error updating blog post:", error);
+      res.status(500).json({ error: "Failed to update blog post" });
+    }
+  });
+
+  app.delete("/api/blog/posts/:id", async (req, res) => {
+    // TODO: Add authentication middleware when authentication is implemented
+    // if (!req.isAuthenticated || !req.isAuthenticated()) {
+    //   return res.status(401).json({ error: "Authentication required" });
+    // }
+
+    try{
+      const { id } = req.params;
+      await storage.deleteBlogPost(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting blog post:", error);
+      res.status(500).json({ error: "Failed to delete blog post" });
+    }
+  });
+
+  app.get("/api/blog/tags", async (req, res) => {
+    try {
+      const tags = await storage.getAllTags();
+      res.json(tags);
+    } catch (error) {
+      console.error("Error fetching tags:", error);
+      res.status(500).json({ error: "Failed to fetch tags" });
+    }
+  });
+
+  app.post("/api/blog/tags", async (req, res) => {
+    // TODO: Add authentication middleware when authentication is implemented
+    // if (!req.isAuthenticated || !req.isAuthenticated()) {
+    //   return res.status(401).json({ error: "Authentication required" });
+    // }
+
+    try {
+      const validationResult = insertBlogTagSchema.safeParse(req.body);
+      
+      if (!validationResult.success) {
+        const validationError = fromZodError(validationResult.error);
+        return res.status(400).json({ error: validationError.message });
+      }
+
+      const tag = await storage.createTag(validationResult.data);
+      res.json(tag);
+    } catch (error) {
+      console.error("Error creating tag:", error);
+      res.status(500).json({ error: "Failed to create tag" });
+    }
+  });
+
+  app.post("/api/blog/posts/:postId/tags/:tagId", async (req, res) => {
+    // TODO: Add authentication middleware when authentication is implemented
+    // if (!req.isAuthenticated || !req.isAuthenticated()) {
+    //   return res.status(401).json({ error: "Authentication required" });
+    // }
+
+    try {
+      const { postId, tagId } = req.params;
+      await storage.addTagToPost(postId, tagId);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error adding tag to post:", error);
+      res.status(500).json({ error: "Failed to add tag to post" });
+    }
+  });
+
+  app.delete("/api/blog/posts/:postId/tags/:tagId", async (req, res) => {
+    // TODO: Add authentication middleware when authentication is implemented
+    // if (!req.isAuthenticated || !req.isAuthenticated()) {
+    //   return res.status(401).json({ error: "Authentication required" });
+    // }
+
+    try {
+      const { postId, tagId } = req.params;
+      await storage.removeTagFromPost(postId, tagId);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error removing tag from post:", error);
+      res.status(500).json({ error: "Failed to remove tag from post" });
     }
   });
 

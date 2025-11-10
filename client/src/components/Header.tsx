@@ -27,7 +27,7 @@ export function Header() {
 
   const navItems = [
     { label: "NADA Show", href: "/nada-show" },
-    { label: "Blog", href: "/blog/marketing-roi-evaluation" },
+    { label: "Blog", href: "/blog" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "#contact" },
   ];
@@ -92,7 +92,7 @@ export function Header() {
             NADA Show
           </Link>
           <Link
-            href="/blog/marketing-roi-evaluation"
+            href="/blog"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             data-testid="link-blog"
           >

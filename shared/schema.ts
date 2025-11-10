@@ -1,7 +1,8 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, boolean, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
+import { relations } from "drizzle-orm";
 
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -16,6 +17,67 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+export const blogPosts = pgTable("blog_posts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  excerpt: text("excerpt").notNull(),
+  content: text("content").notNull(),
+  featuredImage: text("featured_image"),
+  author: text("author").notNull(),
+  authorRole: text("author_role"),
+  publishedAt: timestamp("published_at").notNull(),
+  updatedAt: timestamp("updated_at").notNull().default(sql`now()`),
+  isPublished: boolean("is_published").notNull().default(true),
+  readingTime: integer("reading_time"),
+  category: text("category"),
+});
+
+export const blogTags = pgTable("blog_tags", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  name: text("name").notNull().unique(),
+  slug: text("slug").notNull().unique(),
+});
+
+export const postTags = pgTable("post_tags", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  postId: varchar("post_id").notNull().references(() => blogPosts.id, { onDelete: "cascade" }),
+  tagId: varchar("tag_id").notNull().references(() => blogTags.id, { onDelete: "cascade" }),
+});
+
+export const blogPostsRelations = relations(blogPosts, ({ many }) => ({
+  tags: many(postTags),
+}));
+
+export const blogTagsRelations = relations(blogTags, ({ many }) => ({
+  posts: many(postTags),
+}));
+
+export const postTagsRelations = relations(postTags, ({ one }) => ({
+  post: one(blogPosts, {
+    fields: [postTags.postId],
+    references: [blogPosts.id],
+  }),
+  tag: one(blogTags, {
+    fields: [postTags.tagId],
+    references: [blogTags.id],
+  }),
+}));
+
+export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
+  id: true,
+  updatedAt: true,
+});
+
+export const insertBlogTagSchema = createInsertSchema(blogTags).omit({
+  id: true,
+});
+
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogTag = z.infer<typeof insertBlogTagSchema>;
+export type BlogTag = typeof blogTags.$inferSelect;
 
 export const leadFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
