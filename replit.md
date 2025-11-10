@@ -23,13 +23,30 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
 - **Product Pages**: Dedicated pages for each marketing service with consistent layouts and branding. Products include Facebook Ads, Dealer SEO, PPC Ads, Google Vehicle Ads (VLAs), Dealer Websites, Independent Dealer Websites, and Anti-Dashboard AI (NADA 2026 teaser).
 - **NADA Show Landing Page** (/nada-show): Trade show landing page for NADA Show 2026 (February 4-6, 2026, Las Vegas). Features hero section with NADA logo, event details for Booth 6760N, 6 reason cards, interactive North Hall floor map with pulsing marker highlighting booth location, and 4 "Book a Demo" CTAs integrated with DemoBookingModal.
 - **Attribution AI Teaser**: A dedicated teaser page for an unreleased product, hinting at a NADA 2026 announcement with Apple-inspired design.
-- **Blog**: Long-form content pages with emphasis on readability.
+- **Blog System** (/blog, /blog/:slug, /admin/blog): 
+  - PostgreSQL-backed blog with full CRUD operations
+  - Database schema: blogPosts, blogTags, postTags (many-to-many relationships)
+  - Public pages: Blog listing with featured posts, category badges, search, and individual post pages with SEO
+  - Admin interface: Create/edit/delete posts, manage tags, date selection, validation
+  - Successfully migrated 6 existing blog posts from current website
+  - Implemented tag filtering with proper database joins
+  - SEO: BlogPosting JSON-LD schema, meta tags, Open Graph support
+  - **Security Note**: Blog admin endpoints (POST/PATCH/DELETE) currently lack authentication. TODO comments added for when authentication system is implemented. Suitable for development; add auth before production deployment.
 - **Admin Dashboard**: For managing pages, settings, and viewing site statistics.
 - **SEO & Structured Data**: Comprehensive SEO management via `react-helmet-async`, supporting various Schema.org types (Organization, WebSite, Service, BlogPosting, Person) for all public pages.
 
 ### System Design Choices
 
-The backend uses an interface-driven storage pattern (`IStorage`) to allow easy swapping of storage solutions, currently using in-memory storage but designed for Drizzle ORM + PostgreSQL. Drizzle ORM is used for database interaction with a schema-first approach and Zod validation. Session-based authentication is configured for future implementation. The application structure includes clear routing for public, product, blog, event, and admin pages.
+The backend uses an interface-driven storage pattern (`IStorage`) to allow easy swapping of storage solutions. The blog system uses PostgreSQL with Drizzle ORM for persistence. In-memory storage (MemStorage) is used for other features. Drizzle ORM handles database interaction with a schema-first approach and Zod validation. Session-based authentication is configured (Passport.js setup exists) but not yet enforced on blog admin endpoints—this should be added before production deployment. The application structure includes clear routing for public, product, blog, event, and admin pages.
+
+### Database Schema
+
+**Blog Tables**:
+- `blogPosts`: id (serial), title, slug, excerpt, content, featuredImage, author, authorRole, publishedAt, updatedAt, isPublished, readingTime, category
+- `blogTags`: id (serial), name, slug
+- `postTags`: postId, tagId (junction table for many-to-many relationship)
+
+**Relations**: Posts → Tags (many-to-many via postTags)
 
 ## External Dependencies
 
