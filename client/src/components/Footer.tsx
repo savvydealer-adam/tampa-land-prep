@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import { Facebook, Linkedin } from "lucide-react";
 import logoImage from "@assets/savvy-dealer-logo_1762641721511.png";
 
 export function Footer() {
@@ -31,6 +32,28 @@ export function Footer() {
             <p className="text-muted-foreground max-w-xs">
               Digital marketing for auto dealers. We don't outspend the competition — we outsmart them.
             </p>
+            <div className="flex gap-4">
+              <a
+                href="https://facebook.com/savvydealer/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors hover:text-foreground"
+                aria-label="Visit Savvy Dealer on Facebook"
+                data-testid="link-social-facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://linkedin.com/company/savvy-dealer/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground transition-colors hover:text-foreground"
+                aria-label="Visit Savvy Dealer on LinkedIn"
+                data-testid="link-social-linkedin"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           <div>
