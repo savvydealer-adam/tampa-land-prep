@@ -81,6 +81,15 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link
+                  href="/end-user-agreement"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  data-testid="link-footer-terms"
+                >
+                  End User Agreement
+                </Link>
+              </li>
+              <li>
                 <a
                   href="tel:8135013229"
                   className="text-muted-foreground transition-colors hover:text-foreground"

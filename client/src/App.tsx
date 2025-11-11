@@ -25,6 +25,7 @@ import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import NadaShow from "@/pages/NadaShow";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import EndUserAgreement from "@/pages/EndUserAgreement";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -44,6 +45,7 @@ function Router() {
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/nada-show" component={NadaShow} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/end-user-agreement" component={EndUserAgreement} />
       <Route path="/admin" component={Admin} />
       <Route path="/admin/pages" component={AdminPages} />
       <Route path="/admin/blog" component={AdminBlog} />
