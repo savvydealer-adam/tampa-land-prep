@@ -12,7 +12,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
-import { isUnauthorizedError } from "@/lib/authUtils";
+import { isUnauthorizedError, isForbiddenError } from "@/lib/authUtils";
 import {
   Dialog,
   DialogContent,
@@ -103,6 +103,17 @@ export default function AdminBlog() {
         }, 500);
         return;
       }
+      if (isForbiddenError(error)) {
+        toast({
+          title: "Access Denied",
+          description: "Admin access is restricted to authorized email domains. Logging out...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/logout";
+        }, 1500);
+        return;
+      }
       toast({
         title: "Error",
         description: error.message || "Failed to create blog post",
@@ -139,6 +150,17 @@ export default function AdminBlog() {
         }, 500);
         return;
       }
+      if (isForbiddenError(error)) {
+        toast({
+          title: "Access Denied",
+          description: "Admin access is restricted to authorized email domains. Logging out...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/logout";
+        }, 1500);
+        return;
+      }
       toast({
         title: "Error",
         description: error.message || "Failed to update blog post",
@@ -171,6 +193,17 @@ export default function AdminBlog() {
         setTimeout(() => {
           window.location.href = "/api/login";
         }, 500);
+        return;
+      }
+      if (isForbiddenError(error)) {
+        toast({
+          title: "Access Denied",
+          description: "Admin access is restricted to authorized email domains. Logging out...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/logout";
+        }, 1500);
         return;
       }
       toast({

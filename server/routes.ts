@@ -4,7 +4,7 @@ import { storage } from "./storage";
 import { Resend } from "resend";
 import { leadFormSchema, demoBookingSchema, insertBlogPostSchema, insertBlogTagSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
-import { setupAuth, isAuthenticated } from "./replitAuth";
+import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -157,7 +157,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/blog/posts", isAuthenticated, async (req, res) => {
+  app.post("/api/blog/posts", isAdmin, async (req, res) => {
     try {
       const validationResult = insertBlogPostSchema.safeParse(req.body);
       
@@ -174,7 +174,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/blog/posts/:id", isAuthenticated, async (req, res) => {
+  app.patch("/api/blog/posts/:id", isAdmin, async (req, res) => {
     try {
       const { id } = req.params;
       const post = await storage.updateBlogPost(id, req.body);
@@ -190,7 +190,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/blog/posts/:id", isAuthenticated, async (req, res) => {
+  app.delete("/api/blog/posts/:id", isAdmin, async (req, res) => {
     try {
       const { id } = req.params;
       await storage.deleteBlogPost(id);
@@ -211,7 +211,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/blog/tags", isAuthenticated, async (req, res) => {
+  app.post("/api/blog/tags", isAdmin, async (req, res) => {
     try {
       const validationResult = insertBlogTagSchema.safeParse(req.body);
       
@@ -228,7 +228,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/blog/posts/:postId/tags/:tagId", isAuthenticated, async (req, res) => {
+  app.post("/api/blog/posts/:postId/tags/:tagId", isAdmin, async (req, res) => {
     try {
       const { postId, tagId } = req.params;
       await storage.addTagToPost(postId, tagId);
@@ -239,7 +239,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/blog/posts/:postId/tags/:tagId", isAuthenticated, async (req, res) => {
+  app.delete("/api/blog/posts/:postId/tags/:tagId", isAdmin, async (req, res) => {
     try {
       const { postId, tagId } = req.params;
       await storage.removeTagFromPost(postId, tagId);

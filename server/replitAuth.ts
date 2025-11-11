@@ -160,3 +160,29 @@ export const isAuthenticated: RequestHandler = async (req, res, next) => {
     return;
   }
 };
+
+export const isAdmin: RequestHandler = async (req, res, next) => {
+  const user = req.user as any;
+
+  if (!req.isAuthenticated() || !user.claims) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  const userEmail = user.claims.email?.toLowerCase().trim();
+  if (!userEmail) {
+    return res.status(403).json({ 
+      message: "Access denied. Email not available." 
+    });
+  }
+
+  const allowedDomain = (process.env.ADMIN_ALLOWED_DOMAIN || "savvydealer.com").toLowerCase().trim();
+  const emailDomain = userEmail.split("@")[1];
+
+  if (emailDomain !== allowedDomain) {
+    return res.status(403).json({ 
+      message: "Access denied. Admin access is restricted to authorized email domains." 
+    });
+  }
+
+  return isAuthenticated(req, res, next);
+};
