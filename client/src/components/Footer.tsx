@@ -55,7 +55,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li>
                 <Link
-                  href="/blog/marketing-roi-evaluation"
+                  href="/blog"
                   className="text-muted-foreground transition-colors hover:text-foreground"
                   data-testid="link-footer-blog"
                 >
@@ -69,6 +69,15 @@ export function Footer() {
                   data-testid="link-footer-about"
                 >
                   About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy-policy"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  data-testid="link-footer-privacy"
+                >
+                  Privacy Policy
                 </Link>
               </li>
               <li>
