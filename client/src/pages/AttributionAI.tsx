@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Eye, Brain, Zap } from "lucide-react";
 import { SEO, organizationSchema } from "@/components/SEO";
 import aiImage from "@assets/generated_images/Anti-Dashboard_AI_purple_theme_4cd41597.png";
 
@@ -12,8 +12,8 @@ export default function AttributionAI() {
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        title="Anti-Dashboard AI - Coming February 2026"
-        description="Something big is coming at NADA 2026. Be among the first to see how AI will transform automotive attribution and analytics. Schedule your exclusive demo today."
+        title="Anti-Dashboard AI - A Dashboard You'll Never Have to Look At"
+        description="What if problems fixed themselves? An AI agent that watches your dashboards, spots issues, and takes action automatically. No human intervention required. Coming February 2026 at NADA."
         canonical="https://savvydealer.com/attribution-ai"
         robots="index, follow"
         schemas={organizationSchema}
@@ -38,12 +38,12 @@ export default function AttributionAI() {
               </h1>
               
               <h2 className="mb-12 font-serif text-5xl font-bold leading-tight text-purple-600 sm:text-6xl lg:text-7xl dark:text-purple-400">
-                Something big is coming.
+                A dashboard you'll never have to look at.
               </h2>
 
               {/* Clean, minimal subhead */}
               <p className="mb-16 text-2xl text-muted-foreground sm:text-3xl">
-                February 2026
+                What if problems fixed themselves? February 2026.
               </p>
 
               {/* Single, prominent CTA */}
@@ -81,14 +81,16 @@ export default function AttributionAI() {
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="mb-6 font-serif text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
-                AI that knows
+                It watches.
                 <br />
-                what matters.
+                It thinks.
+                <br />
+                It acts.
               </h2>
               <p className="text-xl text-muted-foreground sm:text-2xl">
-                Advanced intelligence that understands your entire customer journey.
+                An intelligence that reads your dashboards, spots problems,
                 <br />
-                Insights you've never seen. Action you can take immediately.
+                and fixes them before you even know they exist.
               </p>
             </div>
           </div>
@@ -100,34 +102,40 @@ export default function AttributionAI() {
             <div className="grid gap-24 md:gap-32 lg:grid-cols-3">
               {/* Feature 1 */}
               <div className="text-center">
-                <div className="mb-6 text-6xl">🧠</div>
+                <div className="mb-6 flex justify-center">
+                  <Eye className="h-16 w-16 text-purple-600 dark:text-purple-400" />
+                </div>
                 <h3 className="mb-4 font-serif text-2xl font-bold sm:text-3xl">
-                  AI-Powered
+                  Always Watching
                 </h3>
                 <p className="text-lg text-muted-foreground">
-                  Intelligence that finds what humans miss
+                  Monitors every metric, every dashboard, 24/7. You don't have to.
                 </p>
               </div>
 
               {/* Feature 2 */}
               <div className="text-center">
-                <div className="mb-6 text-6xl">✨</div>
+                <div className="mb-6 flex justify-center">
+                  <Brain className="h-16 w-16 text-purple-600 dark:text-purple-400" />
+                </div>
                 <h3 className="mb-4 font-serif text-2xl font-bold sm:text-3xl">
-                  Complete View
+                  Thinks Like You
                 </h3>
                 <p className="text-lg text-muted-foreground">
-                  Every touchpoint, finally unified
+                  Knows what's normal. Spots what's wrong. Understands what to do.
                 </p>
               </div>
 
               {/* Feature 3 */}
               <div className="text-center">
-                <div className="mb-6 text-6xl">🚀</div>
+                <div className="mb-6 flex justify-center">
+                  <Zap className="h-16 w-16 text-purple-600 dark:text-purple-400" />
+                </div>
                 <h3 className="mb-4 font-serif text-2xl font-bold sm:text-3xl">
-                  Proactive
+                  Acts Automatically
                 </h3>
                 <p className="text-lg text-muted-foreground">
-                  Fix problems before they happen
+                  Sends alerts. Notifies your team. Fixes issues. No human required.
                 </p>
               </div>
             </div>
@@ -139,10 +147,10 @@ export default function AttributionAI() {
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="mb-6 font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-                Be among the first.
+                The future runs itself.
               </h2>
               <p className="mb-12 text-xl text-muted-foreground sm:text-2xl">
-                Limited demo slots at NADA 2026.
+                See it first at NADA 2026. Limited demo slots available.
               </p>
               <Button
                 onClick={openLeadForm}
