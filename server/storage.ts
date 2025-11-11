@@ -1,17 +1,14 @@
-import { type User, type InsertUser, type BlogPost, type InsertBlogPost, type BlogTag, type InsertBlogTag } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { type User, type UpsertUser, type BlogPost, type InsertBlogPost, type BlogTag, type InsertBlogTag } from "@shared/schema";
 import { db } from "./db";
-import { blogPosts, blogTags, postTags } from "@shared/schema";
-import { eq, desc, and, or, like, inArray } from "drizzle-orm";
-
-// modify the interface with any CRUD methods
-// you might need
+import { users, blogPosts, blogTags, postTags } from "@shared/schema";
+import { eq, desc, and } from "drizzle-orm";
 
 export interface IStorage {
+  // User operations for Replit Auth
   getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  upsertUser(user: UpsertUser): Promise<User>;
   
+  // Blog operations
   getAllBlogPosts(options?: { published?: boolean; category?: string; tag?: string; limit?: number }): Promise<BlogPost[]>;
   getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
   getBlogPostById(id: string): Promise<BlogPost | undefined>;
@@ -19,11 +16,13 @@ export interface IStorage {
   updateBlogPost(id: string, post: Partial<InsertBlogPost>): Promise<BlogPost | undefined>;
   deleteBlogPost(id: string): Promise<void>;
   
+  // Tag operations
   getAllTags(): Promise<BlogTag[]>;
   getTagBySlug(slug: string): Promise<BlogTag | undefined>;
   createTag(tag: InsertBlogTag): Promise<BlogTag>;
   deleteTag(id: string): Promise<void>;
   
+  // Post-Tag operations
   addTagToPost(postId: string, tagId: string): Promise<void>;
   removeTagFromPost(postId: string, tagId: string): Promise<void>;
   getPostTags(postId: string): Promise<BlogTag[]>;
@@ -31,17 +30,22 @@ export interface IStorage {
 
 export class DbStorage implements IStorage {
   async getUser(id: string): Promise<User | undefined> {
-    const [user] = await db.select().from({ users: {} as any }).where(eq({} as any, id)).limit(1);
+    const [user] = await db.select().from(users).where(eq(users.id, id)).limit(1);
     return user;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return undefined;
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(userData)
+      .onConflictDoUpdate({
+        target: users.id,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
     return user;
   }
 

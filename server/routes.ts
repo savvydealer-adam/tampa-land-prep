@@ -4,10 +4,25 @@ import { storage } from "./storage";
 import { Resend } from "resend";
 import { leadFormSchema, demoBookingSchema, insertBlogPostSchema, insertBlogTagSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import { setupAuth, isAuthenticated } from "./replitAuth";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup authentication
+  await setupAuth(app);
+
+  // Auth endpoints
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
   app.post("/api/lead-form", async (req, res) => {
     try {
       const validationResult = leadFormSchema.safeParse(req.body);
@@ -142,12 +157,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/blog/posts", async (req, res) => {
-    // TODO: Add authentication middleware when authentication is implemented
-    // if (!req.isAuthenticated || !req.isAuthenticated()) {
-    //   return res.status(401).json({ error: "Authentication required" });
-    // }
-
+  app.post("/api/blog/posts", isAuthenticated, async (req, res) => {
     try {
       const validationResult = insertBlogPostSchema.safeParse(req.body);
       
@@ -164,12 +174,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.patch("/api/blog/posts/:id", async (req, res) => {
-    // TODO: Add authentication middleware when authentication is implemented
-    // if (!req.isAuthenticated || !req.isAuthenticated()) {
-    //   return res.status(401).json({ error: "Authentication required" });
-    // }
-
+  app.patch("/api/blog/posts/:id", isAuthenticated, async (req, res) => {
     try {
       const { id } = req.params;
       const post = await storage.updateBlogPost(id, req.body);
@@ -185,13 +190,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/blog/posts/:id", async (req, res) => {
-    // TODO: Add authentication middleware when authentication is implemented
-    // if (!req.isAuthenticated || !req.isAuthenticated()) {
-    //   return res.status(401).json({ error: "Authentication required" });
-    // }
-
-    try{
+  app.delete("/api/blog/posts/:id", isAuthenticated, async (req, res) => {
+    try {
       const { id } = req.params;
       await storage.deleteBlogPost(id);
       res.json({ success: true });
@@ -211,12 +211,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/blog/tags", async (req, res) => {
-    // TODO: Add authentication middleware when authentication is implemented
-    // if (!req.isAuthenticated || !req.isAuthenticated()) {
-    //   return res.status(401).json({ error: "Authentication required" });
-    // }
-
+  app.post("/api/blog/tags", isAuthenticated, async (req, res) => {
     try {
       const validationResult = insertBlogTagSchema.safeParse(req.body);
       
@@ -233,12 +228,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/blog/posts/:postId/tags/:tagId", async (req, res) => {
-    // TODO: Add authentication middleware when authentication is implemented
-    // if (!req.isAuthenticated || !req.isAuthenticated()) {
-    //   return res.status(401).json({ error: "Authentication required" });
-    // }
-
+  app.post("/api/blog/posts/:postId/tags/:tagId", isAuthenticated, async (req, res) => {
     try {
       const { postId, tagId } = req.params;
       await storage.addTagToPost(postId, tagId);
@@ -249,12 +239,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/blog/posts/:postId/tags/:tagId", async (req, res) => {
-    // TODO: Add authentication middleware when authentication is implemented
-    // if (!req.isAuthenticated || !req.isAuthenticated()) {
-    //   return res.status(401).json({ error: "Authentication required" });
-    // }
-
+  app.delete("/api/blog/posts/:postId/tags/:tagId", isAuthenticated, async (req, res) => {
     try {
       const { postId, tagId } = req.params;
       await storage.removeTagFromPost(postId, tagId);

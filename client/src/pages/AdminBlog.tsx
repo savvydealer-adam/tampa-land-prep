@@ -2,8 +2,8 @@ import { AdminSidebar } from "@/components/AdminSidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Plus, Pencil, Trash2, Calendar as CalendarIcon } from "lucide-react";
-import { useState } from "react";
+import { Search, Plus, Pencil, Trash2, Calendar as CalendarIcon, LogOut } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
 import type { BlogPost, InsertBlogPost } from "@shared/schema";
@@ -11,6 +11,8 @@ import { insertBlogPostSchema } from "@shared/schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
+import { isUnauthorizedError } from "@/lib/authUtils";
 import {
   Dialog,
   DialogContent,
@@ -60,6 +62,7 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
 export default function AdminBlog() {
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -67,9 +70,10 @@ export default function AdminBlog() {
   const [deletePostId, setDeletePostId] = useState<string | null>(null);
   const { toast } = useToast();
 
-  // Fetch all blog posts
+  // Fetch all blog posts (called unconditionally for proper hook order)
   const { data: posts, isLoading } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog/posts"],
+    enabled: isAuthenticated, // Only fetch when authenticated
   });
 
   // Create mutation
@@ -88,6 +92,17 @@ export default function AdminBlog() {
       form.reset();
     },
     onError: (error: Error) => {
+      if (isUnauthorizedError(error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
       toast({
         title: "Error",
         description: error.message || "Failed to create blog post",
@@ -113,6 +128,17 @@ export default function AdminBlog() {
       form.reset();
     },
     onError: (error: Error) => {
+      if (isUnauthorizedError(error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
       toast({
         title: "Error",
         description: error.message || "Failed to update blog post",
@@ -136,6 +162,17 @@ export default function AdminBlog() {
       setDeletePostId(null);
     },
     onError: (error: Error) => {
+      if (isUnauthorizedError(error)) {
+        toast({
+          title: "Unauthorized",
+          description: "You are logged out. Logging in again...",
+          variant: "destructive",
+        });
+        setTimeout(() => {
+          window.location.href = "/api/login";
+        }, 500);
+        return;
+      }
       toast({
         title: "Error",
         description: error.message || "Failed to delete blog post",
@@ -161,6 +198,21 @@ export default function AdminBlog() {
       isPublished: true,
     },
   });
+
+  // Redirect to login if not authenticated (after all hooks)
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      toast({
+        title: "Unauthorized",
+        description: "You are logged out. Logging in again...",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/api/login";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, toast]);
 
   // Auto-generate slug from title
   const handleTitleChange = (value: string) => {
@@ -241,6 +293,22 @@ export default function AdminBlog() {
   // Get unique categories
   const categories = Array.from(new Set(posts?.map((p) => p.category).filter(Boolean) || []));
 
+  // Show loading while checking auth
+  if (authLoading) {
+    return (
+      <div className="flex h-screen w-full items-center justify-center">
+        <div className="text-center">
+          <div className="mb-4 text-lg">Loading...</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render admin content if not authenticated
+  if (!isAuthenticated) {
+    return null;
+  }
+
   return (
     <div className="flex h-screen overflow-hidden">
       <AdminSidebar />
@@ -250,7 +318,18 @@ export default function AdminBlog() {
             <h1 className="text-2xl font-bold">Blog Posts</h1>
             <p className="text-sm text-muted-foreground">Manage your blog content</p>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => window.location.href = "/api/logout"}
+              data-testid="button-logout"
+            >
+              <LogOut className="mr-2 h-4 w-4" />
+              Logout
+            </Button>
+            <ThemeToggle />
+          </div>
         </header>
         <main id="main-content" role="main" tabIndex={-1} className="flex-1 overflow-y-auto p-6">
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
