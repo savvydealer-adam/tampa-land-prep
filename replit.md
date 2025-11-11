@@ -31,13 +31,23 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
   - Successfully migrated 6 existing blog posts from current website
   - Implemented tag filtering with proper database joins
   - SEO: BlogPosting JSON-LD schema, meta tags, Open Graph support
-  - **Security Note**: Blog admin endpoints (POST/PATCH/DELETE) currently lack authentication. TODO comments added for when authentication system is implemented. Suitable for development; add auth before production deployment.
+  - **Authentication**: Blog admin fully protected with Replit Auth (see Authentication System below)
 - **Admin Dashboard**: For managing pages, settings, and viewing site statistics.
 - **SEO & Structured Data**: Comprehensive SEO management via `react-helmet-async`, supporting various Schema.org types (Organization, WebSite, Service, BlogPosting, Person) for all public pages.
+- **Authentication System**:
+  - Replit Auth integration with OpenID Connect (OIDC)
+  - Supports Google, GitHub, and email/password login
+  - Session-based authentication with PostgreSQL storage
+  - Protected admin endpoints with isAuthenticated middleware
+  - Frontend useAuth hook for auth state management
+  - Automatic redirect to login for unauthenticated users
+  - Logout functionality in admin interface
+  - Environment-aware cookie security (secure in production, permissive in development)
+  - **Required Environment Variables**: ISSUER_URL, REPL_ID, SESSION_SECRET, DATABASE_URL
 
 ### System Design Choices
 
-The backend uses an interface-driven storage pattern (`IStorage`) to allow easy swapping of storage solutions. The blog system uses PostgreSQL with Drizzle ORM for persistence. In-memory storage (MemStorage) is used for other features. Drizzle ORM handles database interaction with a schema-first approach and Zod validation. Session-based authentication is configured (Passport.js setup exists) but not yet enforced on blog admin endpoints—this should be added before production deployment. The application structure includes clear routing for public, product, blog, event, and admin pages.
+The backend uses an interface-driven storage pattern (`IStorage`) to allow easy swapping of storage solutions. The blog system uses PostgreSQL with Drizzle ORM for persistence. In-memory storage (MemStorage) is used for other features. Drizzle ORM handles database interaction with a schema-first approach and Zod validation. Session-based authentication is implemented with Replit Auth (OpenID Connect) and PostgreSQL session storage. All blog admin API endpoints are protected with isAuthenticated middleware. The application structure includes clear routing for public, product, blog, event, and admin pages.
 
 ### Database Schema
 
@@ -46,7 +56,13 @@ The backend uses an interface-driven storage pattern (`IStorage`) to allow easy 
 - `blogTags`: id (serial), name, slug
 - `postTags`: postId, tagId (junction table for many-to-many relationship)
 
-**Relations**: Posts → Tags (many-to-many via postTags)
+**Authentication Tables**:
+- `users`: id (varchar, UUID), email, firstName, lastName, profileImageUrl, createdAt, updatedAt
+- `sessions`: sid (varchar, primary key), sess (JSON), expire (timestamp)
+
+**Relations**: 
+- Posts → Tags (many-to-many via postTags)
+- Sessions → Users (via session data)
 
 ## External Dependencies
 
@@ -54,7 +70,7 @@ The backend uses an interface-driven storage pattern (`IStorage`) to allow easy 
 - **Backend**: Express.js, TypeScript.
 - **Database & ORM**: `@neondatabase/serverless` (PostgreSQL), `drizzle-orm`, `drizzle-kit`.
 - **Validation**: `zod`, `drizzle-zod`, `react-hook-form`.
-- **Sessions**: `connect-pg-simple`.
+- **Authentication**: `openid-client` (OIDC), `express-session`, `connect-pg-simple` (session storage).
 - **Email Service**: Resend API (for lead and demo booking notifications).
 - **SEO**: `react-helmet-async`.
 - **Development Tools**: `tsx`, `nanoid`, Replit-specific Vite plugins.
