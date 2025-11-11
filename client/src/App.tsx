@@ -12,6 +12,7 @@ import About from "@/pages/About";
 import Admin from "@/pages/Admin";
 import AdminPages from "@/pages/AdminPages";
 import AdminBlog from "@/pages/AdminBlog";
+import AdminLeads from "@/pages/AdminLeads";
 import AdminSettings from "@/pages/AdminSettings";
 import Products from "@/pages/Products";
 import FacebookAds from "@/pages/FacebookAds";
@@ -49,6 +50,7 @@ function Router() {
       <Route path="/admin" component={Admin} />
       <Route path="/admin/pages" component={AdminPages} />
       <Route path="/admin/blog" component={AdminBlog} />
+      <Route path="/admin/leads" component={AdminLeads} />
       <Route path="/admin/settings" component={AdminSettings} />
       <Route component={NotFound} />
     </Switch>

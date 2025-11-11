@@ -32,7 +32,18 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
   - Implemented tag filtering with proper database joins
   - SEO: BlogPosting JSON-LD schema, meta tags, Open Graph support
   - **Authentication**: Blog admin fully protected with Replit Auth (see Authentication System below)
-- **Admin Dashboard**: For managing pages, settings, and viewing site statistics.
+- **Lead Submission System** (/admin/leads):
+  - PostgreSQL-backed lead and demo booking tracking with complete submission history
+  - Database schema: leadSubmissions table tracks all form submissions with email delivery status
+  - Robust error handling: Submissions saved to database BEFORE email attempt (no data loss)
+  - Email delivery tracking: Records success/failure status and error messages for troubleshooting
+  - Admin interface: Dashboard with stats (total submissions, emails sent/failed, demo bookings)
+  - Detailed submission list: All lead forms and demo bookings with contact info, timestamps, email status
+  - Color-coded status badges: Green for successful emails, red for failures
+  - **Email Configuration**: FROM_EMAIL and TO_EMAIL environment variables (defaults to Resend test email)
+  - **Production Setup Required**: Verify savvydealer.com domain in Resend and set FROM_EMAIL to verified address
+  - Protected by isAdmin middleware (@savvydealer.com emails only)
+- **Admin Dashboard**: For managing pages, settings, viewing site statistics, and tracking lead submissions.
 - **SEO & Structured Data**: Comprehensive SEO management via `react-helmet-async`, supporting various Schema.org types (Organization, WebSite, Service, BlogPosting, Person) for all public pages.
 - **Authentication System**:
   - Replit Auth integration with OpenID Connect (OIDC)
@@ -44,6 +55,7 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
   - Logout functionality in admin interface
   - Environment-aware cookie security (secure in production, permissive in development)
   - **Required Environment Variables**: ISSUER_URL, REPL_ID, SESSION_SECRET, DATABASE_URL
+  - **Optional Environment Variables**: FROM_EMAIL (sender email for notifications, defaults to "Savvy Dealer <onboarding@resend.dev>"), TO_EMAIL (recipient email for lead notifications, defaults to "support@savvydealer.com")
 
 ### System Design Choices
 
@@ -59,6 +71,9 @@ The backend uses an interface-driven storage pattern (`IStorage`) to allow easy 
 **Authentication Tables**:
 - `users`: id (varchar, UUID), email, firstName, lastName, profileImageUrl, createdAt, updatedAt
 - `sessions`: sid (varchar, primary key), sess (JSON), expire (timestamp)
+
+**Lead Submission Tables**:
+- `leadSubmissions`: id (varchar, UUID), submissionType (lead_form|demo_booking), name, email, phone, dealership, message, demoDate, demoTime, emailSent (boolean), emailError (text), submittedAt (timestamp)
 
 **Relations**: 
 - Posts → Tags (many-to-many via postTags)

@@ -1,6 +1,6 @@
-import { type User, type UpsertUser, type BlogPost, type InsertBlogPost, type BlogTag, type InsertBlogTag } from "@shared/schema";
+import { type User, type UpsertUser, type BlogPost, type InsertBlogPost, type BlogTag, type InsertBlogTag, type LeadSubmission, type InsertLeadSubmission } from "@shared/schema";
 import { db } from "./db";
-import { users, blogPosts, blogTags, postTags } from "@shared/schema";
+import { users, blogPosts, blogTags, postTags, leadSubmissions } from "@shared/schema";
 import { eq, desc, and } from "drizzle-orm";
 
 export interface IStorage {
@@ -26,6 +26,11 @@ export interface IStorage {
   addTagToPost(postId: string, tagId: string): Promise<void>;
   removeTagFromPost(postId: string, tagId: string): Promise<void>;
   getPostTags(postId: string): Promise<BlogTag[]>;
+  
+  // Lead submission operations
+  createLeadSubmission(submission: InsertLeadSubmission): Promise<LeadSubmission>;
+  updateLeadSubmissionEmailStatus(id: string, emailSent: boolean, emailError?: string): Promise<void>;
+  getAllLeadSubmissions(limit?: number): Promise<LeadSubmission[]>;
 }
 
 export class DbStorage implements IStorage {
@@ -172,6 +177,30 @@ export class DbStorage implements IStorage {
       .where(eq(postTags.postId, postId));
     
     return tags;
+  }
+
+  async createLeadSubmission(submission: InsertLeadSubmission): Promise<LeadSubmission> {
+    const [newSubmission] = await db.insert(leadSubmissions).values(submission).returning();
+    return newSubmission;
+  }
+
+  async updateLeadSubmissionEmailStatus(id: string, emailSent: boolean, emailError?: string): Promise<void> {
+    await db.update(leadSubmissions)
+      .set({ 
+        emailSent, 
+        emailError: emailError || null 
+      })
+      .where(eq(leadSubmissions.id, id));
+  }
+
+  async getAllLeadSubmissions(limit?: number): Promise<LeadSubmission[]> {
+    let query = db.select().from(leadSubmissions).orderBy(desc(leadSubmissions.submittedAt));
+    
+    if (limit) {
+      query = query.limit(limit) as any;
+    }
+    
+    return await query;
   }
 }
 

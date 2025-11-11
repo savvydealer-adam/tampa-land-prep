@@ -8,6 +8,10 @@ import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Email configuration - use verified domain in production, test email in dev
+const FROM_EMAIL = process.env.FROM_EMAIL || "Savvy Dealer <onboarding@resend.dev>";
+const TO_EMAIL = process.env.TO_EMAIL || "support@savvydealer.com";
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication
   await setupAuth(app);
@@ -24,6 +28,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
   app.post("/api/lead-form", async (req, res) => {
+    let submissionId: string | undefined;
+    
     try {
       const validationResult = leadFormSchema.safeParse(req.body);
       
@@ -36,6 +42,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const { name, email, phone, dealership, message } = validationResult.data;
 
+      // Save to database FIRST (before sending email)
+      const submission = await storage.createLeadSubmission({
+        submissionType: "lead_form",
+        name,
+        email,
+        phone,
+        dealership,
+        message: message || null,
+        demoDate: null,
+        demoTime: null,
+        emailSent: false,
+        emailError: null,
+      });
+      
+      submissionId = submission.id;
+      console.log(`[Lead Form] Saved submission ${submissionId} to database`);
+
+      // Now try to send email
       const emailHtml = `
         <h2>New Lead Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
@@ -47,20 +71,48 @@ export async function registerRoutes(app: Express): Promise<Server> {
         <p style="color: #666; font-size: 12px;">Submitted from Savvy Dealer website</p>
       `;
 
-      await resend.emails.send({
-        from: "Savvy Dealer <onboarding@resend.dev>",
-        to: "support@savvydealer.com",
-        subject: `New Lead: ${dealership} - ${name}`,
-        html: emailHtml,
-        replyTo: email,
-      });
+      try {
+        await resend.emails.send({
+          from: FROM_EMAIL,
+          to: TO_EMAIL,
+          subject: `New Lead: ${dealership} - ${name}`,
+          html: emailHtml,
+          replyTo: email,
+        });
+        
+        // Update database: email sent successfully
+        await storage.updateLeadSubmissionEmailStatus(submissionId, true);
+        console.log(`[Lead Form] Email sent successfully for submission ${submissionId}`);
+        
+      } catch (emailError: any) {
+        // Log email error but don't fail the request
+        const errorMessage = emailError?.message || "Unknown email error";
+        console.error(`[Lead Form] Email failed for submission ${submissionId}:`, errorMessage);
+        
+        // Update database with error details
+        await storage.updateLeadSubmissionEmailStatus(submissionId, false, errorMessage);
+        
+        // Still return success to user (submission was saved)
+        console.log(`[Lead Form] Submission ${submissionId} saved but email failed - admin can view in dashboard`);
+      }
 
       res.json({ 
         success: true, 
         message: "Form submitted successfully" 
       });
-    } catch (error) {
-      console.error("Error sending email:", error);
+      
+    } catch (error: any) {
+      console.error("[Lead Form] Fatal error:", error);
+      
+      // If we have a submission ID, try to log the error
+      if (submissionId) {
+        try {
+          await storage.updateLeadSubmissionEmailStatus(submissionId, false, error?.message || "Unknown error");
+        } catch (dbError) {
+          console.error("[Lead Form] Failed to update error status:", dbError);
+        }
+      }
+      
       res.status(500).json({ 
         error: "Failed to submit form. Please try again." 
       });
@@ -68,6 +120,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/api/demo-bookings", async (req, res) => {
+    let submissionId: string | undefined;
+    
     try {
       const validationResult = demoBookingSchema.safeParse(req.body);
       
@@ -87,6 +141,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         "2026-02-06": "Friday, February 6, 2026",
       };
 
+      // Save to database FIRST (before sending email)
+      const submission = await storage.createLeadSubmission({
+        submissionType: "demo_booking",
+        name,
+        email,
+        phone,
+        dealership,
+        message: null,
+        demoDate: date,
+        demoTime: time,
+        emailSent: false,
+        emailError: null,
+      });
+      
+      submissionId = submission.id;
+      console.log(`[Demo Booking] Saved submission ${submissionId} to database`);
+
+      // Now try to send email
       const emailHtml = `
         <h2>New NADA Show Demo Booking</h2>
         <p><strong>Booth:</strong> 6760N</p>
@@ -102,23 +174,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
         <p style="color: #666; font-size: 12px;">Submitted from Savvy Dealer NADA Show page</p>
       `;
 
-      await resend.emails.send({
-        from: "Savvy Dealer <onboarding@resend.dev>",
-        to: "support@savvydealer.com",
-        subject: `NADA Demo Booking: ${dealership} - ${dateOptions[date]} at ${time}`,
-        html: emailHtml,
-        replyTo: email,
-      });
+      try {
+        await resend.emails.send({
+          from: FROM_EMAIL,
+          to: TO_EMAIL,
+          subject: `NADA Demo Booking: ${dealership} - ${dateOptions[date]} at ${time}`,
+          html: emailHtml,
+          replyTo: email,
+        });
+        
+        // Update database: email sent successfully
+        await storage.updateLeadSubmissionEmailStatus(submissionId, true);
+        console.log(`[Demo Booking] Email sent successfully for submission ${submissionId}`);
+        
+      } catch (emailError: any) {
+        // Log email error but don't fail the request
+        const errorMessage = emailError?.message || "Unknown email error";
+        console.error(`[Demo Booking] Email failed for submission ${submissionId}:`, errorMessage);
+        
+        // Update database with error details
+        await storage.updateLeadSubmissionEmailStatus(submissionId, false, errorMessage);
+        
+        // Still return success to user (submission was saved)
+        console.log(`[Demo Booking] Submission ${submissionId} saved but email failed - admin can view in dashboard`);
+      }
 
       res.json({ 
         success: true, 
         message: "Demo booked successfully" 
       });
-    } catch (error) {
-      console.error("Error booking demo:", error);
+      
+    } catch (error: any) {
+      console.error("[Demo Booking] Fatal error:", error);
+      
+      // If we have a submission ID, try to log the error
+      if (submissionId) {
+        try {
+          await storage.updateLeadSubmissionEmailStatus(submissionId, false, error?.message || "Unknown error");
+        } catch (dbError) {
+          console.error("[Demo Booking] Failed to update error status:", dbError);
+        }
+      }
+      
       res.status(500).json({ 
         error: "Failed to book demo. Please try again." 
       });
+    }
+  });
+
+  // Admin endpoint to get all lead submissions
+  app.get("/api/lead-submissions", isAdmin, async (req, res) => {
+    try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
+      const submissions = await storage.getAllLeadSubmissions(limit);
+      res.json(submissions);
+    } catch (error) {
+      console.error("Error fetching lead submissions:", error);
+      res.status(500).json({ error: "Failed to fetch lead submissions" });
     }
   });
 

@@ -100,6 +100,30 @@ export const leadFormSchema = z.object({
 
 export type LeadFormSubmission = z.infer<typeof leadFormSchema>;
 
+// Lead submissions table for tracking all form submissions
+export const leadSubmissions = pgTable("lead_submissions", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  submissionType: varchar("submission_type").notNull(), // "lead_form" or "demo_booking"
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  dealership: text("dealership").notNull(),
+  message: text("message"),
+  demoDate: text("demo_date"), // For demo bookings
+  demoTime: text("demo_time"), // For demo bookings
+  emailSent: boolean("email_sent").notNull().default(false),
+  emailError: text("email_error"),
+  submittedAt: timestamp("submitted_at").notNull().defaultNow(),
+});
+
+export const insertLeadSubmissionSchema = createInsertSchema(leadSubmissions).omit({
+  id: true,
+  submittedAt: true,
+});
+
+export type InsertLeadSubmission = z.infer<typeof insertLeadSubmissionSchema>;
+export type LeadSubmission = typeof leadSubmissions.$inferSelect;
+
 export const demoBookingSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
