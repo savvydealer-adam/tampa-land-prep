@@ -5,6 +5,7 @@ import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Target, Handshake, Lightbulb } from "lucide-react";
 import { SEO, organizationSchema, createPersonSchema } from "@/components/SEO";
 import adamGillrieImage from "@assets/Gemini_Generated_Image_ii2kxoii2kxoii2k_1762962689719.png";
+import nickChivinskiImage from "@assets/Headshot_1762963918341.jpg";
 
 export default function About() {
   const { openLeadForm } = useLeadForm();
@@ -16,7 +17,7 @@ export default function About() {
       bio: "Leading Savvy Dealer's strategic vision and client partnerships with deep expertise in automotive digital marketing.",
     },
     {
-      name: "Nick",
+      name: "Nick Chivinski",
       title: "VP of Sales",
       bio: "Driving growth and building lasting relationships with dealerships across the country.",
     },
@@ -139,6 +140,12 @@ export default function About() {
                       <img 
                         src={adamGillrieImage} 
                         alt="Adam Gillrie, Director of Savvy Dealer"
+                        className="h-full w-full object-cover"
+                      />
+                    ) : member.name === "Nick Chivinski" ? (
+                      <img 
+                        src={nickChivinskiImage} 
+                        alt="Nick Chivinski, VP of Sales at Savvy Dealer"
                         className="h-full w-full object-cover"
                       />
                     ) : (
