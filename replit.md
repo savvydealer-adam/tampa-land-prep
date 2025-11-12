@@ -29,7 +29,8 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
   - Database schema: blogPosts, blogTags, postTags (many-to-many relationships)
   - Public pages: Blog listing with featured posts, category badges, search, and individual post pages with SEO
   - Admin interface: Create/edit/delete posts, manage tags, date selection, validation
-  - Successfully migrated 6 existing blog posts from current website
+  - Successfully migrated 6 existing blog posts from current website with professional featured images (4 user-provided, 2 AI-generated)
+  - All blog posts now have featured images stored in `/attached_assets/` (user uploads) and `/attached_assets/generated_images/` (AI-generated)
   - Implemented tag filtering with proper database joins
   - SEO: BlogPosting JSON-LD schema, meta tags, Open Graph support
   - **Authentication**: Blog admin fully protected with Replit Auth (see Authentication System below)
