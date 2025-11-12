@@ -1,121 +1,121 @@
 import { ProductPage, ProductPageProps } from "@/components/ProductPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Search, DollarSign, Target, TrendingUp, Zap, Settings } from "lucide-react";
+import { Search, Target, TrendingUp, Zap, Settings, Shield, Eye, MapPin } from "lucide-react";
 import { SEO, organizationSchema, createServiceSchema } from "@/components/SEO";
 
 const serviceSchema = createServiceSchema({
   id: "ppc-ads",
   name: "PPC & SEM Advertising for Auto Dealers",
-  description: "Custom PPC platform built for dealerships. Target your in-stock inventory with proven ROI-focused keywords and competitive bidding strategies designed to dominate your market.",
+  description: "90% search term-to-keyword match. We dominate market share in our markets—we don't share. Expert traffic routing from competitors to your dealership with exclusive market control.",
   url: "/ppc-ads",
 });
 
 const ppcAdsContent: ProductPageProps = {
   badge: "Paid Search Advertising",
   title: "PPC & SEM Advertising For Auto Dealers",
-  subtitle: "Shut Down Competitors with Strategic Paid Search",
+  subtitle: "We Dominate Markets. We Don't Share Them.",
   heroDescription:
-    "Custom PPC system built for dealerships. Target your in-stock inventory with proven ROI-focused keywords and competitive bidding strategies designed to dominate your market.",
+    "90% search term-to-keyword match. Your ads align with what you're selling—not AI-generated junk like headlight repair kits. We route competitor traffic to your dealership with exclusive market control.",
   accentColor: "#FF6B35",
   benefits: {
-    title: "Why Our PPC Management Outperforms The Competition",
+    title: "Strategic Market Dominance Through Precision Targeting",
     items: [
-      "Custom-built PPC platform for real-time flexibility",
-      "Target individual vehicles in your current inventory",
-      "Proven ROI-focused keyword strategies",
-      "Competitive bidding designed to shut competitors down",
-      "Constantly updated with latest search industry changes",
-      "Google Ads and Bing Ads campaign management",
-      "66% traffic increase documented with dealer clients",
-      "National keyword rankings for brand search terms",
+      "90% search term-to-keyword match—your ads align with what you sell",
+      "Competitor keyword intelligence from unique campaign structure",
+      "Exclusive market control—we don't take competing dealers in your market",
+      "Expert traffic routing from competitors to your dealership",
+      "Market share dominance, not shared visibility",
+      "See what competitors bid on at the keyword level",
+      "No AI-generated junk ads for headlight repair kits",
+      "Strategic exclusivity ensures we work for you, not your competition",
     ],
   },
   features: {
-    title: "Our Advanced PPC Approach",
+    title: "Precision Targeting Meets Strategic Market Control",
     description:
-      "We're one of the few organizations managing both SEM/PPC and SEO through custom Google-friendly content creation. This integrated approach delivers superior results.",
+      "Our unique campaign structure gives you competitor intelligence at the keyword level while ensuring 90% search term-to-keyword match. We dominate your market—and route competitor traffic straight to you.",
     items: [
       {
-        title: "Custom PPC Decision Platform",
+        title: "90% Search Term Match",
         description:
-          "Our proprietary system allows real-time campaign adjustments based on your inventory, market conditions, and performance data.",
-        icon: Settings,
-      },
-      {
-        title: "Individual Vehicle Prioritization",
-        description:
-          "Every vehicle in your inventory can be prioritized individually in campaigns, focusing ad spend on what matters most.",
+          "Your ads align with what you're actually selling. No AI-generated garbage for headlight repair kits. Precision targeting that converts.",
         icon: Target,
       },
       {
-        title: "Proven ROI Keywords",
+        title: "Competitor Keyword Intelligence",
         description:
-          "We use battle-tested, ROI-focused keyword selection strategies refined over years of automotive PPC management.",
-        icon: Search,
+          "See what your competitors bid on at the keyword level. Our unique campaign structure reveals their strategy—giving you the edge.",
+        icon: Eye,
       },
       {
-        title: "Competitive Bidding Strategy",
+        title: "Exclusive Market Control",
         description:
-          "Our bidding approach is designed to shut down competitors and dominate high-intent search terms in your market.",
-        icon: DollarSign,
+          "We don't take competing dealerships in your market. Period. Your success is our only focus—no conflicts of interest.",
+        icon: Shield,
       },
       {
-        title: "Continuous Industry Updates",
+        title: "Expert Traffic Routing",
         description:
-          "Search advertising evolves constantly. We stay ahead of changes to ensure your campaigns maintain peak performance.",
-        icon: Zap,
-      },
-      {
-        title: "Multi-Platform Management",
-        description:
-          "Comprehensive campaign management across Google Ads, Bing Ads, and Google Vehicle Listing Ads (VLA).",
+          "We're experts at routing competitor traffic to your dealership. Strategic bidding and targeting designed to steal their customers.",
         icon: TrendingUp,
+      },
+      {
+        title: "Market Share Dominance",
+        description:
+          "We dominate market share in our markets—we don't share it. Strategic exclusivity means you own your territory online.",
+        icon: MapPin,
+      },
+      {
+        title: "Campaign Structure Advantage",
+        description:
+          "Proprietary campaign architecture enables real-time competitor analysis and precision adjustments based on market dynamics.",
+        icon: Settings,
       },
     ],
   },
   proof: {
-    title: "Documented PPC Results",
+    title: "Market Dominance Metrics",
     items: [
-      { stat: "66%", label: "traffic increase (client result)" },
-      { stat: "$2.04", label: "avg cost per click (dealers)" },
-      { stat: "66%", label: "of calls from paid ads" },
-      { stat: "100%", label: "inventory targeting flexibility" },
+      { stat: "90%", label: "search term-to-keyword match" },
+      { stat: "100%", label: "market exclusivity guarantee" },
+      { stat: "Keyword-Level", label: "competitor intelligence" },
+      { stat: "Zero", label: "competing dealers in your market" },
     ],
   },
   process: {
-    title: "Our PPC Campaign Process",
+    title: "How We Dominate Your Market",
     steps: [
       {
         number: "1",
-        title: "Audit & Competitive Analysis",
+        title: "Market Exclusivity Review",
         description:
-          "We analyze your current campaigns, competitor strategies, and market opportunities to identify quick wins and long-term strategies.",
+          "We verify no competing dealerships in your market before engagement. Your territory is yours—we ensure strategic exclusivity from day one.",
       },
       {
         number: "2",
-        title: "Custom Campaign Architecture",
+        title: "Competitor Intelligence Mapping",
         description:
-          "Build campaign structure focused on your inventory priorities, using proven keyword strategies and competitive bidding approaches.",
+          "Identify competitor keywords at granular level. Our unique campaign structure reveals exactly what they're bidding on and where to strike.",
       },
       {
         number: "3",
-        title: "Launch & Monitor",
+        title: "Precision Campaign Build",
         description:
-          "Deploy campaigns across Google Ads, Bing Ads, and VLA with real-time monitoring and rapid optimization based on performance data.",
+          "90% search term-to-keyword match architecture. Your ads align with what you sell—no AI junk, just precision targeting that converts.",
       },
       {
         number: "4",
-        title: "Continuous Optimization",
+        title: "Traffic Routing & Dominance",
         description:
-          "Ongoing campaign refinement with individual vehicle prioritization adjustments, keyword optimization, and competitive bid management.",
+          "Deploy strategic bidding to route competitor traffic to you. Continuous optimization focused on market share dominance, not shared visibility.",
       },
     ],
   },
   cta: {
-    title: "Ready to Dominate Paid Search?",
+    title: "Ready to Own Your Market?",
     description:
-      "Discover how our custom PPC system and competitive bidding strategies can shut down competitors and drive more qualified leads to your dealership.",
+      "Discover how our exclusive market approach, competitor intelligence, and 90% precision matching can route competitor traffic straight to your dealership.",
   },
 };
 
@@ -123,8 +123,8 @@ export default function PpcAds() {
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        title="PPC & SEM Advertising for Auto Dealers"
-        description="Custom PPC platform built for dealerships. Target in-stock inventory with proven ROI keywords. Competitive bidding strategies that shut down competitors and dominate paid search."
+        title="PPC & SEM Advertising for Auto Dealers - Market Dominance Strategy"
+        description="90% search term-to-keyword match. Exclusive market control with competitor keyword intelligence. We dominate your market and route competitor traffic to your dealership—no shared visibility."
         canonical="https://savvydealer.com/ppc-ads"
         schemas={[organizationSchema, serviceSchema]}
       />
