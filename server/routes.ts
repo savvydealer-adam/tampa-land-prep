@@ -72,13 +72,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `;
 
       try {
-        await resend.emails.send({
+        console.log(`[Lead Form] Attempting to send email from: ${FROM_EMAIL} to: ${TO_EMAIL}`);
+        
+        const result = await resend.emails.send({
           from: FROM_EMAIL,
           to: TO_EMAIL,
           subject: `New Lead: ${dealership} - ${name}`,
           html: emailHtml,
           replyTo: email,
         });
+        
+        console.log(`[Lead Form] Resend API response:`, result);
         
         // Update database: email sent successfully
         await storage.updateLeadSubmissionEmailStatus(submissionId, true);
@@ -175,13 +179,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       `;
 
       try {
-        await resend.emails.send({
+        console.log(`[Demo Booking] Attempting to send email from: ${FROM_EMAIL} to: ${TO_EMAIL}`);
+        
+        const result = await resend.emails.send({
           from: FROM_EMAIL,
           to: TO_EMAIL,
           subject: `NADA Demo Booking: ${dealership} - ${dateOptions[date]} at ${time}`,
           html: emailHtml,
           replyTo: email,
         });
+        
+        console.log(`[Demo Booking] Resend API response:`, result);
         
         // Update database: email sent successfully
         await storage.updateLeadSubmissionEmailStatus(submissionId, true);
