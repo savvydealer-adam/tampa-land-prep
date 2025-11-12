@@ -6,8 +6,17 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
+import { AdminAccessGuard } from "@/components/AdminAccessGuard";
 
 export default function AdminSettings() {
+  return (
+    <AdminAccessGuard>
+      <AdminSettingsContent />
+    </AdminAccessGuard>
+  );
+}
+
+function AdminSettingsContent() {
   //todo: remove mock functionality
   const [siteName, setSiteName] = useState("SavvyDealer");
   const [siteUrl, setSiteUrl] = useState("https://savvydealer.com");

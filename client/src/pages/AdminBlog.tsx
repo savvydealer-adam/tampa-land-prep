@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/hooks/useAuth";
 import { isUnauthorizedError, isForbiddenError } from "@/lib/authUtils";
+import { AdminAccessGuard } from "@/components/AdminAccessGuard";
 import {
   Dialog,
   DialogContent,
@@ -62,6 +63,14 @@ import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
 export default function AdminBlog() {
+  return (
+    <AdminAccessGuard>
+      <AdminBlogContent />
+    </AdminAccessGuard>
+  );
+}
+
+function AdminBlogContent() {
   const { isAuthenticated, isLoading: authLoading } = useAuth();
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");

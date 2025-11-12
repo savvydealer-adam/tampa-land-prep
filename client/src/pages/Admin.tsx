@@ -2,8 +2,17 @@ import { AdminSidebar } from "@/components/AdminSidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Users, Eye, TrendingUp } from "lucide-react";
+import { AdminAccessGuard } from "@/components/AdminAccessGuard";
 
 export default function Admin() {
+  return (
+    <AdminAccessGuard>
+      <AdminContent />
+    </AdminAccessGuard>
+  );
+}
+
+function AdminContent() {
   const stats = [
     {
       icon: FileText,

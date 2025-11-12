@@ -6,8 +6,17 @@ import { Input } from "@/components/ui/input";
 import { Search, Plus } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
+import { AdminAccessGuard } from "@/components/AdminAccessGuard";
 
 export default function AdminPages() {
+  return (
+    <AdminAccessGuard>
+      <AdminPagesContent />
+    </AdminAccessGuard>
+  );
+}
+
+function AdminPagesContent() {
   //todo: remove mock functionality
   const [searchQuery, setSearchQuery] = useState("");
   const [pages] = useState([

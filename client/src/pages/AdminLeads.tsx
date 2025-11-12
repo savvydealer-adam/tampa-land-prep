@@ -6,8 +6,17 @@ import { useQuery } from "@tanstack/react-query";
 import { type LeadSubmission } from "@shared/schema";
 import { format } from "date-fns";
 import { Mail, Phone, Building, Calendar, Clock, CheckCircle, XCircle } from "lucide-react";
+import { AdminAccessGuard } from "@/components/AdminAccessGuard";
 
 export default function AdminLeads() {
+  return (
+    <AdminAccessGuard>
+      <AdminLeadsContent />
+    </AdminAccessGuard>
+  );
+}
+
+function AdminLeadsContent() {
   const { data: submissions, isLoading } = useQuery<LeadSubmission[]>({
     queryKey: ["/api/lead-submissions"],
   });

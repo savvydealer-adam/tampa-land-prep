@@ -242,11 +242,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/blog/posts", async (req, res) => {
+  app.get("/api/blog/posts", async (req: any, res) => {
     try {
       const { published, category, tag, limit } = req.query;
+      
+      // Check if user is authenticated AND admin
+      // IMPORTANT: Only trust req.user if req.isAuthenticated() is true
+      const isUserAdmin = req.isAuthenticated() && 
+                         req.user?.claims?.email?.toLowerCase().endsWith('@savvydealer.com');
+      
+      // Non-admin users (including unauthenticated) can only see published posts
+      const publishedFilter = isUserAdmin 
+        ? (published === 'true' ? true : published === 'false' ? false : undefined)
+        : true; // Force published=true for non-admin users
+      
       const options = {
-        published: published === 'true' ? true : published === 'false' ? false : undefined,
+        published: publishedFilter,
         category: category as string | undefined,
         tag: tag as string | undefined,
         limit: limit ? parseInt(limit as string) : undefined,
@@ -260,12 +271,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/blog/posts/:slug", async (req, res) => {
+  app.get("/api/blog/posts/:slug", async (req: any, res) => {
     try {
       const { slug } = req.params;
       const post = await storage.getBlogPostBySlug(slug);
       
       if (!post) {
+        return res.status(404).json({ error: "Blog post not found" });
+      }
+      
+      // Check if user is authenticated AND admin
+      // IMPORTANT: Only trust req.user if req.isAuthenticated() is true
+      const isUserAdmin = req.isAuthenticated() && 
+                         req.user?.claims?.email?.toLowerCase().endsWith('@savvydealer.com');
+      
+      // Non-admin users (including unauthenticated) can only see published posts
+      if (!post.isPublished && !isUserAdmin) {
         return res.status(404).json({ error: "Blog post not found" });
       }
       
