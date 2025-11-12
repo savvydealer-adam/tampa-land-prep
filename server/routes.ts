@@ -8,9 +8,9 @@ import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Email configuration - use verified domain in production, test email in dev
-const FROM_EMAIL = process.env.FROM_EMAIL || "Savvy Dealer <onboarding@resend.dev>";
-const TO_EMAIL = process.env.TO_EMAIL || "support@savvydealer.com";
+// Email configuration - hardcoded temporarily due to Replit env var issue
+const FROM_EMAIL = "contact@savvydealer.ai";
+const TO_EMAIL = "adam@savvydealer.com";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication
