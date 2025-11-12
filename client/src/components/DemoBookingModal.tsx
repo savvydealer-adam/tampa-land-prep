@@ -22,6 +22,7 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar, Clock } from "lucide-react";
 import { demoBookingSchema, type DemoBooking } from "@shared/schema";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 type DemoBookingForm = DemoBooking;
 
@@ -55,6 +56,7 @@ interface DemoBookingModalProps {
 
 export function DemoBookingModal({ open, onOpenChange }: DemoBookingModalProps) {
   const { toast } = useToast();
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const {
     register,
@@ -75,7 +77,7 @@ export function DemoBookingModal({ open, onOpenChange }: DemoBookingModalProps) 
   });
 
   const bookingMutation = useMutation({
-    mutationFn: async (data: DemoBookingForm) => {
+    mutationFn: async (data: DemoBookingForm & { recaptchaToken: string }) => {
       return await apiRequest("POST", "/api/demo-bookings", data);
     },
     onSuccess: () => {
@@ -97,8 +99,26 @@ export function DemoBookingModal({ open, onOpenChange }: DemoBookingModalProps) 
     },
   });
 
-  const onSubmit = (data: DemoBookingForm) => {
-    bookingMutation.mutate(data);
+  const onSubmit = async (data: DemoBookingForm) => {
+    if (!executeRecaptcha) {
+      toast({
+        title: "Error",
+        description: "reCAPTCHA not loaded. Please refresh the page.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const recaptchaToken = await executeRecaptcha("demo_booking_submit");
+      bookingMutation.mutate({ ...data, recaptchaToken });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to verify reCAPTCHA. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
