@@ -17,6 +17,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication
   await setupAuth(app);
 
+  // Public config endpoint - serves reCAPTCHA site key (public key is safe to expose)
+  app.get('/api/config/recaptcha', (req, res) => {
+    const siteKey = process.env.RECAPTCHA_SITE_KEY;
+    if (!siteKey) {
+      return res.status(500).json({ error: "reCAPTCHA not configured" });
+    }
+    res.json({ siteKey });
+  });
+
   // Auth endpoints
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {

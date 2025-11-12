@@ -8,6 +8,7 @@ import { LeadFormProvider } from "@/contexts/LeadFormContext";
 import { HelmetProvider } from "react-helmet-async";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { SkipNavigation } from "@/components/SkipNavigation";
+import { useState, useEffect } from "react";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Admin from "@/pages/Admin";
@@ -59,11 +60,22 @@ function Router() {
 }
 
 function App() {
-  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+  const [recaptchaSiteKey, setRecaptchaSiteKey] = useState<string>("");
 
-  if (!recaptchaSiteKey) {
-    console.error("VITE_RECAPTCHA_SITE_KEY is not defined");
-  }
+  useEffect(() => {
+    fetch('/api/config/recaptcha')
+      .then(res => res.json())
+      .then(data => {
+        if (data.siteKey) {
+          setRecaptchaSiteKey(data.siteKey);
+        } else {
+          console.error("reCAPTCHA site key not available");
+        }
+      })
+      .catch(err => {
+        console.error("Failed to load reCAPTCHA configuration:", err);
+      });
+  }, []);
 
   return (
     <HelmetProvider>
@@ -71,7 +83,7 @@ function App() {
         <ThemeProvider>
           <TooltipProvider>
             <GoogleReCaptchaProvider
-              reCaptchaKey={recaptchaSiteKey || ""}
+              reCaptchaKey={recaptchaSiteKey}
               scriptProps={{
                 async: true,
                 defer: true,
