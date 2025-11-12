@@ -61,6 +61,7 @@ function Router() {
 
 function App() {
   const [recaptchaSiteKey, setRecaptchaSiteKey] = useState<string>("");
+  const [keyLoaded, setKeyLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     fetch('/api/config/recaptcha')
@@ -68,34 +69,45 @@ function App() {
       .then(data => {
         if (data.siteKey) {
           setRecaptchaSiteKey(data.siteKey);
+          setKeyLoaded(true);
         } else {
           console.error("reCAPTCHA site key not available");
+          setKeyLoaded(true);
         }
       })
       .catch(err => {
         console.error("Failed to load reCAPTCHA configuration:", err);
+        setKeyLoaded(true);
       });
   }, []);
+
+  const appContent = (
+    <LeadFormProvider>
+      <SkipNavigation />
+      <Toaster />
+      <Router />
+    </LeadFormProvider>
+  );
 
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <TooltipProvider>
-            <GoogleReCaptchaProvider
-              reCaptchaKey={recaptchaSiteKey}
-              scriptProps={{
-                async: true,
-                defer: true,
-                appendTo: "head",
-              }}
-            >
-              <LeadFormProvider>
-                <SkipNavigation />
-                <Toaster />
-                <Router />
-              </LeadFormProvider>
-            </GoogleReCaptchaProvider>
+            {keyLoaded && recaptchaSiteKey ? (
+              <GoogleReCaptchaProvider
+                reCaptchaKey={recaptchaSiteKey}
+                scriptProps={{
+                  async: true,
+                  defer: true,
+                  appendTo: "head",
+                }}
+              >
+                {appContent}
+              </GoogleReCaptchaProvider>
+            ) : (
+              appContent
+            )}
           </TooltipProvider>
         </ThemeProvider>
       </QueryClientProvider>
