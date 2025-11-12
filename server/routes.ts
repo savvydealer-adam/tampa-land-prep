@@ -10,7 +10,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Email configuration - hardcoded temporarily due to Replit env var issue
 const FROM_EMAIL = "contact@savvydealer.ai";
-const TO_EMAIL = "contact@savvydealer.com";
+const TO_EMAIL = "support@savvydealer.com";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication
