@@ -51,7 +51,11 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
     - Domain configured: replit.dev (for Replit preview) and production domains
     - **Required Secrets**: RECAPTCHA_SITE_KEY, RECAPTCHA_SECRET_KEY (in Replit Secrets)
   - Protected by isAdmin middleware (@savvydealer.com emails only)
-- **Admin Dashboard**: For managing pages, settings, viewing site statistics, and tracking lead submissions.
+- **Admin Dashboard** (/admin):
+  - Centralized admin interface with sidebar navigation
+  - **Active Features**: Blog management (/admin/blog), Lead tracking (/admin/leads)
+  - **Note**: Page and settings management removed per user preference - new pages requested from Replit Agent instead of CMS
+  - Dashboard statistics and overview of site activity
 - **SEO & Structured Data**: Comprehensive SEO management via `react-helmet-async`, supporting various Schema.org types (Organization, WebSite, Service, BlogPosting, Person) for all public pages.
 - **Authentication System**:
   - Replit Auth integration with OpenID Connect (OIDC)

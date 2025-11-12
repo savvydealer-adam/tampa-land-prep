@@ -1,7 +1,6 @@
-import { Home, FileText, Settings, LogOut, Plus, BookOpen, Mail } from "lucide-react";
+import { Home, LogOut, BookOpen, Mail } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 
 export function AdminSidebar() {
   const [location] = useLocation();
@@ -9,9 +8,7 @@ export function AdminSidebar() {
   const menuItems = [
     { icon: Home, label: "Dashboard", href: "/admin" },
     { icon: Mail, label: "Leads", href: "/admin/leads" },
-    { icon: FileText, label: "Pages", href: "/admin/pages" },
     { icon: BookOpen, label: "Blog", href: "/admin/blog" },
-    { icon: Settings, label: "Settings", href: "/admin/settings" },
   ];
 
   return (
@@ -24,21 +21,6 @@ export function AdminSidebar() {
       </div>
 
       <div className="flex-1 overflow-y-auto p-4">
-        <div className="mb-4">
-          <Button
-            asChild
-            className="w-full"
-            data-testid="button-new-page"
-          >
-            <Link href="/admin/pages/new" className="flex items-center gap-2">
-              <Plus className="h-4 w-4" />
-              New Page
-            </Link>
-          </Button>
-        </div>
-
-        <Separator className="my-4" />
-
         <nav className="space-y-2">
           {menuItems.map((item) => {
             const isActive = location === item.href;
