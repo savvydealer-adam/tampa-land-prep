@@ -5,6 +5,7 @@ import { Resend } from "resend";
 import { leadFormSchema, demoBookingSchema, insertBlogPostSchema, insertBlogTagSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
 import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
+import { verifyRecaptchaToken } from "./recaptcha";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -31,7 +32,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     let submissionId: string | undefined;
     
     try {
-      const validationResult = leadFormSchema.safeParse(req.body);
+      // Verify reCAPTCHA token first
+      const { recaptchaToken, ...formData } = req.body;
+      
+      if (!recaptchaToken) {
+        return res.status(400).json({ 
+          error: "reCAPTCHA verification is required" 
+        });
+      }
+
+      const isValidRecaptcha = await verifyRecaptchaToken(recaptchaToken);
+      if (!isValidRecaptcha) {
+        console.log("[Lead Form] reCAPTCHA verification failed");
+        return res.status(400).json({ 
+          error: "reCAPTCHA verification failed. Please try again." 
+        });
+      }
+
+      console.log("[Lead Form] reCAPTCHA verification successful");
+
+      const validationResult = leadFormSchema.safeParse(formData);
       
       if (!validationResult.success) {
         const validationError = fromZodError(validationResult.error);
@@ -127,7 +147,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     let submissionId: string | undefined;
     
     try {
-      const validationResult = demoBookingSchema.safeParse(req.body);
+      // Verify reCAPTCHA token first
+      const { recaptchaToken, ...formData } = req.body;
+      
+      if (!recaptchaToken) {
+        return res.status(400).json({ 
+          error: "reCAPTCHA verification is required" 
+        });
+      }
+
+      const isValidRecaptcha = await verifyRecaptchaToken(recaptchaToken);
+      if (!isValidRecaptcha) {
+        console.log("[Demo Booking] reCAPTCHA verification failed");
+        return res.status(400).json({ 
+          error: "reCAPTCHA verification failed. Please try again." 
+        });
+      }
+
+      console.log("[Demo Booking] reCAPTCHA verification successful");
+
+      const validationResult = demoBookingSchema.safeParse(formData);
       
       if (!validationResult.success) {
         const validationError = fromZodError(validationResult.error);
