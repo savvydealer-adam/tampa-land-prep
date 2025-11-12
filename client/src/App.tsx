@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { LeadFormProvider } from "@/contexts/LeadFormContext";
 import { HelmetProvider } from "react-helmet-async";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { SkipNavigation } from "@/components/SkipNavigation";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
@@ -58,16 +59,31 @@ function Router() {
 }
 
 function App() {
+  const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
+
+  if (!recaptchaSiteKey) {
+    console.error("VITE_RECAPTCHA_SITE_KEY is not defined");
+  }
+
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <TooltipProvider>
-            <LeadFormProvider>
-              <SkipNavigation />
-              <Toaster />
-              <Router />
-            </LeadFormProvider>
+            <GoogleReCaptchaProvider
+              reCaptchaKey={recaptchaSiteKey || ""}
+              scriptProps={{
+                async: true,
+                defer: true,
+                appendTo: "head",
+              }}
+            >
+              <LeadFormProvider>
+                <SkipNavigation />
+                <Toaster />
+                <Router />
+              </LeadFormProvider>
+            </GoogleReCaptchaProvider>
           </TooltipProvider>
         </ThemeProvider>
       </QueryClientProvider>
