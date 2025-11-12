@@ -50,13 +50,18 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
   - Replit Auth integration with OpenID Connect (OIDC)
   - Supports Google, GitHub, and email/password login
   - Session-based authentication with PostgreSQL storage
-  - Protected admin endpoints with isAuthenticated middleware
-  - Frontend useAuth hook for auth state management
+  - **Multi-layer Admin Protection** (architect-verified secure):
+    - **Frontend**: AdminAccessGuard component wraps all admin pages, blocks non-@savvydealer.com access
+    - **Backend**: isAdmin middleware protects all mutating operations and admin data endpoints
+    - **Blog Security**: Public GET routes filter unpublished posts using req.isAuthenticated() check
+    - **Admin Access**: Only @savvydealer.com email addresses can access admin dashboard and unpublished content
+  - Frontend useAuth hook for auth state management with isAdmin helper
   - Automatic redirect to login for unauthenticated users
   - Logout functionality in admin interface
+  - Global Passport session middleware ensures req.isAuthenticated() cannot be spoofed
   - Environment-aware cookie security (secure in production, permissive in development)
   - **Required Environment Variables**: ISSUER_URL, REPL_ID, SESSION_SECRET, DATABASE_URL
-  - **Optional Environment Variables**: FROM_EMAIL (sender email for notifications, defaults to "Savvy Dealer <onboarding@resend.dev>"), TO_EMAIL (recipient email for lead notifications, defaults to "support@savvydealer.com")
+  - **Optional Environment Variables**: FROM_EMAIL (sender email for notifications, defaults to contact@savvydealer.ai), TO_EMAIL (recipient email for lead notifications, defaults to support@savvydealer.com)
 
 ### System Design Choices
 
