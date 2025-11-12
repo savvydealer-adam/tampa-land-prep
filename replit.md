@@ -43,6 +43,13 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
   - Color-coded status badges: Green for successful emails, red for failures
   - **Email Configuration**: FROM_EMAIL and TO_EMAIL environment variables (defaults to Resend test email)
   - **Production Setup Required**: Verify savvydealer.com domain in Resend and set FROM_EMAIL to verified address
+  - **reCAPTCHA v3 Protection**: Both lead form and demo booking forms protected with Google reCAPTCHA v3
+    - Site key fetched from backend API endpoint `/api/config/recaptcha` on app load
+    - Frontend generates invisible reCAPTCHA tokens using `react-google-recaptcha-v3` library
+    - Backend verifies tokens with Google API using 0.5 score threshold (server/recaptcha.ts)
+    - Submissions with invalid or low-score tokens are rejected with 400 error
+    - Domain configured: replit.dev (for Replit preview) and production domains
+    - **Required Secrets**: RECAPTCHA_SITE_KEY, RECAPTCHA_SECRET_KEY (in Replit Secrets)
   - Protected by isAdmin middleware (@savvydealer.com emails only)
 - **Admin Dashboard**: For managing pages, settings, viewing site statistics, and tracking lead submissions.
 - **SEO & Structured Data**: Comprehensive SEO management via `react-helmet-async`, supporting various Schema.org types (Organization, WebSite, Service, BlogPosting, Person) for all public pages.
@@ -87,12 +94,13 @@ The backend uses an interface-driven storage pattern (`IStorage`) to allow easy 
 
 ## External Dependencies
 
-- **Frontend**: React, `wouter`, TanStack Query, Vite, Tailwind CSS, Radix UI, `shadcn/ui`, `lucide-react`.
+- **Frontend**: React, `wouter`, TanStack Query, Vite, Tailwind CSS, Radix UI, `shadcn/ui`, `lucide-react`, `react-google-recaptcha-v3`.
 - **Backend**: Express.js, TypeScript.
 - **Database & ORM**: `@neondatabase/serverless` (PostgreSQL), `drizzle-orm`, `drizzle-kit`.
 - **Validation**: `zod`, `drizzle-zod`, `react-hook-form`.
 - **Authentication**: `openid-client` (OIDC), `express-session`, `connect-pg-simple` (session storage).
 - **Email Service**: Resend API (for lead and demo booking notifications).
+- **Bot Protection**: Google reCAPTCHA v3 (invisible, score-based verification).
 - **SEO**: `react-helmet-async`.
 - **Development Tools**: `tsx`, `nanoid`, Replit-specific Vite plugins.
 - **Fonts**: Google Fonts (Inter, Space Grotesk).
