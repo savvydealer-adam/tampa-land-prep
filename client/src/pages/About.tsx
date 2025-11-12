@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Target, Handshake, Lightbulb } from "lucide-react";
 import { SEO, organizationSchema, createPersonSchema } from "@/components/SEO";
+import adamGillrieImage from "@assets/Gemini_Generated_Image_ii2kxoii2kxoii2k_1762962689719.png";
 
 export default function About() {
   const { openLeadForm } = useLeadForm();
@@ -133,12 +134,20 @@ export default function About() {
                   className="group overflow-hidden rounded-2xl bg-card transition-all hover-elevate"
                   data-testid={`card-team-${member.name.toLowerCase().replace(/\s+/g, "-")}`}
                 >
-                  <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5 p-8">
-                    <div className="flex h-full items-center justify-center">
-                      <div className="flex h-32 w-32 items-center justify-center rounded-full bg-primary/10 text-5xl font-bold text-primary">
-                        {member.name.split(' ').map(n => n[0]).join('')}
+                  <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5">
+                    {member.name === "Adam Gillrie" ? (
+                      <img 
+                        src={adamGillrieImage} 
+                        alt="Adam Gillrie, Director of Savvy Dealer"
+                        className="h-full w-full object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center p-8">
+                        <div className="flex h-32 w-32 items-center justify-center rounded-full bg-primary/10 text-5xl font-bold text-primary">
+                          {member.name.split(' ').map(n => n[0]).join('')}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="mb-1 text-xl font-bold">{member.name}</h3>
