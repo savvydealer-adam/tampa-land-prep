@@ -32,9 +32,10 @@ export async function verifyRecaptchaToken(token: string): Promise<boolean> {
     });
 
     // For reCAPTCHA v3, check score (0.0 - 1.0, higher is better)
-    // Typically, 0.5 is a good threshold
+    // 0.3 threshold balances security with user experience
+    // Scores: 0.0 = very likely bot, 1.0 = very likely human
     if (data.success && data.score !== undefined) {
-      return data.score >= 0.5;
+      return data.score >= 0.3;
     }
 
     return data.success;
