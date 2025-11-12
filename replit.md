@@ -21,6 +21,7 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
 ### Feature Specifications
 
 - **Product Pages**: Dedicated pages for each marketing service with consistent layouts and branding. Products include Facebook Ads, Dealer SEO, PPC Ads, Google Vehicle Ads (VLAs), Dealer Websites, Independent Dealer Websites, and Anti-Dashboard AI (NADA 2026 teaser).
+  - **PPC & SEM** (/ppc-ads): Strategic market dominance positioning emphasizing 90% search term-to-keyword match (precision vs AI-generated junk), competitor keyword intelligence from unique campaign structure, exclusive market control (no competing dealers in same market), expert traffic routing from competitors to clients, and market share dominance (not shared visibility). No focus on cost-per-click metrics.
 - **NADA Show Landing Page** (/nada-show): Trade show landing page for NADA Show 2026 (February 4-6, 2026, Las Vegas). Features hero section with NADA logo, event details for Booth 6760N, 6 reason cards, interactive North Hall floor map with pulsing marker highlighting booth location, and 4 "Book a Demo" CTAs integrated with DemoBookingModal.
 - **Attribution AI Teaser**: A dedicated teaser page for an unreleased product, hinting at a NADA 2026 announcement with Apple-inspired design.
 - **Blog System** (/blog, /blog/:slug, /admin/blog): 
