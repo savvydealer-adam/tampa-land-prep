@@ -24,6 +24,7 @@ import { CheckCircle2 } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { leadFormSchema, type LeadFormSubmission } from "@shared/schema";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface LeadFormModalProps {
   open: boolean;
@@ -33,6 +34,7 @@ interface LeadFormModalProps {
 export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const form = useForm<LeadFormSubmission>({
     resolver: zodResolver(leadFormSchema),
@@ -46,7 +48,7 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
   });
 
   const submitLeadMutation = useMutation({
-    mutationFn: async (data: LeadFormSubmission) => {
+    mutationFn: async (data: LeadFormSubmission & { recaptchaToken: string }) => {
       return await apiRequest("POST", "/api/lead-form", data);
     },
     onSuccess: () => {
@@ -68,7 +70,25 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
   });
 
   const onSubmit = async (data: LeadFormSubmission) => {
-    submitLeadMutation.mutate(data);
+    if (!executeRecaptcha) {
+      toast({
+        title: "Error",
+        description: "reCAPTCHA not loaded. Please refresh the page.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const recaptchaToken = await executeRecaptcha("lead_form_submit");
+      submitLeadMutation.mutate({ ...data, recaptchaToken });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to verify reCAPTCHA. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleClose = () => {
