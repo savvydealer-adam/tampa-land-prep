@@ -25,13 +25,16 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
 - **NADA Show Landing Page** (/nada-show): Trade show landing page for NADA Show 2026 (February 4-6, 2026, Las Vegas). Features hero section with NADA logo, event details for Booth 6760N, 6 reason cards, interactive North Hall floor map with pulsing marker highlighting booth location, and 4 "Book a Demo" CTAs integrated with DemoBookingModal.
 - **Attribution AI Teaser**: A dedicated teaser page for an unreleased product, hinting at a NADA 2026 announcement with Apple-inspired design.
 - **Blog System** (/blog, /blog/:slug, /admin/blog): 
-  - PostgreSQL-backed blog with full CRUD operations
-  - Database schema: blogPosts, blogTags, postTags (many-to-many relationships)
-  - Public pages: Blog listing with featured posts, category badges, search, and individual post pages with SEO
-  - Admin interface: Create/edit/delete posts, manage tags, date selection, validation
-  - Successfully migrated 6 existing blog posts from current website with professional featured images (4 user-provided, 2 AI-generated)
-  - All blog posts now have featured images stored in `/attached_assets/` (user uploads) and `/attached_assets/generated_images/` (AI-generated)
-  - Implemented tag filtering with proper database joins
+  - File-based Markdown blog with full CRUD operations (no database tables)
+  - Blog posts stored as Markdown files in `content/blog/` directory with YAML frontmatter
+  - Build script (`server/blogLoader.ts`) converts Markdown to JSON at startup for fast access
+  - Generated JSON stored in `generated/blog.json` and rebuilt automatically on file changes
+  - Public pages: Blog listing with featured posts, category badges, tag filtering, and individual post pages with SEO
+  - Admin interface: Create/edit/delete posts via filesystem operations, tags managed in frontmatter, date selection, validation
+  - Successfully migrated 6 existing blog posts from database to Markdown with professional featured images (4 user-provided, 2 AI-generated)
+  - All blog posts have featured images stored in `/attached_assets/` (user uploads) and `/attached_assets/generated_images/` (AI-generated)
+  - Tag system: Tags stored as string arrays in frontmatter (e.g., `tags: [AI, SEO, Marketing]`)
+  - Three-tier schema system: fileBlogPostInputSchema (forms with Date), fileBlogPostSchema (API validation with Date|string→ISO transform), fileBlogPostUpdateSchema (partial PATCH validation)
   - SEO: BlogPosting JSON-LD schema, meta tags, Open Graph support
   - **Authentication**: Blog admin fully protected with Replit Auth (see Authentication System below)
 - **Lead Submission System** (/admin/leads):
@@ -77,14 +80,11 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
 
 ### System Design Choices
 
-The backend uses an interface-driven storage pattern (`IStorage`) to allow easy swapping of storage solutions. The blog system uses PostgreSQL with Drizzle ORM for persistence. In-memory storage (MemStorage) is used for other features. Drizzle ORM handles database interaction with a schema-first approach and Zod validation. Session-based authentication is implemented with Replit Auth (OpenID Connect) and PostgreSQL session storage. All blog admin API endpoints are protected with isAuthenticated middleware. The application structure includes clear routing for public, product, blog, event, and admin pages.
+The backend uses an interface-driven storage pattern (`IStorage`) to allow easy swapping of storage solutions. The blog system uses a file-based Markdown approach with a build script that generates JSON for fast access. Lead submissions use PostgreSQL with Drizzle ORM for persistence. Session-based authentication is implemented with Replit Auth (OpenID Connect) and PostgreSQL session storage. All blog admin API endpoints are protected with isAdmin middleware. The application structure includes clear routing for public, product, blog, event, and admin pages.
 
 ### Database Schema
 
-**Blog Tables**:
-- `blogPosts`: id (serial), title, slug, excerpt, content, featuredImage, author, authorRole, publishedAt, updatedAt, isPublished, readingTime, category
-- `blogTags`: id (serial), name, slug
-- `postTags`: postId, tagId (junction table for many-to-many relationship)
+**Note**: Blog system uses file-based Markdown storage (no database tables). Blog posts are stored in `content/blog/` and built to `generated/blog.json`.
 
 **Authentication Tables**:
 - `users`: id (varchar, UUID), email, firstName, lastName, profileImageUrl, createdAt, updatedAt
