@@ -5,7 +5,7 @@ excerpt: "Ford's decision to separate its EV business from franchised dealers cr
 category: "Industry Analysis"
 author: "Savvy Dealer Team"
 authorRole: "Industry Analysis"
-featuredImage: "/attached_assets/Ford Dealer EV_1762984146085.jpg"
+featuredImage: "/attached_assets/generated_images/Ford_EV_business_split_86c8437f.png"
 publishedAt: "2025-09-05T00:00:00.000Z"
 readingTime: 5
 isPublished: true

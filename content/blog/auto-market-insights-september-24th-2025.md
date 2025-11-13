@@ -5,7 +5,7 @@ excerpt: "The auto market is in a period of seasonal adjustment as we head into 
 category: "Market Insights"
 author: "Savvy Dealer Team"
 authorRole: "Market Insights"
-featuredImage: "/attached_assets/generated_images/auto-market-analysis_fc96fc26.png"
+featuredImage: "/attached_assets/generated_images/Auto_market_insights_dashboard_62f91089.png"
 publishedAt: "2025-09-24T00:00:00.000Z"
 readingTime: 5
 isPublished: true

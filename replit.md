@@ -32,7 +32,7 @@ The application is a full-stack TypeScript project. The frontend uses React 18 w
   - Generated JSON stored in `generated/blog.json` and rebuilt automatically on file changes
   - Public pages: Blog listing with featured posts, category badges, tag filtering, and individual post pages with SEO
   - Admin interface: Create/edit/delete posts via filesystem operations, tags managed in frontmatter, date selection, validation
-  - Successfully migrated 6 existing blog posts from database to Markdown with professional featured images (4 user-provided, 2 AI-generated)
+  - Successfully migrated 6 existing blog posts from database to Markdown with professional featured images (1 user-provided, 5 AI-generated)
   - All blog posts have featured images stored in `/attached_assets/` (user uploads) and `/attached_assets/generated_images/` (AI-generated)
   - Tag system: Tags stored as string arrays in frontmatter (e.g., `tags: [AI, SEO, Marketing]`)
   - Three-tier schema system: fileBlogPostInputSchema (forms with Date), fileBlogPostSchema (API validation with Date|string→ISO transform), fileBlogPostUpdateSchema (partial PATCH validation)

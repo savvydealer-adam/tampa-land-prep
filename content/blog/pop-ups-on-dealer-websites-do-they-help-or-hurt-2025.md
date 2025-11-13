@@ -5,7 +5,7 @@ excerpt: "Most shoppers don't want pop‑ups, especially on phones. They interru
 category: "SEO"
 author: "Savvy Dealer Team"
 authorRole: "SEO"
-featuredImage: "/attached_assets/generated_images/dealer-website-popups-mobile_2dca2a2b.png"
+featuredImage: "/attached_assets/generated_images/Website_popup_frustration_mobile_b40fa9a2.png"
 publishedAt: "2025-09-25T00:00:00.000Z"
 readingTime: 7
 isPublished: true

@@ -5,7 +5,7 @@ excerpt: "The automotive market is navigating a period of significant change, ma
 category: "Market Insights"
 author: "Savvy Dealer Team"
 authorRole: "Market Insights"
-featuredImage: "/attached_assets/Auto Market Insights Sept 15, 2024_1762984119324.jpg"
+featuredImage: "/attached_assets/generated_images/Auto_market_insights_September_0170d578.png"
 publishedAt: "2025-09-15T00:00:00.000Z"
 readingTime: 5
 isPublished: true

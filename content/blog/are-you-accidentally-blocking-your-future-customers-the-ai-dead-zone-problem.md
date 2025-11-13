@@ -5,7 +5,7 @@ excerpt: "Most car shoppers are now using AI assistants like ChatGPT and Claude 
 category: "Digital Strategy"
 author: "Savvy Dealer Team"
 authorRole: "Digital Strategy"
-featuredImage: "/attached_assets/AI Dead Zone_1762984170176.jpg"
+featuredImage: "/attached_assets/generated_images/AI_dead_zone_concept_cf611237.png"
 publishedAt: "2025-09-10T00:00:00.000Z"
 readingTime: 5
 isPublished: true
