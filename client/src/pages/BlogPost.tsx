@@ -7,11 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import type { BlogPost as BlogPostType } from "@shared/schema";
-
-interface BlogPostWithTags extends BlogPostType {
-  tags?: { id: string; name: string; slug: string }[];
-}
+import type { FileBlogPost } from "@shared/schema";
 
 function renderMarkdownContent(content: string): string {
   let html = content;
@@ -33,7 +29,7 @@ export default function BlogPost() {
   const [match, params] = useRoute("/blog/:slug");
   const slug = params?.slug;
 
-  const { data: post, isLoading, isError } = useQuery<BlogPostWithTags>({
+  const { data: post, isLoading, isError } = useQuery<FileBlogPost>({
     queryKey: ["/api/blog/posts", slug],
     queryFn: async () => {
       if (!slug) throw new Error("No slug provided");
@@ -236,11 +232,11 @@ export default function BlogPost() {
                         <Tag className="w-4 h-4 text-muted-foreground" />
                         {post.tags.map((tag) => (
                           <Badge 
-                            key={tag.id} 
+                            key={tag} 
                             variant="outline"
-                            data-testid={`badge-tag-${tag.slug}`}
+                            data-testid={`badge-tag-${tag.toLowerCase().replace(/\s+/g, '-')}`}
                           >
-                            {tag.name}
+                            {tag}
                           </Badge>
                         ))}
                       </div>

@@ -6,14 +6,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import type { BlogPost } from "@shared/schema";
-
-interface BlogPostWithTags extends BlogPost {
-  tags?: { id: string; name: string; slug: string }[];
-}
+import type { FileBlogPost } from "@shared/schema";
 
 export default function Blog() {
-  const { data: posts, isLoading } = useQuery<BlogPostWithTags[]>({
+  const { data: posts, isLoading } = useQuery<FileBlogPost[]>({
     queryKey: ["/api/blog/posts"],
     queryFn: async () => {
       const response = await fetch("/api/blog/posts?published=true");

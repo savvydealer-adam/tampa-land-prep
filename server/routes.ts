@@ -2,7 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { Resend } from "resend";
-import { leadFormSchema, demoBookingSchema, insertBlogPostSchema, insertBlogTagSchema } from "@shared/schema";
+import { leadFormSchema, demoBookingSchema, fileBlogPostSchema, fileBlogPostUpdateSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
 import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
 import { verifyRecaptchaToken } from "./recaptcha";
@@ -350,7 +350,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // POST create new blog post (admin only)
   app.post("/api/blog/posts", isAdmin, async (req, res) => {
     try {
-      const validationResult = insertBlogPostSchema.safeParse(req.body);
+      const validationResult = fileBlogPostSchema.safeParse(req.body);
       
       if (!validationResult.success) {
         const validationError = fromZodError(validationResult.error);
@@ -370,6 +370,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { id } = req.params; // id is the slug
       
+      // Validate partial update with file-based schema
+      const validationResult = fileBlogPostUpdateSchema.safeParse(req.body);
+      
+      if (!validationResult.success) {
+        const validationError = fromZodError(validationResult.error);
+        return res.status(400).json({ error: validationError.message });
+      }
+      
       // Get existing post
       const existingPost = getPostBySlug(id, true);
       
@@ -377,10 +385,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ error: "Blog post not found" });
       }
       
-      // Merge existing post with updates
+      // Merge existing post with validated updates
       const updatedData = {
         ...existingPost,
-        ...req.body,
+        ...validationResult.data,
         slug: id, // Preserve original slug
       };
       

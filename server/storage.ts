@@ -1,31 +1,12 @@
-import { type User, type UpsertUser, type BlogPost, type InsertBlogPost, type BlogTag, type InsertBlogTag, type LeadSubmission, type InsertLeadSubmission } from "@shared/schema";
+import { type User, type UpsertUser, type LeadSubmission, type InsertLeadSubmission } from "@shared/schema";
 import { db } from "./db";
-import { users, blogPosts, blogTags, postTags, leadSubmissions } from "@shared/schema";
+import { users, leadSubmissions } from "@shared/schema";
 import { eq, desc, and } from "drizzle-orm";
 
 export interface IStorage {
   // User operations for Replit Auth
   getUser(id: string): Promise<User | undefined>;
   upsertUser(user: UpsertUser): Promise<User>;
-  
-  // Blog operations
-  getAllBlogPosts(options?: { published?: boolean; category?: string; tag?: string; limit?: number }): Promise<BlogPost[]>;
-  getBlogPostBySlug(slug: string): Promise<BlogPost | undefined>;
-  getBlogPostById(id: string): Promise<BlogPost | undefined>;
-  createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
-  updateBlogPost(id: string, post: Partial<InsertBlogPost>): Promise<BlogPost | undefined>;
-  deleteBlogPost(id: string): Promise<void>;
-  
-  // Tag operations
-  getAllTags(): Promise<BlogTag[]>;
-  getTagBySlug(slug: string): Promise<BlogTag | undefined>;
-  createTag(tag: InsertBlogTag): Promise<BlogTag>;
-  deleteTag(id: string): Promise<void>;
-  
-  // Post-Tag operations
-  addTagToPost(postId: string, tagId: string): Promise<void>;
-  removeTagFromPost(postId: string, tagId: string): Promise<void>;
-  getPostTags(postId: string): Promise<BlogTag[]>;
   
   // Lead submission operations
   createLeadSubmission(submission: InsertLeadSubmission): Promise<LeadSubmission>;
@@ -52,131 +33,6 @@ export class DbStorage implements IStorage {
       })
       .returning();
     return user;
-  }
-
-  async getAllBlogPosts(options?: { published?: boolean; category?: string; tag?: string; limit?: number }): Promise<BlogPost[]> {
-    if (options?.tag) {
-      const tagRecord = await this.getTagBySlug(options.tag);
-      if (!tagRecord) {
-        return [];
-      }
-
-      const postsWithTag = await db
-        .select({
-          id: blogPosts.id,
-          title: blogPosts.title,
-          slug: blogPosts.slug,
-          excerpt: blogPosts.excerpt,
-          content: blogPosts.content,
-          featuredImage: blogPosts.featuredImage,
-          author: blogPosts.author,
-          authorRole: blogPosts.authorRole,
-          publishedAt: blogPosts.publishedAt,
-          updatedAt: blogPosts.updatedAt,
-          isPublished: blogPosts.isPublished,
-          readingTime: blogPosts.readingTime,
-          category: blogPosts.category,
-        })
-        .from(blogPosts)
-        .innerJoin(postTags, eq(postTags.postId, blogPosts.id))
-        .where(
-          and(
-            eq(postTags.tagId, tagRecord.id),
-            options?.published !== undefined ? eq(blogPosts.isPublished, options.published) : undefined,
-            options?.category ? eq(blogPosts.category, options.category) : undefined
-          )
-        )
-        .orderBy(desc(blogPosts.publishedAt))
-        .limit(options?.limit || 1000);
-
-      return postsWithTag;
-    }
-
-    let query = db.select().from(blogPosts);
-    
-    const conditions = [];
-    if (options?.published !== undefined) {
-      conditions.push(eq(blogPosts.isPublished, options.published));
-    }
-    if (options?.category) {
-      conditions.push(eq(blogPosts.category, options.category));
-    }
-    
-    if (conditions.length > 0) {
-      query = query.where(and(...conditions)) as any;
-    }
-    
-    query = query.orderBy(desc(blogPosts.publishedAt)) as any;
-    
-    if (options?.limit) {
-      query = query.limit(options.limit) as any;
-    }
-    
-    return await query;
-  }
-
-  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
-    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug)).limit(1);
-    return post;
-  }
-
-  async getBlogPostById(id: string): Promise<BlogPost | undefined> {
-    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.id, id)).limit(1);
-    return post;
-  }
-
-  async createBlogPost(post: InsertBlogPost): Promise<BlogPost> {
-    const [newPost] = await db.insert(blogPosts).values(post).returning();
-    return newPost;
-  }
-
-  async updateBlogPost(id: string, post: Partial<InsertBlogPost>): Promise<BlogPost | undefined> {
-    const [updated] = await db.update(blogPosts).set(post).where(eq(blogPosts.id, id)).returning();
-    return updated;
-  }
-
-  async deleteBlogPost(id: string): Promise<void> {
-    await db.delete(blogPosts).where(eq(blogPosts.id, id));
-  }
-
-  async getAllTags(): Promise<BlogTag[]> {
-    return await db.select().from(blogTags).orderBy(blogTags.name);
-  }
-
-  async getTagBySlug(slug: string): Promise<BlogTag | undefined> {
-    const [tag] = await db.select().from(blogTags).where(eq(blogTags.slug, slug)).limit(1);
-    return tag;
-  }
-
-  async createTag(tag: InsertBlogTag): Promise<BlogTag> {
-    const [newTag] = await db.insert(blogTags).values(tag).returning();
-    return newTag;
-  }
-
-  async deleteTag(id: string): Promise<void> {
-    await db.delete(blogTags).where(eq(blogTags.id, id));
-  }
-
-  async addTagToPost(postId: string, tagId: string): Promise<void> {
-    await db.insert(postTags).values({ postId, tagId });
-  }
-
-  async removeTagFromPost(postId: string, tagId: string): Promise<void> {
-    await db.delete(postTags).where(and(eq(postTags.postId, postId), eq(postTags.tagId, tagId)));
-  }
-
-  async getPostTags(postId: string): Promise<BlogTag[]> {
-    const tags = await db
-      .select({
-        id: blogTags.id,
-        name: blogTags.name,
-        slug: blogTags.slug,
-      })
-      .from(postTags)
-      .innerJoin(blogTags, eq(postTags.tagId, blogTags.id))
-      .where(eq(postTags.postId, postId));
-    
-    return tags;
   }
 
   async createLeadSubmission(submission: InsertLeadSubmission): Promise<LeadSubmission> {
