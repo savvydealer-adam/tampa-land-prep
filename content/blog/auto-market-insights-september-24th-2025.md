@@ -9,7 +9,7 @@ featuredImage: "/attached_assets/generated_images/auto-market-analysis_fc96fc26.
 publishedAt: "2025-09-24T00:00:00.000Z"
 readingTime: 5
 isPublished: true
-tags: []
+tags: ["Market Trends", "Inventory Management", "EV", "Pricing"]
 ---
 
 # Auto Market Recap: Navigating the Shifting Gears of Q3

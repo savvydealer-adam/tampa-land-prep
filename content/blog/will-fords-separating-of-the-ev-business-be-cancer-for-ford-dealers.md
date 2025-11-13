@@ -9,7 +9,7 @@ featuredImage: "/attached_assets/Ford Dealer EV_1762984146085.jpg"
 publishedAt: "2025-09-05T00:00:00.000Z"
 readingTime: 5
 isPublished: true
-tags: []
+tags: ["EV", "Industry News", "Dealer Strategy", "Ford"]
 ---
 
 Ford Motor has finally stopped denying the rumors and admitted that they are splitting their EV business from the franchised dealer business. The company will be restructuring into three distinct entities: Ford Blue (traditional ICE vehicles), Ford Model e (electric vehicles), and Ford Pro (commercial vehicles).

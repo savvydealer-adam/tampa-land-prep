@@ -9,7 +9,7 @@ featuredImage: "/attached_assets/Auto Market Insights Sept 15, 2024_176298411932
 publishedAt: "2025-09-15T00:00:00.000Z"
 readingTime: 5
 isPublished: true
-tags: []
+tags: ["Market Trends", "Economics", "Finance", "Consumer Behavior"]
 ---
 
 # The Automotive Market in Flux: Inflation, Shifting Demand, and a Changing Lending Landscape

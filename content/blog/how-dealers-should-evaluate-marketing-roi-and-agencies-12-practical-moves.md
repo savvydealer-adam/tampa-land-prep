@@ -9,7 +9,7 @@ featuredImage: "/attached_assets/how Dealers Should Evaluate_1762984180908.jpg"
 publishedAt: "2025-10-15T00:00:00.000Z"
 readingTime: 7
 isPublished: true
-tags: []
+tags: ["Marketing", "ROI", "Analytics", "Agency Management"]
 ---
 
 # Free Marketing Meeting Checklist Here

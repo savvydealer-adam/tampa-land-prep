@@ -9,7 +9,7 @@ featuredImage: "/attached_assets/generated_images/dealer-website-popups-mobile_2
 publishedAt: "2025-09-25T00:00:00.000Z"
 readingTime: 7
 isPublished: true
-tags: []
+tags: ["SEO", "UX", "Website Performance", "Mobile"]
 ---
 
 **Audience:** Dealer principals, GMs, GSMs, Internet directors

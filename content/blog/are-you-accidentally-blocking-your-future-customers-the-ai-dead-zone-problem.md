@@ -9,7 +9,7 @@ featuredImage: "/attached_assets/AI Dead Zone_1762984170176.jpg"
 publishedAt: "2025-09-10T00:00:00.000Z"
 readingTime: 5
 isPublished: true
-tags: []
+tags: ["AI", "SEO", "Digital Marketing", "Customer Experience"]
 ---
 
 Today's car shoppers are savvy. They're using powerful new tools to make the buying process faster and smarter. They're not just browsing websites; they're asking AI assistants like ChatGPT, Claude, and Perplexity to do the heavy lifting.
