@@ -6,6 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import type { FileBlogPost } from "@shared/schema";
 
 export default function Blog() {
@@ -22,7 +24,7 @@ export default function Blog() {
   const regularPosts = posts?.slice(1);
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Helmet>
         <title>The Savvy Blog - Digital Marketing Insights for Automotive Dealers | Savvy Dealer</title>
         <meta
@@ -35,7 +37,9 @@ export default function Blog() {
         <meta property="og:url" content="https://www.savvydealer.com/blog" />
       </Helmet>
 
-      <div className="min-h-screen bg-background">
+      <Header />
+
+      <main id="main-content" role="main" tabIndex={-1} className="flex-1 bg-background">
         <div className="bg-gradient-to-b from-muted/30 to-background py-32">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
@@ -182,7 +186,9 @@ export default function Blog() {
             </>
           )}
         </div>
-      </div>
-    </>
+      </main>
+      
+      <Footer />
+    </div>
   );
 }
