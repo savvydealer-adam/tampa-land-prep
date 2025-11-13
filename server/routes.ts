@@ -6,6 +6,7 @@ import { leadFormSchema, demoBookingSchema, insertBlogPostSchema, insertBlogTagS
 import { fromZodError } from "zod-validation-error";
 import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
 import { verifyRecaptchaToken } from "./recaptcha";
+import { getPublishedPosts, getPostBySlug, saveBlogPost, deleteBlogPost as deleteBlogPostFile, getAllTags } from "./blogLoader";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -290,28 +291,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ============================================
+  // BLOG ROUTES - File-based Markdown system
+  // ============================================
+
+  // GET all blog posts with optional filtering
   app.get("/api/blog/posts", async (req: any, res) => {
     try {
-      const { published, category, tag, limit } = req.query;
+      const { category, tag, limit } = req.query;
       
       // Check if user is authenticated AND admin
-      // IMPORTANT: Only trust req.user if req.isAuthenticated() is true
       const isUserAdmin = req.isAuthenticated() && 
-                         req.user?.claims?.email?.toLowerCase().endsWith('@savvydealer.com');
+                        req.user?.claims?.email?.toLowerCase().endsWith('@savvydealer.com');
       
-      // Non-admin users (including unauthenticated) can only see published posts
-      const publishedFilter = isUserAdmin 
-        ? (published === 'true' ? true : published === 'false' ? false : undefined)
-        : true; // Force published=true for non-admin users
+      // Get posts from file system (respects admin vs non-admin)
+      let posts = getPublishedPosts(isUserAdmin);
       
-      const options = {
-        published: publishedFilter,
-        category: category as string | undefined,
-        tag: tag as string | undefined,
-        limit: limit ? parseInt(limit as string) : undefined,
-      };
+      // Apply filters
+      if (category) {
+        posts = posts.filter(p => p.category === category);
+      }
+      if (tag) {
+        posts = posts.filter(p => p.tags.includes(tag as string));
+      }
+      if (limit) {
+        posts = posts.slice(0, parseInt(limit as string));
+      }
       
-      const posts = await storage.getAllBlogPosts(options);
       res.json(posts);
     } catch (error) {
       console.error("Error fetching blog posts:", error);
@@ -319,33 +325,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // GET single blog post by slug
   app.get("/api/blog/posts/:slug", async (req: any, res) => {
     try {
       const { slug } = req.params;
-      const post = await storage.getBlogPostBySlug(slug);
+      
+      // Check if user is authenticated AND admin
+      const isUserAdmin = req.isAuthenticated() && 
+                        req.user?.claims?.email?.toLowerCase().endsWith('@savvydealer.com');
+      
+      const post = getPostBySlug(slug, isUserAdmin);
       
       if (!post) {
         return res.status(404).json({ error: "Blog post not found" });
       }
       
-      // Check if user is authenticated AND admin
-      // IMPORTANT: Only trust req.user if req.isAuthenticated() is true
-      const isUserAdmin = req.isAuthenticated() && 
-                         req.user?.claims?.email?.toLowerCase().endsWith('@savvydealer.com');
-      
-      // Non-admin users (including unauthenticated) can only see published posts
-      if (!post.isPublished && !isUserAdmin) {
-        return res.status(404).json({ error: "Blog post not found" });
-      }
-      
-      const tags = await storage.getPostTags(post.id);
-      res.json({ ...post, tags });
+      res.json(post);
     } catch (error) {
       console.error("Error fetching blog post:", error);
       res.status(500).json({ error: "Failed to fetch blog post" });
     }
   });
 
+  // POST create new blog post (admin only)
   app.post("/api/blog/posts", isAdmin, async (req, res) => {
     try {
       const validationResult = insertBlogPostSchema.safeParse(req.body);
@@ -355,7 +357,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: validationError.message });
       }
 
-      const post = await storage.createBlogPost(validationResult.data);
+      const post = await saveBlogPost(validationResult.data);
       res.json(post);
     } catch (error) {
       console.error("Error creating blog post:", error);
@@ -363,15 +365,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // PATCH update existing blog post (admin only)
   app.patch("/api/blog/posts/:id", isAdmin, async (req, res) => {
     try {
-      const { id } = req.params;
-      const post = await storage.updateBlogPost(id, req.body);
+      const { id } = req.params; // id is the slug
       
-      if (!post) {
+      // Get existing post
+      const existingPost = getPostBySlug(id, true);
+      
+      if (!existingPost) {
         return res.status(404).json({ error: "Blog post not found" });
       }
       
+      // Merge existing post with updates
+      const updatedData = {
+        ...existingPost,
+        ...req.body,
+        slug: id, // Preserve original slug
+      };
+      
+      const post = await saveBlogPost(updatedData);
       res.json(post);
     } catch (error) {
       console.error("Error updating blog post:", error);
@@ -379,10 +392,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // DELETE blog post (admin only)
   app.delete("/api/blog/posts/:id", isAdmin, async (req, res) => {
     try {
-      const { id } = req.params;
-      await storage.deleteBlogPost(id);
+      const { id } = req.params; // id is the slug
+      const success = await deleteBlogPostFile(id);
+      
+      if (!success) {
+        return res.status(404).json({ error: "Blog post not found" });
+      }
+      
       res.json({ success: true });
     } catch (error) {
       console.error("Error deleting blog post:", error);
@@ -390,9 +409,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // GET all tags (extracted from published posts)
   app.get("/api/blog/tags", async (req, res) => {
     try {
-      const tags = await storage.getAllTags();
+      const tags = getAllTags();
       res.json(tags);
     } catch (error) {
       console.error("Error fetching tags:", error);
@@ -400,43 +420,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Tag management routes are deprecated for file-based system
+  // Tags are now managed via frontmatter in Markdown files
   app.post("/api/blog/tags", isAdmin, async (req, res) => {
-    try {
-      const validationResult = insertBlogTagSchema.safeParse(req.body);
-      
-      if (!validationResult.success) {
-        const validationError = fromZodError(validationResult.error);
-        return res.status(400).json({ error: validationError.message });
-      }
-
-      const tag = await storage.createTag(validationResult.data);
-      res.json(tag);
-    } catch (error) {
-      console.error("Error creating tag:", error);
-      res.status(500).json({ error: "Failed to create tag" });
-    }
+    res.status(410).json({ 
+      error: "Tag management has been deprecated. Tags are now managed in blog post frontmatter." 
+    });
   });
 
   app.post("/api/blog/posts/:postId/tags/:tagId", isAdmin, async (req, res) => {
-    try {
-      const { postId, tagId } = req.params;
-      await storage.addTagToPost(postId, tagId);
-      res.json({ success: true });
-    } catch (error) {
-      console.error("Error adding tag to post:", error);
-      res.status(500).json({ error: "Failed to add tag to post" });
-    }
+    res.status(410).json({ 
+      error: "Tag management has been deprecated. Tags are now managed in blog post frontmatter." 
+    });
   });
 
   app.delete("/api/blog/posts/:postId/tags/:tagId", isAdmin, async (req, res) => {
-    try {
-      const { postId, tagId } = req.params;
-      await storage.removeTagFromPost(postId, tagId);
-      res.json({ success: true });
-    } catch (error) {
-      console.error("Error removing tag from post:", error);
-      res.status(500).json({ error: "Failed to remove tag from post" });
-    }
+    res.status(410).json({ 
+      error: "Tag management has been deprecated. Tags are now managed in blog post frontmatter." 
+    });
   });
 
   const httpServer = createServer(app);
