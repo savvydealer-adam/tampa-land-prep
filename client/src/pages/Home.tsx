@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { FeaturedFullyManaged } from "@/components/FeaturedFullyManaged";
 import { Features } from "@/components/Features";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,7 @@ export default function Home() {
       <Header />
       <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         <Hero />
+        <FeaturedFullyManaged />
         <Features />
 
         <section id="about" className="bg-card py-32">

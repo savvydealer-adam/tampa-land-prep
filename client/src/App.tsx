@@ -15,6 +15,7 @@ import Admin from "@/pages/Admin";
 import AdminBlog from "@/pages/AdminBlog";
 import AdminLeads from "@/pages/AdminLeads";
 import Products from "@/pages/Products";
+import FullyManagedMarketing from "@/pages/FullyManagedMarketing";
 import FacebookAds from "@/pages/FacebookAds";
 import PpcAds from "@/pages/PpcAds";
 import VehicleAds from "@/pages/VehicleAds";
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/products" component={Products} />
+      <Route path="/fully-managed-marketing" component={FullyManagedMarketing} />
       <Route path="/facebook-ads" component={FacebookAds} />
       <Route path="/ppc-ads" component={PpcAds} />
       <Route path="/vehicle-ads" component={VehicleAds} />

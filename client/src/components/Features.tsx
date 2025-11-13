@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Facebook, TrendingUp, MousePointerClick, Globe, Brain, Store, Car, ArrowRight } from "lucide-react";
+import { Facebook, TrendingUp, MousePointerClick, Globe, Brain, Store, Car, ArrowRight, Sparkles } from "lucide-react";
+import fullyManagedImage from "@assets/generated_images/Fully_managed_marketing_orange_theme_c07bcc36.png";
 import facebookAdsImage from "@assets/generated_images/Facebook_Ads_pink_theme_3fd45300.png";
 import ppcAdsImage from "@assets/generated_images/PPC_Ads_orange_theme_7bcb5a76.png";
 import seoImage from "@assets/generated_images/SEO_green_theme_1cae63d8.png";
@@ -25,6 +26,16 @@ export function Features() {
   }, []);
 
   const products = [
+    {
+      icon: Sparkles,
+      title: "Fully Managed Marketing",
+      subtitle: "Complete Automotive Marketing Solution",
+      description: "White-glove service that handles everything—co-op management, vendor coordination, website, SEO, SEM, Facebook ads, design, and ROI tracking. One team, one strategy, real results.",
+      color: "#FF6B35",
+      href: "/fully-managed-marketing",
+      image: fullyManagedImage,
+      isPremium: true,
+    },
     {
       icon: Facebook,
       title: "Facebook Ads",
@@ -107,6 +118,7 @@ export function Features() {
       {products.map((product, index) => {
         const isReversed = index % 2 === 1;
         const isNadaTeaser = (product as any).isTeaser;
+        const isPremium = (product as any).isPremium;
         return (
           <div
             key={product.title}
@@ -123,6 +135,15 @@ export function Features() {
                         {product.subtitle}
                       </span>
                     </div>
+                    {isPremium && (
+                      <Badge 
+                        variant="default" 
+                        className="bg-orange-600 text-white border-0"
+                        data-testid="badge-premium-service"
+                      >
+                        Premium Service
+                      </Badge>
+                    )}
                     {isNadaTeaser && (
                       <Badge 
                         variant="default" 
