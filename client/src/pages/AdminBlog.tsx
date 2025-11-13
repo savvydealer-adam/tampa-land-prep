@@ -6,8 +6,8 @@ import { Search, Plus, Pencil, Trash2, Calendar as CalendarIcon, LogOut } from "
 import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
-import type { BlogPost, InsertBlogPost } from "@shared/schema";
-import { insertBlogPostSchema } from "@shared/schema";
+import type { FileBlogPost, InsertFileBlogPostInput } from "@shared/schema";
+import { fileBlogPostInputSchema, fileBlogPostSchema, fileBlogPostUpdateSchema } from "@shared/schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
@@ -75,20 +75,22 @@ function AdminBlogContent() {
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
+  const [editingPost, setEditingPost] = useState<FileBlogPost | null>(null);
   const [deletePostId, setDeletePostId] = useState<string | null>(null);
   const { toast } = useToast();
 
   // Fetch all blog posts (called unconditionally for proper hook order)
-  const { data: posts, isLoading } = useQuery<BlogPost[]>({
+  const { data: posts, isLoading } = useQuery<FileBlogPost[]>({
     queryKey: ["/api/blog/posts"],
     enabled: isAuthenticated, // Only fetch when authenticated
   });
 
   // Create mutation
   const createMutation = useMutation({
-    mutationFn: async (data: InsertBlogPost) => {
-      const res = await apiRequest("POST", "/api/blog/posts", data);
+    mutationFn: async (data: InsertFileBlogPostInput) => {
+      // Validate with API schema (converts Date to string)
+      const validated = fileBlogPostSchema.parse(data);
+      const res = await apiRequest("POST", "/api/blog/posts", validated);
       return await res.json();
     },
     onSuccess: () => {
@@ -133,8 +135,10 @@ function AdminBlogContent() {
 
   // Update mutation
   const updateMutation = useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: Partial<InsertBlogPost> }) => {
-      const res = await apiRequest("PATCH", `/api/blog/posts/${id}`, data);
+    mutationFn: async ({ id, data }: { id: string; data: Partial<InsertFileBlogPostInput> }) => {
+      // Validate with partial update schema (converts Date to string if present)
+      const validated = fileBlogPostUpdateSchema.parse(data);
+      const res = await apiRequest("PATCH", `/api/blog/posts/${id}`, validated);
       return await res.json();
     },
     onSuccess: () => {
@@ -224,8 +228,8 @@ function AdminBlogContent() {
   });
 
   // Form setup
-  const form = useForm<InsertBlogPost>({
-    resolver: zodResolver(insertBlogPostSchema),
+  const form = useForm<InsertFileBlogPostInput>({
+    resolver: zodResolver(fileBlogPostInputSchema),
     defaultValues: {
       title: "",
       slug: "",
@@ -238,6 +242,7 @@ function AdminBlogContent() {
       readingTime: undefined,
       publishedAt: new Date(),
       isPublished: true,
+      tags: [],
     },
   });
 
@@ -280,12 +285,13 @@ function AdminBlogContent() {
       readingTime: undefined,
       publishedAt: new Date(),
       isPublished: true,
+      tags: [],
     });
     setIsDialogOpen(true);
   };
 
   // Handle edit post
-  const handleEditPost = (post: BlogPost) => {
+  const handleEditPost = (post: FileBlogPost) => {
     setEditingPost(post);
     form.reset({
       title: post.title,
@@ -299,12 +305,14 @@ function AdminBlogContent() {
       readingTime: post.readingTime || undefined,
       publishedAt: new Date(post.publishedAt),
       isPublished: post.isPublished,
+      tags: post.tags || [],
     });
     setIsDialogOpen(true);
   };
 
   // Handle form submit
-  const onSubmit = (data: InsertBlogPost) => {
+  const onSubmit = (data: InsertFileBlogPostInput) => {
+    // Mutations will handle Date -> ISO string conversion via API schema
     if (editingPost) {
       updateMutation.mutate({ id: editingPost.id, data });
     } else {
@@ -683,6 +691,34 @@ function AdminBlogContent() {
                   )}
                 />
               </div>
+
+              <FormField
+                control={form.control}
+                name="tags"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Tags</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="automotive, marketing, seo (comma-separated)"
+                        value={field.value?.join(", ") || ""}
+                        onChange={(e) => {
+                          const tags = e.target.value
+                            .split(",")
+                            .map(tag => tag.trim())
+                            .filter(tag => tag.length > 0);
+                          field.onChange(tags);
+                        }}
+                        data-testid="input-post-tags"
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Enter tags separated by commas
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}

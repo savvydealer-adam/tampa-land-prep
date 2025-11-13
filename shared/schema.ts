@@ -90,6 +90,37 @@ export type BlogPost = typeof blogPosts.$inferSelect;
 export type InsertBlogTag = z.infer<typeof insertBlogTagSchema>;
 export type BlogTag = typeof blogTags.$inferSelect;
 
+// File-based blog post input schema (for forms - uses Date)
+export const fileBlogPostInputSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  slug: z.string().min(1, "Slug is required"),
+  excerpt: z.string().min(1, "Excerpt is required"),
+  content: z.string().min(1, "Content is required"),
+  featuredImage: z.string().optional(),
+  author: z.string().min(1, "Author is required"),
+  authorRole: z.string().optional(),
+  publishedAt: z.date(),
+  isPublished: z.boolean().default(true),
+  readingTime: z.number().int().positive().optional(),
+  category: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+});
+
+// File-based blog post API schema (accepts Date or string, outputs string)
+export const fileBlogPostSchema = fileBlogPostInputSchema.extend({
+  publishedAt: z.union([z.string(), z.date()]).transform(val => 
+    typeof val === 'string' ? val : val.toISOString()
+  ),
+});
+
+// Partial schema for PATCH updates (all fields optional)
+export const fileBlogPostUpdateSchema = fileBlogPostSchema.partial();
+
+export type InsertFileBlogPostInput = z.infer<typeof fileBlogPostInputSchema>;
+export type InsertFileBlogPost = z.infer<typeof fileBlogPostSchema>;
+export type UpdateFileBlogPost = z.infer<typeof fileBlogPostUpdateSchema>;
+export type FileBlogPost = InsertFileBlogPost & { id: string; updatedAt: string };
+
 export const leadFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
