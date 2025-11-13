@@ -2,7 +2,20 @@
 
 ## Overview
 
-Savvy Dealer is a digital marketing platform for automotive dealerships, offering website management and showcasing services. The flagship offering is **Fully Managed Marketing** - a comprehensive solution bundling all services (Co-op vendor coordination, website management, SEO, SEM/PPC, Facebook Ads, design, and ROI tracking). Individual services include Facebook Ads, SEO, PPC, Google Vehicle Ads, and custom dealer websites. The platform features an Apple-inspired design with a focus on large product imagery, dramatic typography, and smooth animations. Each product is highlighted with vibrant brand colors in immersive sections. The project aims to provide a comprehensive solution for dealerships' online presence and marketing needs.
+Savvy Dealer is a digital marketing platform for automotive dealerships, offering website management and showcasing services. The flagship offering is **Fully Managed Marketing** - a comprehensive solution bundling all services (Co-op vendor coordination, website management, SEO, SEM/PPC, Facebook Ads, design, and ROI tracking). Individual services include Facebook Ads, SEO, PPC, Google Vehicle Ads, and custom dealer websites. The platform features an Apple-inspired design with a focus on large product imagery, dramatic typography, and smooth animations. Each product is highlighted with vibrant brand colors in immersive sections. The flagship Fully Managed Marketing product features a bespoke cinematic page design with full-screen hero, scroll animations, and Apple.com-level polish. The project aims to provide a comprehensive solution for dealerships' online presence and marketing needs.
+
+## Recent Changes
+
+**November 13, 2025** - Enhanced Fully Managed Marketing page with Apple-inspired redesign:
+- Replaced standard ProductPage template with bespoke cinematic design
+- Added full-screen hero (90vh) with dramatic dark background and orange accents
+- Implemented 10 full-width alternating feature showcase sections
+- Enhanced typography: text-8xl hero headings, text-7xl section headings
+- Added Framer Motion scroll animations (fadeInUp, staggered children) respecting prefers-reduced-motion
+- Generous spacing throughout (py-32 sections) matching Apple.com aesthetic
+- Large stats section with text-7xl numbers
+- 4-step process timeline with numbered badges
+- All testing passed: responsiveness, accessibility, animations, lead form integration
 
 ## User Preferences
 
