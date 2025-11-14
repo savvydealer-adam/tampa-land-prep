@@ -277,6 +277,88 @@ Your blog content here in markdown...
 
 The blog JSON is auto-generated on server start.
 
+## Content Import Feature
+
+The template includes a powerful content import system that can extract blog posts from existing websites and automatically convert them to Markdown files.
+
+### How It Works
+
+1. **Navigate to Import Page**: Visit `/import` in your application
+2. **Enter Domain**: Type the website URL (e.g., `www.example.com` or `https://example.com/blog`)
+3. **Analyze**: Click "Analyze" to discover pages and blog posts
+4. **Review Results**: See categorized content:
+   - **Blog Posts**: Automatically detected posts (URLs containing `/blog/`, `/post/`, `/article/`, etc.)
+   - **Main Pages**: Homepage, About, Services, Contact pages (shown for reference)
+5. **Import**: Click "Import X Blog Posts" to create Markdown files in `content/blog/`
+
+### What Gets Imported
+
+**Automatically Imported:**
+- ✅ Blog posts as Markdown files with complete frontmatter
+- ✅ Post title, content, excerpt, author, publish date
+- ✅ Featured images (URLs preserved)
+- ✅ Category inference from URL patterns
+
+**Shown for Reference (Manual Creation Required):**
+- ℹ️ Main pages (Homepage, About, Services, etc.)
+- ℹ️ You'll use the extracted content to manually create React pages
+
+### Technical Details
+
+**Crawler Features:**
+- Uses Playwright for JavaScript-rendered content
+- Discovers pages via sitemap.xml and homepage navigation
+- Extracts clean content using Mozilla Readability
+- Converts HTML to Markdown with Turndown
+- Normalizes dates to ISO format
+- Safe handling of missing metadata
+
+**Security:**
+- SSRF protection blocks private IP ranges (RFC1918)
+- Validates domain format
+- Limits crawl to 50 pages max
+- Same-origin policy enforcement
+
+### Blog Post Detection Patterns
+
+The system automatically detects blog posts by URL patterns:
+- `/blog/` - Standard blog URLs
+- `/post/` - Post permalinks  
+- `/article/` - Article URLs
+- `/news/` - News sections
+- `/updates/` - Update logs
+- `/insights/` - Insight articles
+
+### Example Workflow
+
+```
+1. Visit /import
+2. Enter: www.oldwebsite.com
+3. System finds: 15 pages (8 blog posts, 7 main pages)
+4. Click "Import 8 Blog Posts"
+5. Result: 8 new .md files in content/blog/
+6. Server auto-restarts and blog page shows new posts
+```
+
+### Limitations
+
+- Only imports blog posts automatically (main pages require manual creation)
+- Single-depth crawl (homepage + sitemap URLs)
+- Requires websites to be publicly accessible
+- Images are linked, not downloaded (feature coming soon)
+
+### Troubleshooting
+
+**No Blog Posts Found:**
+- Website may not have a blog section
+- Blog URLs might use non-standard patterns
+- Try entering the blog page URL directly (e.g., `example.com/blog`)
+
+**Import Button Disabled:**
+- This means no blog posts were detected
+- Main pages cannot be automatically imported
+- Use discovered content as reference for manual page creation
+
 ## Email Notifications
 
 ### How It Works
