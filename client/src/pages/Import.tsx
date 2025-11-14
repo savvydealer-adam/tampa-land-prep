@@ -276,12 +276,12 @@ export default function Import() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Globe className="h-5 w-5" />
-                    Main Pages ({analysisResult.mainPages.length})
+                    Main Pages ({analysisResult.mainPages?.length || 0})
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {analysisResult.mainPages.map((page, idx) => (
+                    {(analysisResult.mainPages || []).map((page, idx) => (
                       <div 
                         key={idx} 
                         className="p-3 border rounded-lg hover-elevate"
