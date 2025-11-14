@@ -6,6 +6,8 @@ import { fromZodError } from "zod-validation-error";
 import { verifyRecaptchaToken } from "./recaptcha";
 import { sendLeadFormEmail, sendDemoBookingEmail, createResendApiKey } from "./email";
 import { getPublishedPosts, getPostBySlug, saveBlogPost, deleteBlogPost as deleteBlogPostFile, getAllTags } from "./blogLoader";
+import { ContentExtractor } from "./contentExtractor";
+import { generateImportedContent } from "./contentImporter";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   
@@ -328,6 +330,89 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting blog post:", error);
       res.status(500).json({ error: "Failed to delete blog post" });
+    }
+  });
+
+  // ============================================
+  // CONTENT IMPORT ROUTES
+  // ============================================
+
+  // Analyze a domain to preview what can be imported
+  app.post("/api/import/analyze", async (req, res) => {
+    const extractor = new ContentExtractor();
+    
+    try {
+      const { domain, maxPages } = req.body;
+      
+      if (!domain) {
+        return res.status(400).json({ error: "Domain is required" });
+      }
+
+      // Basic domain validation - prevent SSRF
+      const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+      if (!urlPattern.test(domain)) {
+        return res.status(400).json({ error: "Invalid domain format" });
+      }
+
+      // Prevent localhost/internal network access (RFC1918 private ranges + loopback + IPv6)
+      const normalizedDomain = domain.toLowerCase();
+      const blockedPatterns = [
+        'localhost', '127.', '0.0.0.0', 
+        '192.168.', '10.', 
+        '172.16.', '172.17.', '172.18.', '172.19.', '172.20.', 
+        '172.21.', '172.22.', '172.23.', '172.24.', '172.25.', 
+        '172.26.', '172.27.', '172.28.', '172.29.', '172.30.', '172.31.',
+        '169.254.', // Link-local
+        '[::1]', '[::ffff:', // IPv6 loopback and IPv4-mapped
+      ];
+      if (blockedPatterns.some(pattern => normalizedDomain.includes(pattern))) {
+        return res.status(400).json({ error: "Cannot analyze local or internal network addresses" });
+      }
+
+      console.log(`[Import] Analyzing domain: ${domain}`);
+      
+      const result = await extractor.analyzeDomain(domain, Math.min(maxPages || 20, 50)); // Cap at 50 pages
+      
+      console.log(`[Import] Found ${result.totalPages} pages (${result.blogPosts.length} blog posts)`);
+      
+      res.json(result);
+    } catch (error: any) {
+      console.error("Error analyzing domain:", error);
+      res.status(500).json({ 
+        error: "Failed to analyze domain", 
+        details: error.message 
+      });
+    } finally {
+      await extractor.close();
+    }
+  });
+
+  // Execute the import - generate files based on analyzed content
+  app.post("/api/import/execute", async (req, res) => {
+    try {
+      const { pages, blogPosts, options } = req.body;
+      
+      if (!pages && !blogPosts) {
+        return res.status(400).json({ error: "No content provided for import" });
+      }
+
+      console.log(`[Import] Executing import for ${blogPosts?.length || 0} blog posts and ${pages?.length || 0} pages`);
+      
+      const result = await generateImportedContent({
+        blogPosts: blogPosts || [],
+        pages: pages || [],
+        options: options || {},
+      });
+      
+      console.log(`[Import] Import completed successfully`);
+      
+      res.json(result);
+    } catch (error: any) {
+      console.error("Error executing import:", error);
+      res.status(500).json({ 
+        error: "Failed to execute import", 
+        details: error.message 
+      });
     }
   });
 

@@ -23,6 +23,7 @@ export function Header() {
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Blog", href: "/blog" },
+    { label: "Import", href: "/import" },
   ];
 
   return (

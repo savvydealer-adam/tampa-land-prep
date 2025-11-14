@@ -14,6 +14,7 @@ import About from "@/pages/About";
 import Services from "@/pages/Services";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
+import Import from "@/pages/Import";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/services" component={Services} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
+      <Route path="/import" component={Import} />
       <Route component={NotFound} />
     </Switch>
   );
