@@ -11,7 +11,7 @@ export interface ExtractedPage {
   content: string;
   htmlContent: string;
   type: 'blog' | 'homepage' | 'about' | 'services' | 'contact' | 'other';
-  publishedDate?: Date;
+  publishedDate?: string; // ISO 8601 date string
   author?: string;
   images: string[];
   headings: Array<{ level: number; text: string }>;
@@ -234,12 +234,20 @@ export class ContentExtractor {
       // Detect page type
       const pageType = this.detectPageType(url, title, content, headings);
 
-      // Try to extract publish date for blog posts
-      let publishedDate: Date | undefined;
+      // Try to extract publish date for blog posts - normalize to ISO string
+      let publishedDate: string | undefined;
       let author: string | undefined;
 
       if (pageType === 'blog') {
-        publishedDate = this.extractPublishDate($, content);
+        const extractedDate = this.extractPublishDate($, content);
+        if (extractedDate) {
+          try {
+            publishedDate = extractedDate.toISOString();
+          } catch (error) {
+            // Invalid date, leave undefined
+            console.warn(`[ContentExtractor] Invalid publish date for ${url}`);
+          }
+        }
         author = this.extractAuthor($);
       }
 

@@ -109,16 +109,22 @@ function createBlogFrontmatter(page: ExtractedPage, slug: string, options: Impor
   const author = page.author || (options.companyName || 'Team');
   lines.push(`author: ${author}`);
   
-  // Published date - handle both Date objects and strings, with fallback to today
+  // Published date - publishedDate is already an ISO string or undefined
   let publishedDate: string;
-  try {
-    if (page.publishedDate) {
+  if (page.publishedDate) {
+    try {
+      // Validate the ISO string
+      const dateObj = new Date(page.publishedDate);
+      if (isNaN(dateObj.getTime())) {
+        throw new Error('Invalid date');
+      }
       publishedDate = formatDate(page.publishedDate);
-    } else {
+    } catch (error) {
+      // If date parsing fails, use today's date
+      console.warn(`[Import] Invalid date for ${page.title}, using today's date`);
       publishedDate = formatDate(new Date());
     }
-  } catch (error) {
-    // If date parsing fails, use today's date
+  } else {
     publishedDate = formatDate(new Date());
   }
   lines.push(`publishedAt: ${publishedDate}`);
@@ -135,9 +141,10 @@ function createBlogFrontmatter(page: ExtractedPage, slug: string, options: Impor
   // Published status
   lines.push(`published: true`);
   
-  // Featured image if available
-  if (page.images.length > 0 && page.metadata.ogImage) {
-    lines.push(`featuredImage: ${page.metadata.ogImage}`);
+  // Featured image - use OG image if available, otherwise first image
+  const featuredImage = page.metadata?.ogImage || (page.images.length > 0 ? page.images[0] : null);
+  if (featuredImage) {
+    lines.push(`featuredImage: ${featuredImage}`);
   }
   
   return lines.join('\n') + '\n';
