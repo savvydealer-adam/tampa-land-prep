@@ -176,19 +176,19 @@ export default function Import() {
                 <div className="grid md:grid-cols-3 gap-4 mb-6">
                   <div className="text-center p-4 bg-muted rounded-lg">
                     <div className="text-3xl font-bold text-primary">
-                      {analysisResult.blogPosts.length}
+                      {analysisResult.blogPosts?.length || 0}
                     </div>
                     <div className="text-sm text-muted-foreground">Blog Posts</div>
                   </div>
                   <div className="text-center p-4 bg-muted rounded-lg">
                     <div className="text-3xl font-bold text-primary">
-                      {analysisResult.mainPages.length}
+                      {analysisResult.mainPages?.length || 0}
                     </div>
                     <div className="text-sm text-muted-foreground">Main Pages</div>
                   </div>
                   <div className="text-center p-4 bg-muted rounded-lg">
                     <div className="text-3xl font-bold text-primary">
-                      {analysisResult.totalPages}
+                      {analysisResult.totalPages || 0}
                     </div>
                     <div className="text-sm text-muted-foreground">Total Pages</div>
                   </div>
@@ -201,7 +201,7 @@ export default function Import() {
                   </p>
                   <Button 
                     onClick={handleImport}
-                    disabled={importMutation.isPending || analysisResult.blogPosts.length === 0}
+                    disabled={importMutation.isPending || (analysisResult.blogPosts?.length || 0) === 0}
                     className="w-full"
                     data-testid="button-import"
                     size="lg"
@@ -214,7 +214,7 @@ export default function Import() {
                     ) : (
                       <>
                         <Download className="mr-2 h-4 w-4" />
-                        Import {analysisResult.blogPosts.length} Blog Posts
+                        Import {analysisResult.blogPosts?.length || 0} Blog Posts
                       </>
                     )}
                   </Button>
@@ -222,17 +222,17 @@ export default function Import() {
               </CardContent>
             </Card>
 
-            {analysisResult.blogPosts.length > 0 && (
+            {(analysisResult.blogPosts?.length || 0) > 0 && (
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <FileText className="h-5 w-5" />
-                    Blog Posts ({analysisResult.blogPosts.length})
+                    Blog Posts ({analysisResult.blogPosts?.length || 0})
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
-                    {analysisResult.blogPosts.slice(0, 10).map((post, idx) => (
+                    {(analysisResult.blogPosts || []).slice(0, 10).map((post, idx) => (
                       <div 
                         key={idx} 
                         className="p-3 border rounded-lg hover-elevate"
@@ -261,9 +261,9 @@ export default function Import() {
                         </div>
                       </div>
                     ))}
-                    {analysisResult.blogPosts.length > 10 && (
+                    {(analysisResult.blogPosts?.length || 0) > 10 && (
                       <p className="text-sm text-muted-foreground text-center">
-                        ...and {analysisResult.blogPosts.length - 10} more blog posts
+                        ...and {(analysisResult.blogPosts?.length || 0) - 10} more blog posts
                       </p>
                     )}
                   </div>
@@ -271,7 +271,7 @@ export default function Import() {
               </Card>
             )}
 
-            {analysisResult.mainPages.length > 0 && (
+            {(analysisResult.mainPages?.length || 0) > 0 && (
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
