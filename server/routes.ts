@@ -1,24 +1,19 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { Resend } from "resend";
 import { leadFormSchema, demoBookingSchema, fileBlogPostSchema, fileBlogPostUpdateSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
-import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
 import { verifyRecaptchaToken } from "./recaptcha";
+import { sendLeadFormEmail, sendDemoBookingEmail, createResendApiKey } from "./email";
 import { getPublishedPosts, getPostBySlug, saveBlogPost, deleteBlogPost as deleteBlogPostFile, getAllTags } from "./blogLoader";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// Email configuration - hardcoded temporarily due to Replit env var issue
-const FROM_EMAIL = "contact@savvydealer.ai";
-const TO_EMAIL = "support@savvydealer.com";
-
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Setup authentication
-  await setupAuth(app);
-
-  // Public config endpoint - serves reCAPTCHA site key (public key is safe to expose)
+  
+  // ============================================
+  // PUBLIC CONFIG ENDPOINTS
+  // ============================================
+  
+  // Serve reCAPTCHA site key (public key is safe to expose)
   app.get('/api/config/recaptcha', (req, res) => {
     const siteKey = process.env.RECAPTCHA_SITE_KEY;
     if (!siteKey) {
@@ -27,17 +22,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ siteKey });
   });
 
-  // Auth endpoints
-  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
-    try {
-      const userId = req.user.claims.sub;
-      const user = await storage.getUser(userId);
-      res.json(user);
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      res.status(500).json({ message: "Failed to fetch user" });
-    }
-  });
+  // ============================================
+  // LEAD FORM ROUTES
+  // ============================================
+  
   app.post("/api/lead-form", async (req, res) => {
     let submissionId: string | undefined;
     
@@ -70,64 +58,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const { name, email, phone, dealership, message } = validationResult.data;
-
-      // Save to database FIRST (before sending email)
-      const submission = await storage.createLeadSubmission({
-        submissionType: "lead_form",
-        name,
-        email,
-        phone,
-        dealership,
-        message: message || null,
-        demoDate: null,
-        demoTime: null,
-        emailSent: false,
-        emailError: null,
-      });
-      
+      // Save to storage FIRST (before sending email)
+      const submission = await storage.createLeadSubmission(validationResult.data);
       submissionId = submission.id;
-      console.log(`[Lead Form] Saved submission ${submissionId} to database`);
+      console.log(`[Lead Form] Saved submission ${submissionId} to storage`);
 
-      // Now try to send email
-      const emailHtml = `
-        <h2>New Lead Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Dealership:</strong> ${dealership}</p>
-        ${message ? `<p><strong>Message:</strong></p><p>${message}</p>` : ''}
-        <hr>
-        <p style="color: #666; font-size: 12px;">Submitted from Savvy Dealer website</p>
-      `;
-
-      try {
-        console.log(`[Lead Form] Attempting to send email from: ${FROM_EMAIL} to: ${TO_EMAIL}`);
-        
-        const result = await resend.emails.send({
-          from: FROM_EMAIL,
-          to: TO_EMAIL,
-          subject: `New Lead: ${dealership} - ${name}`,
-          html: emailHtml,
-          replyTo: email,
-        });
-        
-        console.log(`[Lead Form] Resend API response:`, result);
-        
-        // Update database: email sent successfully
+      // Try to send email notification
+      const emailResult = await sendLeadFormEmail(validationResult.data);
+      
+      if (emailResult.success) {
         await storage.updateLeadSubmissionEmailStatus(submissionId, true);
         console.log(`[Lead Form] Email sent successfully for submission ${submissionId}`);
-        
-      } catch (emailError: any) {
-        // Log email error but don't fail the request
-        const errorMessage = emailError?.message || "Unknown email error";
-        console.error(`[Lead Form] Email failed for submission ${submissionId}:`, errorMessage);
-        
-        // Update database with error details
-        await storage.updateLeadSubmissionEmailStatus(submissionId, false, errorMessage);
-        
-        // Still return success to user (submission was saved)
-        console.log(`[Lead Form] Submission ${submissionId} saved but email failed - admin can view in dashboard`);
+      } else {
+        await storage.updateLeadSubmissionEmailStatus(submissionId, false, emailResult.error);
+        console.log(`[Lead Form] Submission ${submissionId} saved but email failed`);
       }
 
       res.json({ 
@@ -138,12 +82,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error("[Lead Form] Fatal error:", error);
       
-      // If we have a submission ID, try to log the error
       if (submissionId) {
         try {
           await storage.updateLeadSubmissionEmailStatus(submissionId, false, error?.message || "Unknown error");
-        } catch (dbError) {
-          console.error("[Lead Form] Failed to update error status:", dbError);
+        } catch (storageError) {
+          console.error("[Lead Form] Failed to update error status:", storageError);
         }
       }
       
@@ -153,6 +96,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ============================================
+  // DEMO BOOKING ROUTES
+  // ============================================
+  
   app.post("/api/demo-bookings", async (req, res) => {
     let submissionId: string | undefined;
     
@@ -185,75 +132,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const { name, email, phone, dealership, date, time } = validationResult.data;
+      // Save to storage FIRST (before sending email)
+      const booking = await storage.createDemoBooking(validationResult.data);
+      submissionId = booking.id;
+      console.log(`[Demo Booking] Saved booking ${submissionId} to storage`);
 
-      // Format date for email
-      const dateOptions: Record<string, string> = {
-        "2026-02-04": "Wednesday, February 4, 2026",
-        "2026-02-05": "Thursday, February 5, 2026",
-        "2026-02-06": "Friday, February 6, 2026",
-      };
-
-      // Save to database FIRST (before sending email)
-      const submission = await storage.createLeadSubmission({
-        submissionType: "demo_booking",
-        name,
-        email,
-        phone,
-        dealership,
-        message: null,
-        demoDate: date,
-        demoTime: time,
-        emailSent: false,
-        emailError: null,
-      });
+      // Try to send email notification
+      const emailResult = await sendDemoBookingEmail(validationResult.data);
       
-      submissionId = submission.id;
-      console.log(`[Demo Booking] Saved submission ${submissionId} to database`);
-
-      // Now try to send email
-      const emailHtml = `
-        <h2>New NADA Show Demo Booking</h2>
-        <p><strong>Booth:</strong> 6760N</p>
-        <p><strong>Date:</strong> ${dateOptions[date]}</p>
-        <p><strong>Time:</strong> ${time}</p>
-        <hr>
-        <h3>Attendee Information</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Dealership:</strong> ${dealership}</p>
-        <hr>
-        <p style="color: #666; font-size: 12px;">Submitted from Savvy Dealer NADA Show page</p>
-      `;
-
-      try {
-        console.log(`[Demo Booking] Attempting to send email from: ${FROM_EMAIL} to: ${TO_EMAIL}`);
-        
-        const result = await resend.emails.send({
-          from: FROM_EMAIL,
-          to: TO_EMAIL,
-          subject: `NADA Demo Booking: ${dealership} - ${dateOptions[date]} at ${time}`,
-          html: emailHtml,
-          replyTo: email,
-        });
-        
-        console.log(`[Demo Booking] Resend API response:`, result);
-        
-        // Update database: email sent successfully
-        await storage.updateLeadSubmissionEmailStatus(submissionId, true);
-        console.log(`[Demo Booking] Email sent successfully for submission ${submissionId}`);
-        
-      } catch (emailError: any) {
-        // Log email error but don't fail the request
-        const errorMessage = emailError?.message || "Unknown email error";
-        console.error(`[Demo Booking] Email failed for submission ${submissionId}:`, errorMessage);
-        
-        // Update database with error details
-        await storage.updateLeadSubmissionEmailStatus(submissionId, false, errorMessage);
-        
-        // Still return success to user (submission was saved)
-        console.log(`[Demo Booking] Submission ${submissionId} saved but email failed - admin can view in dashboard`);
+      if (emailResult.success) {
+        await storage.updateDemoBookingEmailStatus(submissionId, true);
+        console.log(`[Demo Booking] Email sent successfully for booking ${submissionId}`);
+      } else {
+        await storage.updateDemoBookingEmailStatus(submissionId, false, emailResult.error);
+        console.log(`[Demo Booking] Booking ${submissionId} saved but email failed`);
       }
 
       res.json({ 
@@ -264,12 +156,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error("[Demo Booking] Fatal error:", error);
       
-      // If we have a submission ID, try to log the error
       if (submissionId) {
         try {
-          await storage.updateLeadSubmissionEmailStatus(submissionId, false, error?.message || "Unknown error");
-        } catch (dbError) {
-          console.error("[Demo Booking] Failed to update error status:", dbError);
+          await storage.updateDemoBookingEmailStatus(submissionId, false, error?.message || "Unknown error");
+        } catch (storageError) {
+          console.error("[Demo Booking] Failed to update error status:", storageError);
         }
       }
       
@@ -279,15 +170,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Admin endpoint to get all lead submissions
-  app.get("/api/lead-submissions", isAdmin, async (req, res) => {
+  // ============================================
+  // EMAIL API KEY MANAGEMENT
+  // ============================================
+  
+  // Create new Resend API key (for multi-site management)
+  app.post("/api/email/create-key", async (req, res) => {
     try {
-      const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
-      const submissions = await storage.getAllLeadSubmissions(limit);
-      res.json(submissions);
-    } catch (error) {
-      console.error("Error fetching lead submissions:", error);
-      res.status(500).json({ error: "Failed to fetch lead submissions" });
+      const { name } = req.body;
+      
+      if (!name) {
+        return res.status(400).json({ error: "API key name is required" });
+      }
+
+      const result = await createResendApiKey(name);
+      
+      if (result.error) {
+        return res.status(500).json({ error: result.error });
+      }
+
+      res.json({ 
+        success: true, 
+        apiKey: result.key,
+        message: "API key created successfully. Save this key - it won't be shown again." 
+      });
+      
+    } catch (error: any) {
+      console.error("[API] Error creating email API key:", error);
+      res.status(500).json({ error: "Failed to create API key" });
     }
   });
 
@@ -296,16 +206,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // ============================================
 
   // GET all blog posts with optional filtering
-  app.get("/api/blog/posts", async (req: any, res) => {
+  app.get("/api/blog/posts", async (req, res) => {
     try {
       const { category, tag, limit } = req.query;
       
-      // Check if user is authenticated AND admin
-      const isUserAdmin = req.isAuthenticated() && 
-                        req.user?.claims?.email?.toLowerCase().endsWith('@savvydealer.com');
-      
-      // Get posts from file system (respects admin vs non-admin)
-      let posts = getPublishedPosts(isUserAdmin);
+      // Get published posts only (no auth system in template)
+      let posts = getPublishedPosts(false);
       
       // Apply filters
       if (category) {
@@ -326,15 +232,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // GET single blog post by slug
-  app.get("/api/blog/posts/:slug", async (req: any, res) => {
+  app.get("/api/blog/posts/:slug", async (req, res) => {
     try {
       const { slug } = req.params;
       
-      // Check if user is authenticated AND admin
-      const isUserAdmin = req.isAuthenticated() && 
-                        req.user?.claims?.email?.toLowerCase().endsWith('@savvydealer.com');
-      
-      const post = getPostBySlug(slug, isUserAdmin);
+      // Get published posts only (no auth system in template)
+      const post = getPostBySlug(slug, false);
       
       if (!post) {
         return res.status(404).json({ error: "Blog post not found" });
@@ -347,8 +250,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // POST create new blog post (admin only)
-  app.post("/api/blog/posts", isAdmin, async (req, res) => {
+  // GET all available tags
+  app.get("/api/blog/tags", async (req, res) => {
+    try {
+      const tags = getAllTags();
+      res.json(tags);
+    } catch (error) {
+      console.error("Error fetching tags:", error);
+      res.status(500).json({ error: "Failed to fetch tags" });
+    }
+  });
+
+  // POST create new blog post (public in template - add auth if needed)
+  app.post("/api/blog/posts", async (req, res) => {
     try {
       const validationResult = fileBlogPostSchema.safeParse(req.body);
       
@@ -365,12 +279,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // PATCH update existing blog post (admin only)
-  app.patch("/api/blog/posts/:id", isAdmin, async (req, res) => {
+  // PATCH update existing blog post (public in template - add auth if needed)
+  app.patch("/api/blog/posts/:id", async (req, res) => {
     try {
       const { id } = req.params; // id is the slug
       
-      // Validate partial update with file-based schema
       const validationResult = fileBlogPostUpdateSchema.safeParse(req.body);
       
       if (!validationResult.success) {
@@ -378,18 +291,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: validationError.message });
       }
       
-      // Get existing post
       const existingPost = getPostBySlug(id, true);
       
       if (!existingPost) {
         return res.status(404).json({ error: "Blog post not found" });
       }
       
-      // Merge existing post with validated updates
       const updatedData = {
         ...existingPost,
         ...validationResult.data,
-        slug: id, // Preserve original slug
+        slug: id,
       };
       
       const post = await saveBlogPost(updatedData);
@@ -400,55 +311,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // DELETE blog post (admin only)
-  app.delete("/api/blog/posts/:id", isAdmin, async (req, res) => {
+  // DELETE blog post (public in template - add auth if needed)
+  app.delete("/api/blog/posts/:slug", async (req, res) => {
     try {
-      const { id } = req.params; // id is the slug
-      const success = await deleteBlogPostFile(id);
+      const { slug } = req.params;
       
-      if (!success) {
+      const post = getPostBySlug(slug, true);
+      
+      if (!post) {
         return res.status(404).json({ error: "Blog post not found" });
       }
       
-      res.json({ success: true });
+      await deleteBlogPostFile(slug);
+      
+      res.json({ success: true, message: "Blog post deleted successfully" });
     } catch (error) {
       console.error("Error deleting blog post:", error);
       res.status(500).json({ error: "Failed to delete blog post" });
     }
   });
 
-  // GET all tags (extracted from published posts)
-  app.get("/api/blog/tags", async (req, res) => {
-    try {
-      const tags = getAllTags();
-      res.json(tags);
-    } catch (error) {
-      console.error("Error fetching tags:", error);
-      res.status(500).json({ error: "Failed to fetch tags" });
-    }
-  });
-
-  // Tag management routes are deprecated for file-based system
-  // Tags are now managed via frontmatter in Markdown files
-  app.post("/api/blog/tags", isAdmin, async (req, res) => {
-    res.status(410).json({ 
-      error: "Tag management has been deprecated. Tags are now managed in blog post frontmatter." 
-    });
-  });
-
-  app.post("/api/blog/posts/:postId/tags/:tagId", isAdmin, async (req, res) => {
-    res.status(410).json({ 
-      error: "Tag management has been deprecated. Tags are now managed in blog post frontmatter." 
-    });
-  });
-
-  app.delete("/api/blog/posts/:postId/tags/:tagId", isAdmin, async (req, res) => {
-    res.status(410).json({ 
-      error: "Tag management has been deprecated. Tags are now managed in blog post frontmatter." 
-    });
-  });
-
   const httpServer = createServer(app);
-
   return httpServer;
 }

@@ -67,7 +67,7 @@ async function buildBlogPosts() {
       slug: frontmatter.slug,
       excerpt: frontmatter.excerpt || "",
       category: frontmatter.category || "",
-      author: frontmatter.author || "Savvy Dealer Team",
+      author: frontmatter.author || "Your Company Team",
       authorRole: frontmatter.authorRole || "",
       featuredImage: frontmatter.featuredImage || "",
       publishedAt: frontmatter.publishedAt || new Date().toISOString(),
@@ -91,7 +91,10 @@ async function buildBlogPosts() {
   
   // Log summary
   posts.forEach(post => {
-    console.log(`  - ${post.title} (${post.publishedAt.split('T')[0]}) [${post.isPublished ? 'Published' : 'Draft'}]`);
+    const dateStr = typeof post.publishedAt === 'string' 
+      ? post.publishedAt.split('T')[0] 
+      : new Date(post.publishedAt).toISOString().split('T')[0];
+    console.log(`  - ${post.title} (${dateStr}) [${post.isPublished ? 'Published' : 'Draft'}]`);
   });
 }
 

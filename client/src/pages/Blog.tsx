@@ -26,15 +26,15 @@ export default function Blog() {
   return (
     <div className="flex min-h-screen flex-col">
       <Helmet>
-        <title>The Savvy Blog - Digital Marketing Insights for Automotive Dealers | Savvy Dealer</title>
+        <title>Blog | Your Company</title>
         <meta
           name="description"
-          content="Expert insights on automotive digital marketing, dealer websites, SEO, PPC, and industry trends. Practical strategies from Savvy Dealer to help dealerships dominate online."
+          content="Insights, updates, and articles from our team. Stay informed with our latest posts."
         />
-        <meta property="og:title" content="The Savvy Blog - Digital Marketing Insights for Automotive Dealers" />
-        <meta property="og:description" content="Expert insights on automotive digital marketing, dealer websites, SEO, PPC, and industry trends." />
+        <meta property="og:title" content="Blog | Your Company" />
+        <meta property="og:description" content="Insights, updates, and articles from our team." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.savvydealer.com/blog" />
+        <meta property="og:url" content="https://yoursite.com/blog" />
       </Helmet>
 
       <Header />
@@ -44,10 +44,10 @@ export default function Blog() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-7xl md:text-8xl font-serif font-bold mb-6" data-testid="text-blog-title">
-                The Savvy BLOG
+                Blog
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Expert insights on automotive digital marketing, dealer websites, SEO, PPC, and industry trends.
+                Insights, updates, and articles from our team
               </p>
             </div>
           </div>

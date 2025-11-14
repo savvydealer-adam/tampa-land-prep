@@ -1,127 +1,348 @@
-# Savvy Dealer - Digital Marketing Platform
+# Website Template Starter
 
 ## Overview
 
-Savvy Dealer is a digital marketing platform for automotive dealerships, offering website management and showcasing services. The flagship offering is **Fully Managed Marketing** - a comprehensive solution bundling all services (Co-op vendor coordination, website management, SEO, SEM/PPC, Facebook Ads, design, and ROI tracking). Individual services include Facebook Ads, SEO, PPC, Google Vehicle Ads, and custom dealer websites. The platform features an Apple-inspired design with a focus on large product imagery, dramatic typography, and smooth animations. Each product is highlighted with vibrant brand colors in immersive sections. The flagship Fully Managed Marketing product features a bespoke cinematic page design with full-screen hero, scroll animations, and Apple.com-level polish. The project aims to provide a comprehensive solution for dealerships' online presence and marketing needs.
+This is a **reusable website template** designed to make building marketing websites simple and fast. It comes pre-configured with the most common obstacles: lead forms with Google reCAPTCHA v3 protection and email notifications via Resend. The template is specifically optimized for use with **Replit Agent** - you can build entire websites through conversation by describing the pages you want.
 
-## Recent Changes
+**Key Philosophy**: Control the entire website build from a Replit chat window. Describe pages, upload content, and the agent builds them. No database complexity, no CMS overhead - just simple, effective websites that work.
 
-**November 13, 2025** - Enhanced Fully Managed Marketing page with Apple-inspired redesign:
-- Replaced standard ProductPage template with bespoke cinematic design
-- Added full-screen hero (90vh) with dramatic dark background and orange accents
-- Implemented 10 full-width alternating feature showcase sections
-- Enhanced typography: text-8xl hero headings, text-7xl section headings
-- Added Framer Motion scroll animations (fadeInUp, staggered children) respecting prefers-reduced-motion
-- Generous spacing throughout (py-32 sections) matching Apple.com aesthetic
-- Large stats section with text-7xl numbers
-- 4-step process timeline with numbered badges
-- All testing passed: responsiveness, accessibility, animations, lead form integration
+## What's Included Out of the Box
 
-## User Preferences
+### Pre-Configured Integrations
+- **Google reCAPTCHA v3**: Invisible bot protection for forms (uses shared secret keys)
+- **Resend Email API**: Lead form notifications with programmatic API key management
+- **File-Based Blog**: Markdown blog system (no database) - easy to sync content between projects
 
-Preferred communication style: Simple, everyday language.
+### Essential Components
+- **Lead Form Modal**: Professional contact form with reCAPTCHA validation
+- **Demo Booking Modal**: Schedule appointments with date/time selection
+- **SEO System**: Meta tags, Open Graph, Schema.org structured data
+- **Design System**: shadcn/ui + Tailwind CSS with light/dark mode support
+- **Navigation**: Header with mobile-friendly menu
 
-## System Architecture
+### Storage
+- **In-Memory Storage**: Default option - perfect for simple sites, no database needed
+- **File-Based Blog**: Markdown files in `content/blog/` - portable and easy to backup
+- **Optional Database**: PostgreSQL available if you need persistent data
 
-### UI/UX Decisions
+## How to Use This Template
 
-The design aesthetic is inspired by Apple, featuring large-scale product imagery, dramatic typography (Inter and Space Grotesk), generous spacing, and smooth scroll animations. A multi-color scheme is used for product lines: Orange (Fully Managed Marketing & PPC), Pink (Facebook Ads), Green (SEO), Cyan (Google Vehicle Ads), Blue (Dealer Websites), Teal (Independent Dealer Websites), and Purple (Anti-Dashboard AI). The system supports light/dark modes and uses `shadcn/ui` with heavy customization on top of Radix UI primitives for an accessible component foundation. Accessibility (WCAG 2.2 AA) is a core focus, including skip navigation, visible focus indicators, ARIA landmarks, screen reader support, and respect for `prefers-reduced-motion`. Special homepage feature: Anti-Dashboard AI section includes a subtle pulse-glow animation (4 seconds on page load) with "NADA 2026 Exclusive" badge.
+### For New Websites
 
-### Technical Implementations
+1. **Fork this project** in Replit
+2. **Configure secrets** (see Setup section below)
+3. **Chat with Replit Agent** to build pages:
+   - "Create a homepage with a hero section and 3 feature cards"
+   - "Add an About page with team bios"
+   - "Create a Services page with pricing tiers"
+4. **Publish** when ready
 
-The application is a full-stack TypeScript project. The frontend uses React 18 with Vite, `wouter` for routing, and TanStack Query for state management. Styling is handled with Tailwind CSS. The backend is built with Express.js and TypeScript. A component-first architecture is used for reusability. Key features include a global lead form modal, a demo booking modal with date/time selection, and an "AI Compatibility Test" button linking to an external site.
+### Working with Replit Agent
 
-### Feature Specifications
+This template is designed for **agent-driven development**. Here's how:
 
-- **Product Pages**: Dedicated pages for each marketing service with consistent layouts and branding. Products include Fully Managed Marketing (premium flagship), Facebook Ads, Dealer SEO, PPC Ads, Google Vehicle Ads (VLAs), Dealer Websites, Independent Dealer Websites, and Anti-Dashboard AI (NADA 2026 teaser).
-  - **Fully Managed Marketing** (/fully-managed-marketing): Premium flagship offering positioned as "Complete Automotive Marketing Solution". Orange-themed page featuring comprehensive service bundle including Co-op vendor coordination, dealer website management, SEO, SEM/PPC, Facebook Ads, professional design, ROI tracking, and more. Appears first in both homepage Features section and Products page with "Premium Service" badge. Page structure: Hero with description, 10 feature cards explaining service components, benefits section listing 12 included services, 4-step process breakdown, multiple CTAs throughout. SEO metadata includes Service schema and Open Graph tags.
-  - **PPC & SEM** (/ppc-ads): Strategic market dominance positioning emphasizing 90% search term-to-keyword match (precision vs AI-generated junk), competitor keyword intelligence from unique campaign structure, exclusive market control (no competing dealers in same market), expert traffic routing from competitors to clients, and market share dominance (not shared visibility). No focus on cost-per-click metrics.
-  - **All Products Page** (/products): Comprehensive product showcase featuring all 8 services with Apple-inspired design matching homepage aesthetic. Alternating left/right layout with large product images, dramatic typography (text-6xl), rounded-full buttons, and color-coded themes. Fully Managed Marketing appears first with Premium Service badge. Each product section includes description, dual CTAs (Learn More + Request Audit), and branded image with color overlay gradient.
-- **NADA Show Landing Page** (/nada-show): Trade show landing page for NADA Show 2026 (February 4-6, 2026, Las Vegas). Features hero section with NADA logo, event details for Booth 6760N, 6 reason cards, interactive North Hall floor map with pulsing marker highlighting booth location, and 4 "Book a Demo" CTAs integrated with DemoBookingModal.
-- **Attribution AI Teaser**: A dedicated teaser page for an unreleased product, hinting at a NADA 2026 announcement with Apple-inspired design.
-- **Blog System** (/blog, /blog/:slug, /admin/blog): 
-  - File-based Markdown blog with full CRUD operations (no database tables)
-  - Blog posts stored as Markdown files in `content/blog/` directory with YAML frontmatter
-  - Build script (`server/blogLoader.ts`) converts Markdown to JSON at startup for fast access
-  - Generated JSON stored in `generated/blog.json` and rebuilt automatically on file changes
-  - Public pages: Blog listing with featured posts, category badges, tag filtering, and individual post pages with SEO
-  - Admin interface: Create/edit/delete posts via filesystem operations, tags managed in frontmatter, date selection, validation
-  - Successfully migrated 6 existing blog posts from database to Markdown with professional featured images (1 user-provided, 5 AI-generated)
-  - All blog posts have featured images stored in `/attached_assets/` (user uploads) and `/attached_assets/generated_images/` (AI-generated)
-  - Tag system: Tags stored as string arrays in frontmatter (e.g., `tags: [AI, SEO, Marketing]`)
-  - Three-tier schema system: fileBlogPostInputSchema (forms with Date), fileBlogPostSchema (API validation with Date|string→ISO transform), fileBlogPostUpdateSchema (partial PATCH validation)
-  - SEO: BlogPosting JSON-LD schema, meta tags, Open Graph support
-  - **Authentication**: Blog admin fully protected with Replit Auth (see Authentication System below)
-- **Lead Submission System** (/admin/leads):
-  - PostgreSQL-backed lead and demo booking tracking with complete submission history
-  - Database schema: leadSubmissions table tracks all form submissions with email delivery status
-  - Robust error handling: Submissions saved to database BEFORE email attempt (no data loss)
-  - Email delivery tracking: Records success/failure status and error messages for troubleshooting
-  - Admin interface: Dashboard with stats (total submissions, emails sent/failed, demo bookings)
-  - Detailed submission list: All lead forms and demo bookings with contact info, timestamps, email status
-  - Color-coded status badges: Green for successful emails, red for failures
-  - **Email Configuration**: FROM_EMAIL and TO_EMAIL environment variables (defaults to Resend test email)
-  - **Production Setup Required**: Verify savvydealer.com domain in Resend and set FROM_EMAIL to verified address
-  - **reCAPTCHA v3 Protection**: Both lead form and demo booking forms protected with Google reCAPTCHA v3
-    - Site key fetched from backend API endpoint `/api/config/recaptcha` on app load
-    - Frontend generates invisible reCAPTCHA tokens using `react-google-recaptcha-v3` library
-    - Backend verifies tokens with Google API using 0.5 score threshold (server/recaptcha.ts)
-    - Submissions with invalid or low-score tokens are rejected with 400 error
-    - Domain configured: replit.dev (for Replit preview) and production domains
-    - **Required Secrets**: RECAPTCHA_SITE_KEY, RECAPTCHA_SECRET_KEY (in Replit Secrets)
-  - Protected by isAdmin middleware (@savvydealer.com emails only)
-- **Admin Dashboard** (/admin):
-  - Centralized admin interface with sidebar navigation
-  - **Active Features**: Blog management (/admin/blog), Lead tracking (/admin/leads)
-  - **Note**: Page and settings management removed per user preference - new pages requested from Replit Agent instead of CMS
-  - Dashboard statistics and overview of site activity
-- **SEO & Structured Data**: Comprehensive SEO management via `react-helmet-async`, supporting various Schema.org types (Organization, WebSite, Service, BlogPosting, Person) for all public pages.
-- **Authentication System**:
-  - Replit Auth integration with OpenID Connect (OIDC)
-  - Supports Google, GitHub, and email/password login
-  - Session-based authentication with PostgreSQL storage
-  - **Multi-layer Admin Protection** (architect-verified secure):
-    - **Frontend**: AdminAccessGuard component wraps all admin pages, blocks non-@savvydealer.com access
-    - **Backend**: isAdmin middleware protects all mutating operations and admin data endpoints
-    - **Blog Security**: Public GET routes filter unpublished posts using req.isAuthenticated() check
-    - **Admin Access**: Only @savvydealer.com email addresses can access admin dashboard and unpublished content
-  - Frontend useAuth hook for auth state management with isAdmin helper
-  - Automatic redirect to login for unauthenticated users
-  - Logout functionality in admin interface
-  - Global Passport session middleware ensures req.isAuthenticated() cannot be spoofed
-  - Environment-aware cookie security (secure in production, permissive in development)
-  - **Required Environment Variables**: ISSUER_URL, REPL_ID, SESSION_SECRET, DATABASE_URL
-  - **Optional Environment Variables**: FROM_EMAIL (sender email for notifications, defaults to contact@savvydealer.ai), TO_EMAIL (recipient email for lead notifications, defaults to support@savvydealer.com)
+**Page Creation**: Describe what you want conversationally
+```
+"Add a homepage with:
+- Large hero section with call-to-action button
+- 3 features in a grid layout
+- Testimonials section
+- Contact form"
+```
 
-### System Design Choices
+**Content Updates**: Provide text and images
+```
+"Update the hero headline to say 'Welcome to Acme Corp' 
+and use this image: [upload]"
+```
 
-The backend uses an interface-driven storage pattern (`IStorage`) to allow easy swapping of storage solutions. The blog system uses a file-based Markdown approach with a build script that generates JSON for fast access. Lead submissions use PostgreSQL with Drizzle ORM for persistence. Session-based authentication is implemented with Replit Auth (OpenID Connect) and PostgreSQL session storage. All blog admin API endpoints are protected with isAdmin middleware. The application structure includes clear routing for public, product, blog, event, and admin pages.
+**Blog Posts**: Add markdown files or ask the agent
+```
+"Create a blog post about our new product launch"
+```
 
-### Database Schema
+The agent understands the template structure and will follow established patterns.
 
-**Note**: Blog system uses file-based Markdown storage (no database tables). Blog posts are stored in `content/blog/` and built to `generated/blog.json`.
+## Quick Start Setup
 
-**Authentication Tables**:
-- `users`: id (varchar, UUID), email, firstName, lastName, profileImageUrl, createdAt, updatedAt
-- `sessions`: sid (varchar, primary key), sess (JSON), expire (timestamp)
+### Required Secrets (Add in Replit Secrets)
 
-**Lead Submission Tables**:
-- `leadSubmissions`: id (varchar, UUID), submissionType (lead_form|demo_booking), name, email, phone, dealership, message, demoDate, demoTime, emailSent (boolean), emailError (text), submittedAt (timestamp)
+```bash
+# reCAPTCHA (reuse from existing projects)
+RECAPTCHA_SITE_KEY=your_site_key_here
+RECAPTCHA_SECRET_KEY=your_secret_key_here
 
-**Relations**: 
-- Posts → Tags (many-to-many via postTags)
-- Sessions → Users (via session data)
+# Resend Email
+RESEND_API_KEY=your_resend_api_key_here
 
-## External Dependencies
+# Email Configuration
+FROM_EMAIL=noreply@yourdomain.com
+TO_EMAIL=leads@yourdomain.com
+```
 
-- **Frontend**: React, `wouter`, TanStack Query, Vite, Tailwind CSS, Radix UI, `shadcn/ui`, `lucide-react`, `react-google-recaptcha-v3`.
-- **Backend**: Express.js, TypeScript.
-- **Database & ORM**: `@neondatabase/serverless` (PostgreSQL), `drizzle-orm`, `drizzle-kit`.
-- **Validation**: `zod`, `drizzle-zod`, `react-hook-form`.
-- **Authentication**: `openid-client` (OIDC), `express-session`, `connect-pg-simple` (session storage).
-- **Email Service**: Resend API (for lead and demo booking notifications).
-- **Bot Protection**: Google reCAPTCHA v3 (invisible, score-based verification).
-- **SEO**: `react-helmet-async`.
-- **Development Tools**: `tsx`, `nanoid`, Replit-specific Vite plugins.
-- **Fonts**: Google Fonts (Inter, Space Grotesk).
-- **Environment**: `DATABASE_URL` environment variable required for PostgreSQL.
+### Setup Steps
+
+1. **reCAPTCHA Configuration**
+   - Using existing keys? Add new domain in [reCAPTCHA Admin](https://www.google.com/recaptcha/admin)
+   - Click your site → Settings → Add domain
+   - Add: `yourproject.replit.dev` and your custom domain
+
+2. **Resend Setup**
+   - Sign up at [resend.com](https://resend.com)
+   - Verify your domain OR use `onboarding@resend.dev` for testing
+   - Create API key and add to secrets
+
+3. **Run the Project**
+   - Workflow "Start application" runs automatically
+   - Visit the preview URL to see your site
+
+## Project Architecture
+
+### Tech Stack
+- **Frontend**: React 18, Vite, wouter (routing), TanStack Query (state)
+- **Backend**: Express.js, TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui, Radix UI primitives
+- **Forms**: react-hook-form, Zod validation
+- **Email**: Resend API
+- **Bot Protection**: Google reCAPTCHA v3
+
+### File Structure
+```
+client/
+  src/
+    components/     # Reusable UI components
+      ui/          # shadcn/ui components
+      LeadFormModal.tsx
+      SEO.tsx
+      Header.tsx
+      Footer.tsx
+    pages/         # Website pages (add new pages here)
+      Home.tsx
+      About.tsx
+      Blog.tsx
+    App.tsx        # Main app with routing
+    
+server/
+  index.ts         # Express server
+  routes.ts        # API endpoints
+  recaptcha.ts     # reCAPTCHA verification
+  email.ts         # Resend email integration
+  storage.ts       # In-memory data storage
+  
+content/
+  blog/            # Markdown blog posts
+  
+shared/
+  schema.ts        # Shared TypeScript types
+```
+
+### Storage Pattern
+
+**In-Memory (Default)**
+- Perfect for simple websites
+- Lead submissions stored temporarily
+- Restarts on deployment (expected behavior)
+
+**File-Based Blog**
+- Markdown files in `content/blog/`
+- Auto-generates JSON at build time
+- Easy to backup and sync
+
+**Database (Optional)**
+- Add PostgreSQL if you need persistence
+- Schema already defined in `shared/schema.ts`
+- Migration scripts ready to use
+
+## Page Building Patterns
+
+### Common Layouts
+
+**Hero Section**
+```typescript
+// Large hero with CTA
+<section className="py-20 md:py-32">
+  <h1 className="text-4xl md:text-6xl font-bold">Your Headline</h1>
+  <p className="text-xl text-muted-foreground">Your description</p>
+  <Button size="lg">Call to Action</Button>
+</section>
+```
+
+**Feature Grid**
+```typescript
+// 3-column feature grid
+<div className="grid md:grid-cols-3 gap-8">
+  {features.map(feature => (
+    <Card key={feature.id}>
+      <CardHeader>
+        <feature.icon className="h-12 w-12" />
+        <CardTitle>{feature.title}</CardTitle>
+      </CardHeader>
+      <CardContent>{feature.description}</CardContent>
+    </Card>
+  ))}
+</div>
+```
+
+**Lead Form Integration**
+```typescript
+// Trigger lead form from any button
+import { useLeadForm } from "@/contexts/LeadFormContext";
+
+function YourComponent() {
+  const { openLeadForm } = useLeadForm();
+  
+  return <Button onClick={openLeadForm}>Contact Us</Button>;
+}
+```
+
+## Agent Collaboration Guidelines
+
+When working with Replit Agent on this template:
+
+### What the Agent Knows
+- Template structure and file organization
+- Component library (shadcn/ui) and styling patterns
+- Form validation and reCAPTCHA integration
+- Blog system and page creation patterns
+
+### What to Provide
+- Page descriptions and content
+- Images and assets (upload to `attached_assets/`)
+- Brand colors and styling preferences
+- Specific functionality requirements
+
+### What the Agent Will Do
+- Create new pages following template patterns
+- Set up routing and navigation
+- Integrate forms and CTAs with lead system
+- Add SEO metadata and structured data
+- Implement responsive layouts
+
+## Customization Guide
+
+### Branding
+
+**Colors** - Edit `client/src/index.css`:
+```css
+:root {
+  --primary: 20 100% 50%;     /* Your brand color */
+  --secondary: 200 100% 50%;   /* Secondary color */
+}
+```
+
+**Fonts** - Update `client/index.html`:
+```html
+<link href="https://fonts.googleapis.com/css2?family=YourFont" rel="stylesheet">
+```
+
+Then in `index.css`:
+```css
+body {
+  font-family: 'YourFont', sans-serif;
+}
+```
+
+### Adding New Pages
+
+1. **Create page component** in `client/src/pages/YourPage.tsx`
+2. **Add route** in `client/src/App.tsx`:
+```typescript
+<Route path="/your-page" component={YourPage} />
+```
+3. **Update navigation** in `client/src/components/Header.tsx`
+
+Or just **ask the agent**: "Add a new page at /your-page with [description]"
+
+## Blog System
+
+### Adding Blog Posts
+
+Create a markdown file in `content/blog/` with frontmatter:
+
+```markdown
+---
+title: Your Blog Post Title
+slug: your-blog-post-title
+excerpt: A short description
+author: Your Name
+publishedAt: 2025-01-15
+category: News
+tags: [tag1, tag2]
+published: true
+featuredImage: /attached_assets/your-image.jpg
+---
+
+Your blog content here in markdown...
+```
+
+The blog JSON is auto-generated on server start.
+
+## Email Notifications
+
+### How It Works
+
+1. User submits lead form
+2. reCAPTCHA validates (score > 0.3)
+3. Data saved to storage
+4. Email sent via Resend
+5. User sees success message
+
+### Email Templates
+
+Edit `server/email.ts` to customize email content.
+
+## SEO Best Practices
+
+Every page should have:
+```typescript
+<SEO
+  title="Page Title | Your Brand"
+  description="Compelling page description"
+  type="website"
+  image="/path/to/social-image.jpg"
+/>
+```
+
+## Deployment
+
+1. **Test locally** - Preview works automatically
+2. **Configure domains** - Add to reCAPTCHA settings
+3. **Verify email domain** - In Resend dashboard
+4. **Publish** - Use Replit's publish feature
+
+## Troubleshooting
+
+### Forms Not Submitting
+- Check RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY in secrets
+- Verify domain is added in reCAPTCHA admin console
+- Check browser console for errors
+
+### Emails Not Sending
+- Verify RESEND_API_KEY in secrets
+- Check FROM_EMAIL is verified in Resend dashboard
+- Look at server logs for error messages
+
+### Blog Not Showing
+- Ensure markdown files have proper frontmatter
+- Check `published: true` in frontmatter
+- Restart server to regenerate blog JSON
+
+## Template Philosophy
+
+**Simple Over Complex**: In-memory storage, file-based blog, no unnecessary features
+
+**Agent-Friendly**: Clear patterns, documented structure, easy to describe and build
+
+**Production-Ready**: reCAPTCHA protection, email notifications, SEO, responsive design
+
+**Portable**: Easy to fork, minimal dependencies, clear setup process
+
+## Next Steps
+
+1. Fork this template for your new project
+2. Add your secrets (reCAPTCHA, Resend)
+3. Chat with Replit Agent to build your pages
+4. Customize branding and content
+5. Publish your site
+
+**Have questions?** Describe what you want to build and let the agent help you create it.

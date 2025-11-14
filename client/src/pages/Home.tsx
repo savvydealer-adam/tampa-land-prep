@@ -1,26 +1,33 @@
 import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import { Features } from "@/components/Features";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { CheckCircle2 } from "lucide-react";
-import { SEO, organizationSchema } from "@/components/SEO";
-import workspaceImage from "@assets/generated_images/Feature_section_workspace_image_6c209941.png";
-import teamImage from "@assets/generated_images/Team_collaboration_image_765209cf.png";
+import { Rocket, Users, Target, Zap } from "lucide-react";
 
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": "https://savvydealer.com/#website",
-  "url": "https://savvydealer.com",
-  "name": "Savvy Dealer",
-  "description": "Expert digital marketing for automotive dealerships",
-  "publisher": {
-    "@id": "https://savvydealer.com/#organization",
+const features = [
+  {
+    icon: Rocket,
+    title: "Fast & Reliable",
+    description: "Built with modern technologies for optimal performance"
   },
-};
+  {
+    icon: Users,
+    title: "User Focused",
+    description: "Designed with your customers in mind"
+  },
+  {
+    icon: Target,
+    title: "Results Driven",
+    description: "Focused on delivering measurable outcomes"
+  },
+  {
+    icon: Zap,
+    title: "Easy to Use",
+    description: "Intuitive interface that just works"
+  },
+];
 
 export default function Home() {
   const { openLeadForm } = useLeadForm();
@@ -28,122 +35,98 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        canonical="https://savvydealer.com/"
-        description="Expert digital marketing for automotive dealerships. Specializing in Facebook Ads, PPC, SEO/GEO optimization, and AI-powered dealer websites. Start driving real results with proven strategies."
-        schemas={[organizationSchema, websiteSchema]}
+        title="Home | Your Company Name"
+        description="Your company description goes here. Describe what makes your business unique and why customers should choose you."
+        ogType="website"
       />
       <Header />
       <main id="main-content" role="main" tabIndex={-1} className="flex-1">
-        <Hero />
-        <Features />
-
-        <section id="about" className="bg-card py-32">
-          <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-            <div className="grid items-center gap-16 lg:grid-cols-2">
-              <div className="order-2 lg:order-1">
-                <h2 className="mb-8 font-serif text-4xl font-bold leading-tight sm:text-5xl lg:text-7xl">
-                  How We Drive Your Sales
-                </h2>
-                <p className="mb-8 text-xl text-muted-foreground">
-                  By aligning our SEO and GEO (Generative Engine Optimization) strategies, we ensure 
-                  your dealership doesn't just compete — it <strong className="text-foreground">appears first and performs faster</strong> wherever 
-                  shoppers are searching, from Google to ChatGPT.
-                </p>
-                <ul className="mb-10 space-y-4">
-                  {[
-                    "Counter competitor tactics effectively",
-                    "Dominate in search and generative AI results",
-                    "AI-optimized websites that convert",
-                    "Transparent reporting you can trust",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-4">
-                      <CheckCircle2 className="h-6 w-6 shrink-0 text-primary" />
-                      <span className="text-lg text-muted-foreground">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mb-8 text-xl font-semibold">
-                  We don't outspend the competition — <span className="text-primary">we outsmart them.</span>
-                </p>
-                <Button onClick={openLeadForm} size="lg" className="min-h-12 rounded-full px-8" data-testid="button-about-cta">
-                  Request Free Audit
-                </Button>
-              </div>
-              <div className="order-1 lg:order-2">
-                <img
-                  src={workspaceImage}
-                  alt="Modern workspace"
-                  className="rounded-3xl"
-                  data-testid="img-workspace"
-                />
-              </div>
+        {/* Hero Section */}
+        <section className="bg-gradient-to-b from-background to-card py-20 md:py-32">
+          <div className="container mx-auto max-w-4xl px-6 text-center">
+            <h1 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-7xl">
+              Welcome to Your Website
+            </h1>
+            <p className="mb-10 text-xl text-muted-foreground md:text-2xl">
+              Replace this with your unique value proposition. Tell visitors what you do and why they should care.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button onClick={openLeadForm} size="lg" className="rounded-full" data-testid="button-hero-cta">
+                Get Started
+              </Button>
+              <Button onClick={() => window.location.href = "/about"} size="lg" variant="outline" className="rounded-full" data-testid="button-hero-learn-more">
+                Learn More
+              </Button>
             </div>
           </div>
         </section>
 
-        <section className="py-32">
-          <div className="container mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-            <div className="mb-20 text-center">
-              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-7xl">
-                What Dealers are Saying
+        {/* Features Section */}
+        <section className="py-20 md:py-32">
+          <div className="container mx-auto max-w-7xl px-6">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
+                Why Choose Us
               </h2>
               <p className="text-xl text-muted-foreground">
-                Consistent performance improvements and trusted partnerships
+                The benefits of working with our company
               </p>
             </div>
-            
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  quote: "Savvy Dealer nailed the essentials: a high‑performing website, marketing that delivers results, consistent service, and reporting that makes decisions obvious. The outcome is steady, consistent performance improvements across traffic quality, conversions, and paid efficiency. Savvy Dealer is a partner that goes above and beyond every time.",
-                  name: "Josh Mead",
-                  title: "General Manager",
-                  company: "Brighton Ford"
-                },
-                {
-                  quote: "We've been working with Savvy Dealer for over a year, and Savvy Dealer has been a major contributor for Banner Fords success. Our website is faster and converts better, and we see consistent performance improvements across SEO and paid media. The custom reporting makes results crystal clear and helps us shift budget with confidence.",
-                  name: "Greg Jones",
-                  title: "General Manager",
-                  company: "Banner Ford"
-                },
-                {
-                  quote: "Savvy Dealer is the ideal partner for our dealerships. Month after month we see consistent performance improvements across website conversions, SEO visibility, and paid media. Attribution is clear, budgets are transparent, and it's obvious which campaigns are moving appointments and sold units.",
-                  name: "David Blake",
-                  title: "General Manager",
-                  company: "Lake Powell Ford and Alamo Ford"
-                },
-              ].map((testimonial, index) => (
-                <Card key={index} className="overflow-visible p-8" data-testid={`card-testimonial-${index}`}>
-                  <p className="mb-8 text-lg text-muted-foreground italic leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
-                  <div className="border-t pt-6">
-                    <p className="font-semibold text-lg">{testimonial.name}</p>
-                    <p className="text-muted-foreground">{testimonial.title}</p>
-                    <p className="font-medium text-primary">{testimonial.company}</p>
-                  </div>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {features.map((feature, index) => (
+                <Card key={index} className="text-center" data-testid={`card-feature-${index}`}>
+                  <CardHeader>
+                    <div className="mb-4 inline-flex justify-center rounded-lg bg-primary/10 p-4">
+                      <feature.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle>{feature.title}</CardTitle>
+                    <CardDescription>{feature.description}</CardDescription>
+                  </CardHeader>
                 </Card>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="contact" className="bg-card py-32">
-          <div className="container mx-auto max-w-7xl px-6 text-center sm:px-8 lg:px-12">
-            <div className="mx-auto max-w-3xl">
-              <h2 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-7xl">
-                Ready to Dominate Your Market?
-              </h2>
-              <p className="mb-10 text-xl text-muted-foreground">
-                Join successful dealers who choose performance over promises
-              </p>
-              <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
-                <Button onClick={openLeadForm} size="lg" className="min-h-14 rounded-full px-10" data-testid="button-cta-get-started">
-                  Request Free Audit
-                </Button>
-                <Button asChild variant="outline" size="lg" className="min-h-14 rounded-full px-10" data-testid="button-cta-contact">
-                  <a href="tel:8135013229">Call Now: (813) 501-3229</a>
+        {/* About Preview Section */}
+        <section className="bg-card py-20 md:py-32">
+          <div className="container mx-auto max-w-7xl px-6">
+            <div className="grid items-center gap-12 lg:grid-cols-2">
+              <div>
+                <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
+                  About Our Company
+                </h2>
+                <p className="mb-6 text-lg text-muted-foreground">
+                  Add information about your company here. This is a great place to tell your story,
+                  explain your mission, and highlight what makes you different from competitors.
+                </p>
+                <p className="mb-8 text-lg text-muted-foreground">
+                  You can describe your values, your team, your experience, or anything else that
+                  helps visitors understand who you are and why they should trust you.
+                </p>
+                <Button onClick={() => window.location.href = "/about"} size="lg" variant="outline" className="rounded-full" data-testid="button-about-link">
+                  Learn More About Us
                 </Button>
               </div>
+              <div className="flex items-center justify-center">
+                <div className="aspect-square w-full max-w-md rounded-3xl bg-gradient-to-br from-primary/20 to-secondary/20"></div>
+              </div>
             </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 md:py-32">
+          <div className="container mx-auto max-w-4xl px-6 text-center">
+            <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
+              Ready to Get Started?
+            </h2>
+            <p className="mb-10 text-xl text-muted-foreground">
+              Contact us today to learn how we can help you achieve your goals
+            </p>
+            <Button onClick={openLeadForm} size="lg" className="rounded-full" data-testid="button-cta-contact">
+              Contact Us
+            </Button>
           </div>
         </section>
       </main>

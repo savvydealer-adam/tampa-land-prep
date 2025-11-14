@@ -11,23 +11,9 @@ import { SkipNavigation } from "@/components/SkipNavigation";
 import { useState, useEffect } from "react";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
-import Admin from "@/pages/Admin";
-import AdminBlog from "@/pages/AdminBlog";
-import AdminLeads from "@/pages/AdminLeads";
-import Products from "@/pages/Products";
-import FullyManagedMarketing from "@/pages/FullyManagedMarketing";
-import FacebookAds from "@/pages/FacebookAds";
-import PpcAds from "@/pages/PpcAds";
-import VehicleAds from "@/pages/VehicleAds";
-import DealerWebsites from "@/pages/DealerWebsites";
-import IndependentDealerWebsites from "@/pages/IndependentDealerWebsites";
-import DealerSeo from "@/pages/DealerSeo";
-import AttributionAI from "@/pages/AttributionAI";
+import Services from "@/pages/Services";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
-import NadaShow from "@/pages/NadaShow";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
-import EndUserAgreement from "@/pages/EndUserAgreement";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -35,23 +21,9 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/products" component={Products} />
-      <Route path="/fully-managed-marketing" component={FullyManagedMarketing} />
-      <Route path="/facebook-ads" component={FacebookAds} />
-      <Route path="/ppc-ads" component={PpcAds} />
-      <Route path="/vehicle-ads" component={VehicleAds} />
-      <Route path="/dealer-websites" component={DealerWebsites} />
-      <Route path="/independent-dealer-websites" component={IndependentDealerWebsites} />
-      <Route path="/dealer-seo" component={DealerSeo} />
-      <Route path="/attribution-ai" component={AttributionAI} />
+      <Route path="/services" component={Services} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
-      <Route path="/nada-show" component={NadaShow} />
-      <Route path="/privacy-policy" component={PrivacyPolicy} />
-      <Route path="/end-user-agreement" component={EndUserAgreement} />
-      <Route path="/admin" component={Admin} />
-      <Route path="/admin/blog" component={AdminBlog} />
-      <Route path="/admin/leads" component={AdminLeads} />
       <Route component={NotFound} />
     </Switch>
   );

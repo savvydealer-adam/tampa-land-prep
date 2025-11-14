@@ -1,231 +1,136 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { Target, Handshake, Lightbulb } from "lucide-react";
-import { SEO, organizationSchema, createPersonSchema } from "@/components/SEO";
-import adamGillrieImage from "@assets/Gemini_Generated_Image_ii2kxoii2kxoii2k_1762962689719.png";
-import nickChivinskiImage from "@assets/Headshot_1762963918341.jpg";
+import { Users, Target, Award, Heart } from "lucide-react";
+
+const values = [
+  {
+    icon: Users,
+    title: "Customer First",
+    description: "We put our customers at the center of everything we do"
+  },
+  {
+    icon: Target,
+    title: "Results Focused",
+    description: "Committed to delivering measurable outcomes"
+  },
+  {
+    icon: Award,
+    title: "Quality Service",
+    description: "Excellence in every interaction and deliverable"
+  },
+  {
+    icon: Heart,
+    title: "Integrity",
+    description: "Honest, transparent, and ethical in all we do"
+  },
+];
 
 export default function About() {
   const { openLeadForm } = useLeadForm();
 
-  const teamMembers = [
-    {
-      name: "Adam Gillrie",
-      title: "Director",
-      bio: "Leading Savvy Dealer's strategic vision and client partnerships with deep expertise in automotive digital marketing.",
-    },
-    {
-      name: "Nick Chivinski",
-      title: "VP of Sales",
-      bio: "Driving growth and building lasting relationships with dealerships across the country.",
-    },
-    {
-      name: "David Frost",
-      title: "CTO",
-      bio: "Architecting cutting-edge marketing technology solutions that deliver measurable results for our clients.",
-    },
-    {
-      name: "Emily Schultz",
-      title: "Head of Operations",
-      bio: "Ensuring seamless execution and exceptional service delivery across all client campaigns.",
-    },
-  ];
-
-  const personSchemas = teamMembers.map((member) =>
-    createPersonSchema({
-      name: member.name,
-      jobTitle: member.title,
-      description: member.bio,
-    })
-  );
-
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        title="About Us"
-        description="Meet the team behind Savvy Dealer. We don't outspend the competition—we outsmart them. Learn about our mission, values, and approach to automotive digital marketing."
-        canonical="https://savvydealer.com/about"
-        schemas={[organizationSchema, ...personSchemas]}
+        title="About Us | Your Company Name"
+        description="Learn about our company, our mission, and the team behind our success."
+        ogType="website"
       />
       <Header />
       <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-background to-muted/30 py-32">
-          <div className="container mx-auto max-w-5xl px-6 text-center sm:px-8 lg:px-12">
-            <h1 className="mb-6 font-serif text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl">
-              We Don't Outspend the Competition
+        <section className="bg-gradient-to-b from-background to-card py-20 md:py-32">
+          <div className="container mx-auto max-w-4xl px-6 text-center">
+            <h1 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-6xl">
+              About Our Company
             </h1>
-            <p className="mb-8 text-2xl text-muted-foreground sm:text-3xl">
-              We Outsmart Them
-            </p>
-            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-muted-foreground">
-              Savvy Dealer was founded on a simple principle: automotive dealerships deserve digital marketing 
-              that actually drives sales, not just impressions. We combine deep industry expertise with 
-              data-driven strategies to help dealers win in an increasingly competitive market.
+            <p className="text-xl text-muted-foreground md:text-2xl">
+              Replace this with your company's story and mission statement
             </p>
           </div>
         </section>
 
-        {/* Mission Section */}
-        <section className="py-24">
-          <div className="container mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
-            <div className="grid gap-12 md:grid-cols-2">
-              <div>
-                <h2 className="mb-6 font-serif text-3xl font-bold">Our Mission</h2>
-                <p className="mb-4 text-lg leading-relaxed text-muted-foreground">
-                  To empower automotive dealerships with marketing strategies that focus on ready-to-buy 
-                  shoppers, transparent ROI metrics, and measurable results.
-                </p>
-                <p className="text-lg leading-relaxed text-muted-foreground">
-                  We believe in building backwards from the sale, optimizing for conversations and test 
-                  drives—not vanity metrics.
-                </p>
-              </div>
-              <div>
-                <h2 className="mb-6 font-serif text-3xl font-bold">What Sets Us Apart</h2>
-                <ul className="space-y-4">
-                  <li className="flex gap-3">
-                    <span className="text-primary">✓</span>
-                    <span className="text-lg text-muted-foreground">
-                      <strong className="text-foreground">High-intent focus:</strong> We target shoppers who are ready now, not "someday"
-                    </span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-primary">✓</span>
-                    <span className="text-lg text-muted-foreground">
-                      <strong className="text-foreground">Transparent metrics:</strong> Simple, human-readable KPIs that matter
-                    </span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-primary">✓</span>
-                    <span className="text-lg text-muted-foreground">
-                      <strong className="text-foreground">Agile execution:</strong> Twice-monthly cadence to pivot against competitors
-                    </span>
-                  </li>
-                  <li className="flex gap-3">
-                    <span className="text-primary">✓</span>
-                    <span className="text-lg text-muted-foreground">
-                      <strong className="text-foreground">Real content:</strong> No AI-generated fluff—just substance that ranks
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Team Section */}
-        <section className="bg-muted/30 py-24">
-          <div className="container mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
-            <div className="mb-16 text-center">
-              <h2 className="mb-4 font-serif text-4xl font-bold sm:text-5xl">
-                Meet the Team
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                The experts behind your dealership's digital success
+        {/* Story Section */}
+        <section className="py-20 md:py-32">
+          <div className="container mx-auto max-w-4xl px-6">
+            <h2 className="mb-8 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
+              Our Story
+            </h2>
+            <div className="space-y-6 text-lg text-muted-foreground">
+              <p>
+                This is where you tell your company's story. When did you start? What problem
+                were you trying to solve? How have you evolved over time?
               </p>
-            </div>
-
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {teamMembers.map((member) => (
-                <div
-                  key={member.name}
-                  className="group overflow-hidden rounded-2xl bg-card transition-all hover-elevate"
-                  data-testid={`card-team-${member.name.toLowerCase().replace(/\s+/g, "-")}`}
-                >
-                  <div className="aspect-square bg-gradient-to-br from-primary/10 to-primary/5">
-                    {member.name === "Adam Gillrie" ? (
-                      <img 
-                        src={adamGillrieImage} 
-                        alt="Adam Gillrie, Director of Savvy Dealer"
-                        className="h-full w-full object-cover"
-                      />
-                    ) : member.name === "Nick Chivinski" ? (
-                      <img 
-                        src={nickChivinskiImage} 
-                        alt="Nick Chivinski, VP of Sales at Savvy Dealer"
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center p-8">
-                        <div className="flex h-32 w-32 items-center justify-center rounded-full bg-primary/10 text-5xl font-bold text-primary">
-                          {member.name.split(' ').map(n => n[0]).join('')}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h3 className="mb-1 text-xl font-bold">{member.name}</h3>
-                    <p className="mb-3 text-sm font-semibold text-primary">{member.title}</p>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{member.bio}</p>
-                  </div>
-                </div>
-              ))}
+              <p>
+                Share the journey that led to where you are today. What challenges did you overcome?
+                What milestones have you achieved? What drives you to continue?
+              </p>
+              <p>
+                Make it personal and authentic. Your story helps potential customers connect with
+                your brand on a human level.
+              </p>
             </div>
           </div>
         </section>
 
         {/* Values Section */}
-        <section className="py-24">
-          <div className="container mx-auto max-w-5xl px-6 sm:px-8 lg:px-12">
-            <h2 className="mb-12 text-center font-serif text-4xl font-bold">Our Values</h2>
-            <div className="grid gap-8 md:grid-cols-3">
-              <div className="rounded-2xl bg-card p-8 text-center">
-                <div className="mb-4 flex justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                    <Target className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="mb-3 text-xl font-bold">Results-Driven</h3>
-                <p className="text-muted-foreground">
-                  Every campaign is built to drive real conversations, test drives, and sales—not just traffic.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-card p-8 text-center">
-                <div className="mb-4 flex justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                    <Handshake className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="mb-3 text-xl font-bold">Partnership</h3>
-                <p className="text-muted-foreground">
-                  We're an extension of your team, meeting twice monthly to plan and pivot based on market conditions.
-                </p>
-              </div>
-              <div className="rounded-2xl bg-card p-8 text-center">
-                <div className="mb-4 flex justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-                    <Lightbulb className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
-                <h3 className="mb-3 text-xl font-bold">Innovation</h3>
-                <p className="text-muted-foreground">
-                  From AI-optimized websites to attribution intelligence, we stay ahead of the automotive marketing curve.
-                </p>
-              </div>
+        <section className="bg-card py-20 md:py-32">
+          <div className="container mx-auto max-w-7xl px-6">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
+                Our Values
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                The principles that guide everything we do
+              </p>
+            </div>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {values.map((value, index) => (
+                <Card key={index} className="text-center" data-testid={`card-value-${index}`}>
+                  <CardHeader>
+                    <div className="mb-4 inline-flex justify-center rounded-lg bg-primary/10 p-4">
+                      <value.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle>{value.title}</CardTitle>
+                    <CardDescription>{value.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="bg-card py-24">
-          <div className="container mx-auto max-w-3xl px-6 text-center sm:px-8 lg:px-8">
-            <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl">
-              Ready to Work Together?
+        {/* Team Section (Optional) */}
+        <section className="py-20 md:py-32">
+          <div className="container mx-auto max-w-4xl px-6 text-center">
+            <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
+              Meet Our Team
             </h2>
-            <p className="mb-8 text-lg text-muted-foreground">
-              Let's discuss how Savvy Dealer can help your dealership dominate your market
+            <p className="mb-12 text-xl text-muted-foreground">
+              Optional: Add team member bios, photos, and roles here
             </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <Button onClick={openLeadForm} size="lg" data-testid="button-request-audit">
-                Request Free Audit
-              </Button>
-              <Button variant="outline" size="lg" asChild data-testid="button-view-services">
-                <a href="/products">View Our Services</a>
-              </Button>
-            </div>
+            <p className="text-lg text-muted-foreground">
+              You can create team member cards with photos, names, titles, and short bios.
+              Or simply remove this section if it's not relevant to your business.
+            </p>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="bg-card py-20 md:py-32">
+          <div className="container mx-auto max-w-4xl px-6 text-center">
+            <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
+              Let's Work Together
+            </h2>
+            <p className="mb-10 text-xl text-muted-foreground">
+              Ready to start a conversation? We're here to help
+            </p>
+            <Button onClick={openLeadForm} size="lg" className="rounded-full" data-testid="button-cta-contact">
+              Get in Touch
+            </Button>
           </div>
         </section>
       </main>

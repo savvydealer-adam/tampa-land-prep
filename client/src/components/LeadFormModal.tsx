@@ -42,7 +42,7 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
       name: "",
       email: "",
       phone: "",
-      dealership: "",
+      company: "",
       message: "",
     },
   });
@@ -105,11 +105,10 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
           <>
             <DialogHeader>
               <DialogTitle className="font-serif text-2xl">
-                Request Your Free Audit
+                Get in Touch
               </DialogTitle>
               <DialogDescription>
-                Fill out the form below and our team will reach out to you within 24 hours
-                to discuss your dealership's digital marketing needs.
+                Fill out the form below and our team will reach out to you within 24 hours.
               </DialogDescription>
             </DialogHeader>
 
@@ -173,15 +172,15 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
 
                 <FormField
                   control={form.control}
-                  name="dealership"
+                  name="company"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Dealership Name</FormLabel>
+                      <FormLabel>Company Name</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="ABC Motors"
+                          placeholder="Acme Inc."
                           {...field}
-                          data-testid="input-dealership"
+                          data-testid="input-company"
                         />
                       </FormControl>
                       <FormMessage />

@@ -70,7 +70,7 @@ export function DemoBookingModal({ open, onOpenChange }: DemoBookingModalProps) 
       name: "",
       email: "",
       phone: "",
-      dealership: "",
+      company: "",
       date: undefined,
       time: "",
     },
@@ -83,7 +83,7 @@ export function DemoBookingModal({ open, onOpenChange }: DemoBookingModalProps) 
     onSuccess: () => {
       toast({
         title: "Demo Booked Successfully!",
-        description: "We'll see you at NADA Show 2026, Booth 6760N. Check your email for confirmation.",
+        description: "Check your email for confirmation and next steps.",
       });
       reset();
       setTimeout(() => {
@@ -125,11 +125,9 @@ export function DemoBookingModal({ open, onOpenChange }: DemoBookingModalProps) 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]" data-testid="dialog-demo-booking">
         <DialogHeader>
-          <DialogTitle className="text-2xl">Book Your NADA Demo</DialogTitle>
+          <DialogTitle className="text-2xl">Book a Demo</DialogTitle>
           <DialogDescription className="text-base">
-            Reserve your exclusive demo at Booth 6760N
-            <br />
-            February 4-6, 2026 | Las Vegas
+            Schedule a personalized demonstration of our services
           </DialogDescription>
         </DialogHeader>
 
@@ -176,15 +174,15 @@ export function DemoBookingModal({ open, onOpenChange }: DemoBookingModalProps) 
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="dealership">Dealership Name *</Label>
+            <Label htmlFor="company">Company Name *</Label>
             <Input
-              id="dealership"
-              placeholder="Your Dealership"
-              {...register("dealership")}
-              data-testid="input-booking-dealership"
+              id="company"
+              placeholder="Acme Inc."
+              {...register("company")}
+              data-testid="input-booking-company"
             />
-            {errors.dealership && (
-              <p className="text-sm text-destructive">{errors.dealership.message}</p>
+            {errors.company && (
+              <p className="text-sm text-destructive">{errors.company.message}</p>
             )}
           </div>
 

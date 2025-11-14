@@ -1,63 +1,80 @@
-import { type User, type UpsertUser, type LeadSubmission, type InsertLeadSubmission } from "@shared/schema";
-import { db } from "./db";
-import { users, leadSubmissions } from "@shared/schema";
-import { eq, desc, and } from "drizzle-orm";
+import { type LeadSubmission, type LeadFormSubmission, type DemoBookingSubmission, type DemoBooking } from "@shared/schema";
+import { nanoid } from "nanoid";
 
+// Storage interface for lead forms and demo bookings
 export interface IStorage {
-  // User operations for Replit Auth
-  getUser(id: string): Promise<User | undefined>;
-  upsertUser(user: UpsertUser): Promise<User>;
-  
-  // Lead submission operations
-  createLeadSubmission(submission: InsertLeadSubmission): Promise<LeadSubmission>;
+  // Lead form operations
+  createLeadSubmission(submission: LeadFormSubmission): Promise<LeadSubmission>;
   updateLeadSubmissionEmailStatus(id: string, emailSent: boolean, emailError?: string): Promise<void>;
-  getAllLeadSubmissions(limit?: number): Promise<LeadSubmission[]>;
+  getAllLeadSubmissions(): Promise<LeadSubmission[]>;
+  
+  // Demo booking operations
+  createDemoBooking(booking: DemoBooking): Promise<DemoBookingSubmission>;
+  updateDemoBookingEmailStatus(id: string, emailSent: boolean, emailError?: string): Promise<void>;
+  getAllDemoBookings(): Promise<DemoBookingSubmission[]>;
 }
 
-export class DbStorage implements IStorage {
-  async getUser(id: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, id)).limit(1);
-    return user;
-  }
+// In-memory storage implementation (default for template)
+export class MemStorage implements IStorage {
+  private leadSubmissions: Map<string, LeadSubmission> = new Map();
+  private demoBookings: Map<string, DemoBookingSubmission> = new Map();
 
-  async upsertUser(userData: UpsertUser): Promise<User> {
-    const [user] = await db
-      .insert(users)
-      .values(userData)
-      .onConflictDoUpdate({
-        target: users.id,
-        set: {
-          ...userData,
-          updatedAt: new Date(),
-        },
-      })
-      .returning();
-    return user;
-  }
-
-  async createLeadSubmission(submission: InsertLeadSubmission): Promise<LeadSubmission> {
-    const [newSubmission] = await db.insert(leadSubmissions).values(submission).returning();
-    return newSubmission;
+  async createLeadSubmission(submission: LeadFormSubmission): Promise<LeadSubmission> {
+    const leadSubmission: LeadSubmission = {
+      ...submission,
+      id: nanoid(),
+      submittedAt: new Date().toISOString(),
+      emailSent: false,
+    };
+    
+    this.leadSubmissions.set(leadSubmission.id, leadSubmission);
+    return leadSubmission;
   }
 
   async updateLeadSubmissionEmailStatus(id: string, emailSent: boolean, emailError?: string): Promise<void> {
-    await db.update(leadSubmissions)
-      .set({ 
-        emailSent, 
-        emailError: emailError || null 
-      })
-      .where(eq(leadSubmissions.id, id));
+    const submission = this.leadSubmissions.get(id);
+    if (submission) {
+      submission.emailSent = emailSent;
+      if (emailError !== undefined) {
+        submission.emailError = emailError;
+      }
+      this.leadSubmissions.set(id, submission);
+    }
   }
 
-  async getAllLeadSubmissions(limit?: number): Promise<LeadSubmission[]> {
-    let query = db.select().from(leadSubmissions).orderBy(desc(leadSubmissions.submittedAt));
+  async getAllLeadSubmissions(): Promise<LeadSubmission[]> {
+    return Array.from(this.leadSubmissions.values())
+      .sort((a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
+  }
+
+  async createDemoBooking(booking: DemoBooking): Promise<DemoBookingSubmission> {
+    const demoBooking: DemoBookingSubmission = {
+      ...booking,
+      id: nanoid(),
+      submittedAt: new Date().toISOString(),
+      emailSent: false,
+    };
     
-    if (limit) {
-      query = query.limit(limit) as any;
+    this.demoBookings.set(demoBooking.id, demoBooking);
+    return demoBooking;
+  }
+
+  async updateDemoBookingEmailStatus(id: string, emailSent: boolean, emailError?: string): Promise<void> {
+    const booking = this.demoBookings.get(id);
+    if (booking) {
+      booking.emailSent = emailSent;
+      if (emailError !== undefined) {
+        booking.emailError = emailError;
+      }
+      this.demoBookings.set(id, booking);
     }
-    
-    return await query;
+  }
+
+  async getAllDemoBookings(): Promise<DemoBookingSubmission[]> {
+    return Array.from(this.demoBookings.values())
+      .sort((a, b) => new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime());
   }
 }
 
-export const storage = new DbStorage();
+// Export default storage instance
+export const storage = new MemStorage();

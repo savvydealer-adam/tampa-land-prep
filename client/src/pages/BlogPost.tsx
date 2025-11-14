@@ -70,15 +70,15 @@ export default function BlogPost() {
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Savvy Dealer",
+      "name": "Your Company Name",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.savvydealer.com/logo.png"
+        "url": "https://yoursite.com/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.savvydealer.com/blog/${post.slug}`
+      "@id": `https://yoursite.com/blog/${post.slug}`
     },
     "articleSection": post.category || undefined
   } : null;
@@ -91,13 +91,13 @@ export default function BlogPost() {
     <div className="flex min-h-screen flex-col">
       {post && (
         <Helmet>
-          <title>{post.title} | Savvy Dealer Blog</title>
+          <title>{post.title} | Blog</title>
           <meta name="description" content={post.excerpt} />
           
           <meta property="og:title" content={post.title} />
           <meta property="og:description" content={post.excerpt} />
           <meta property="og:type" content="article" />
-          <meta property="og:url" content={`https://www.savvydealer.com/blog/${post.slug}`} />
+          <meta property="og:url" content={`https://yoursite.com/blog/${post.slug}`} />
           {post.featuredImage && (
             <meta property="og:image" content={post.featuredImage} />
           )}

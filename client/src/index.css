@@ -388,8 +388,8 @@
     scroll-margin-top: 5rem;
   }
 
-  /* NADA Show Highlight Animation - Subtle pulse and glow for first few seconds */
-  @keyframes nada-highlight {
+  /* Highlight Animation - Subtle pulse and glow effect */
+  @keyframes highlight-pulse {
     0%, 100% {
       transform: scale(1);
       box-shadow: 0 0 0 0 transparent;
@@ -400,14 +400,14 @@
     }
   }
 
-  .nada-highlight-animation {
-    animation: nada-highlight 2s ease-in-out 2;
+  .highlight-animation {
+    animation: highlight-pulse 2s ease-in-out 2;
     animation-fill-mode: both;
   }
 
   /* Respect reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
-    .nada-highlight-animation {
+    .highlight-animation {
       animation: none;
     }
   }

@@ -1,15 +1,11 @@
 import { Link } from "wouter";
-import { Facebook, Linkedin } from "lucide-react";
-import logoImage from "@assets/savvy-dealer-logo_1762641721511.png";
 
 export function Footer() {
-  const productLinks = [
-    { label: "Facebook Ads", href: "/facebook-ads" },
-    { label: "PPC Ads", href: "/ppc-ads" },
-    { label: "Dealer SEO", href: "/dealer-seo" },
-    { label: "Dealer Websites", href: "/dealer-websites" },
-    { label: "Independent Dealer Websites", href: "/independent-dealer-websites" },
-    { label: "Attribution AI", href: "/attribution-ai" },
+  const companyLinks = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Blog", href: "/blog" },
   ];
 
   return (
@@ -19,47 +15,21 @@ export function Footer() {
           <div className="space-y-6">
             <Link 
               href="/" 
-              className="flex items-center" 
+              className="flex items-center text-2xl font-bold" 
               data-testid="link-footer-home"
-              aria-label="Savvy Dealer home"
+              aria-label="Home"
             >
-              <img 
-                src={logoImage} 
-                alt="Savvy Dealer logo" 
-                className="h-10 w-auto invert dark:invert-0"
-              />
+              Your Company
             </Link>
             <p className="text-muted-foreground max-w-xs">
-              Digital marketing for auto dealers. We don't outspend the competition — we outsmart them.
+              Replace this tagline with your company's value proposition or mission statement.
             </p>
-            <div className="flex gap-4">
-              <a
-                href="https://facebook.com/savvydealer/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
-                aria-label="Visit Savvy Dealer on Facebook"
-                data-testid="link-social-facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="https://linkedin.com/company/savvy-dealer/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
-                aria-label="Visit Savvy Dealer on LinkedIn"
-                data-testid="link-social-linkedin"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
           </div>
 
           <div>
-            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide">Products</h3>
+            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide">Company</h3>
             <ul className="space-y-4">
-              {productLinks.map((link) => (
+              {companyLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
@@ -74,70 +44,16 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide">Company</h3>
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                  data-testid="link-footer-blog"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                  data-testid="link-footer-about"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy-policy"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                  data-testid="link-footer-privacy"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/end-user-agreement"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                  data-testid="link-footer-terms"
-                >
-                  End User Agreement
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="tel:8135013229"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                  data-testid="link-footer-phone"
-                >
-                  (813) 501-3229
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:support@savvydealer.com"
-                  className="text-muted-foreground transition-colors hover:text-foreground"
-                  data-testid="link-footer-email"
-                >
-                  support@savvydealer.com
-                </a>
-              </li>
+            <h3 className="mb-6 text-sm font-semibold uppercase tracking-wide">Contact</h3>
+            <ul className="space-y-4 text-muted-foreground">
+              <li>contact@yourcompany.com</li>
+              <li>555-0000</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-16 border-t pt-8">
-          <p className="text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} SavvyDealer. All rights reserved.
-          </p>
+        <div className="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
         </div>
       </div>
     </footer>

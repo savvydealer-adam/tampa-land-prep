@@ -18,11 +18,11 @@ interface SEOProps {
   schemas?: Record<string, any> | Record<string, any>[];
 }
 
-const defaultTitle = "Savvy Dealer - Digital Marketing for Automotive Dealerships";
+const defaultTitle = "Your Company Name";
 const defaultDescription =
-  "Expert digital marketing for car dealerships. Specializing in Facebook Ads, PPC, SEO/GEO optimization, and AI-powered dealer websites. We don't outspend the competition—we outsmart them.";
-const defaultOgImage = "https://savvydealer.com/og-image.jpg";
-const siteUrl = "https://savvydealer.com";
+  "Replace this with your company description. Explain what you do and why customers should choose you.";
+const defaultOgImage = "https://yoursite.com/og-image.jpg";
+const siteUrl = "https://yoursite.com";
 
 export function SEO({
   title,
@@ -36,7 +36,7 @@ export function SEO({
   article,
   schemas,
 }: SEOProps) {
-  const fullTitle = title ? `${title} | Savvy Dealer` : defaultTitle;
+  const fullTitle = title || defaultTitle;
   const canonicalUrl = canonical || siteUrl;
   const schemaArray = schemas ? (Array.isArray(schemas) ? schemas : [schemas]) : [];
 
@@ -54,7 +54,7 @@ export function SEO({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content={ogImageWidth} />
       <meta property="og:image:height" content={ogImageHeight} />
-      <meta property="og:site_name" content="Savvy Dealer" />
+      <meta property="og:site_name" content="Your Company Name" />
       <meta property="og:locale" content="en_US" />
 
       <meta name="twitter:card" content="summary_large_image" />
@@ -88,26 +88,21 @@ export function SEO({
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],
-  "@id": "https://savvydealer.com/#organization",
-  "name": "Savvy Dealer",
-  "url": "https://savvydealer.com",
+  "@id": "https://yoursite.com/#organization",
+  "name": "Your Company Name",
+  "url": "https://yoursite.com",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://savvydealer.com/logo.png",
+    "url": "https://yoursite.com/logo.png",
   },
   "description":
-    "Expert digital marketing agency specializing in automotive dealership marketing, including Facebook Ads, PPC, SEO/GEO optimization, and AI-powered dealer websites.",
-  "email": "support@savvydealer.com",
+    "Replace with your company description. Explain what you do and what makes you unique.",
+  "email": "contact@yourcompany.com",
   "foundingDate": "2020",
   "knowsAbout": [
-    "Automotive Marketing",
-    "Digital Advertising",
-    "Search Engine Optimization",
-    "Pay-Per-Click Advertising",
-    "Social Media Marketing",
-    "Generative Engine Optimization",
-    "Facebook Advertising",
-    "Dealer Websites",
+    "Your",
+    "Areas of",
+    "Expertise",
   ],
   "areaServed": {
     "@type": "Country",
@@ -116,16 +111,9 @@ export const organizationSchema = {
   "contactPoint": [
     {
       "@type": "ContactPoint",
-      "telephone": "+1-555-SAVVY-01",
+      "telephone": "+1-555-0000",
       "contactType": "customer support",
-      "email": "support@savvydealer.com",
-      "availableLanguage": ["English"],
-    },
-    {
-      "@type": "ContactPoint",
-      "telephone": "+1-555-SAVVY-01",
-      "contactType": "sales",
-      "email": "support@savvydealer.com",
+      "email": "contact@yourcompany.com",
       "availableLanguage": ["English"],
     },
   ],
@@ -142,13 +130,13 @@ export function createServiceSchema(service: {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": `https://savvydealer.com${service.url}#service`,
+    "@id": `${siteUrl}${service.url}#service`,
     "serviceType": service.name,
     "name": service.name,
     "description": service.description,
-    "url": `https://savvydealer.com${service.url}`,
+    "url": `${siteUrl}${service.url}`,
     "provider": {
-      "@id": "https://savvydealer.com/#organization",
+      "@id": `${siteUrl}/#organization`,
     },
     "areaServed": {
       "@type": "Country",
@@ -176,23 +164,23 @@ export function createBlogPostSchema(article: {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "@id": `https://savvydealer.com${article.url}#article`,
+    "@id": `${siteUrl}${article.url}#article`,
     "headline": article.headline,
     "description": article.description,
-    "url": `https://savvydealer.com${article.url}`,
+    "url": `${siteUrl}${article.url}`,
     "datePublished": article.publishedDate,
     "dateModified": article.modifiedDate || article.publishedDate,
     "author": {
       "@type": "Person",
-      "name": article.author || "Savvy Dealer Team",
+      "name": article.author || "Your Company Team",
     },
     "publisher": {
-      "@id": "https://savvydealer.com/#organization",
+      "@id": `${siteUrl}/#organization`,
     },
     "image": article.image || defaultOgImage,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://savvydealer.com${article.url}`,
+      "@id": `${siteUrl}${article.url}`,
     },
   };
 }
@@ -209,7 +197,7 @@ export function createPersonSchema(person: {
     "name": person.name,
     "jobTitle": person.jobTitle,
     "worksFor": {
-      "@id": "https://savvydealer.com/#organization",
+      "@id": `${siteUrl}/#organization`,
     },
     ...(person.description && { "description": person.description }),
     ...(person.email && { "email": person.email }),
