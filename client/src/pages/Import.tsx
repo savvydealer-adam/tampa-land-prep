@@ -44,9 +44,11 @@ export default function Import() {
   const analyzeMutation = useMutation({
     mutationFn: async (domain: string) => {
       const response = await apiRequest("POST", "/api/import/analyze", { domain });
+      console.log("[Import] API Response:", response);
       return response as unknown as AnalysisResult;
     },
     onSuccess: (data) => {
+      console.log("[Import] Analysis Result:", data);
       setAnalysisResult(data);
       toast({
         title: "Analysis Complete!",
