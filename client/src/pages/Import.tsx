@@ -50,7 +50,7 @@ export default function Import() {
       setAnalysisResult(data);
       toast({
         title: "Analysis Complete!",
-        description: `Found ${data.totalPages} pages (${data.blogPosts.length} blog posts)`,
+        description: `Found ${data.totalPages || 0} pages (${data.blogPosts?.length || 0} blog posts)`,
       });
     },
     onError: (error: Error) => {
