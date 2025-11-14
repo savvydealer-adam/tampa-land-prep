@@ -4,7 +4,7 @@ hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["xorg.libxcb", "xorg.libX11", "xorg.libXcomposite", "xorg.libXdamage", "xorg.libXext", "xorg.libXfixes", "xorg.libXrandr", "glib", "nspr", "nss", "dbus", "atk", "at-spi2-atk", "cups", "libxkbcommon", "pango", "cairo", "alsa-lib"]
+packages = ["xorg.libxcb", "xorg.libX11", "xorg.libXcomposite", "xorg.libXdamage", "xorg.libXext", "xorg.libXfixes", "xorg.libXrandr", "glib", "nspr", "nss", "dbus", "atk", "at-spi2-atk", "cups", "libxkbcommon", "pango", "cairo", "alsa-lib", "playwright-driver", "chromium"]
 
 [deployment]
 deploymentTarget = "autoscale"
@@ -22,10 +22,6 @@ externalPort = 3001
 [[ports]]
 localPort = 36857
 externalPort = 8080
-
-[[ports]]
-localPort = 36911
-externalPort = 8099
 
 [[ports]]
 localPort = 37027
