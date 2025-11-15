@@ -59,8 +59,8 @@ export default function About() {
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        title="About Us | Tampa Land Prep - Professional Land Preparation Experts"
-        description="Tampa Land Prep provides professional land clearing, grading, and site preparation services throughout Tampa, Land O' Lakes, and Lutz. Licensed, insured, and experienced."
+        title="Tampa Land Prep | Licensed Land Clearing & Excavation Contractor Tampa"
+        description="Licensed land clearing & excavation contractor in Tampa. Professional site preparation, grading services for Tampa, Land O' Lakes, Lutz since 2010."
         ogType="website"
       />
       <Header />
