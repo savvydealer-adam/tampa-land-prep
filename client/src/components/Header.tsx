@@ -4,6 +4,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import logoImage from "@assets/images/logo-green.png";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -20,10 +21,8 @@ export function Header() {
 
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
-    { label: "Blog", href: "/blog" },
-    { label: "Import", href: "/import" },
+    { label: "About", href: "/about" },
   ];
 
   return (
@@ -31,11 +30,15 @@ export function Header() {
       <div className={`container mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-300 sm:px-8 lg:px-12 ${scrolled ? 'h-16' : 'h-20'}`}>
         <Link 
           href="/" 
-          className="text-2xl font-bold" 
+          className="flex items-center" 
           data-testid="link-home"
-          aria-label="Home"
+          aria-label="Tampa Land Prep Home"
         >
-          Your Company
+          <img 
+            src={logoImage} 
+            alt="Tampa Land Prep" 
+            className={`transition-all duration-300 ${scrolled ? 'h-10' : 'h-12'}`}
+          />
         </Link>
 
         <nav aria-label="Main navigation" className="hidden items-center gap-6 md:flex">
@@ -51,7 +54,7 @@ export function Header() {
           ))}
           <ThemeToggle />
           <Button onClick={openLeadForm} size="sm" className="ml-2" data-testid="button-header-contact">
-            Contact Us
+            Get a Quote
           </Button>
         </nav>
 
@@ -85,7 +88,7 @@ export function Header() {
               </Link>
             ))}
             <Button onClick={() => { openLeadForm(); setMobileMenuOpen(false); }} className="w-full" data-testid="button-mobile-contact">
-              Contact Us
+              Get a Quote
             </Button>
           </nav>
         </div>

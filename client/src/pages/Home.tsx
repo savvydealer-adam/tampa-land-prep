@@ -4,29 +4,50 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { Rocket, Users, Target, Zap } from "lucide-react";
+import { Link } from "wouter";
+import { Truck, Trees, Mountain, Hammer, Phone, MapPin } from "lucide-react";
+import heroImage from "@assets/images/arable_agriculture_agricultural_tractor_agricultural_agro_photo_agrartechnik_agricultural_economics_cultivation-1208095.jpg";
+import landClearingImg from "@assets/images/land-clearing.jpg";
+import gradingImg from "@assets/images/grading-levelling.jpg";
+import brushRemovalImg from "@assets/images/brush-removal.jpg";
+import soilCompactionImg from "@assets/images/soil-compaction.jpg";
+import drivewayPrepImg from "@assets/images/driveway-prep.png";
+import tampaMap from "@assets/images/Tampa-Fla.webp";
 
-const features = [
+const services = [
   {
-    icon: Rocket,
-    title: "Fast & Reliable",
-    description: "Built with modern technologies for optimal performance"
+    icon: Trees,
+    title: "Land Clearing",
+    description: "Professional land clearing services to prepare your property for development or agriculture",
+    image: landClearingImg
   },
   {
-    icon: Users,
-    title: "User Focused",
-    description: "Designed with your customers in mind"
+    icon: Mountain,
+    title: "Grading & Leveling",
+    description: "Expert grading and leveling to ensure proper drainage and site preparation",
+    image: gradingImg
   },
   {
-    icon: Target,
-    title: "Results Driven",
-    description: "Focused on delivering measurable outcomes"
+    icon: Truck,
+    title: "Brush Removal",
+    description: "Complete brush and debris removal for clean, ready-to-use land",
+    image: brushRemovalImg
   },
   {
-    icon: Zap,
-    title: "Easy to Use",
-    description: "Intuitive interface that just works"
+    icon: Hammer,
+    title: "Soil Compaction",
+    description: "Professional soil compaction for stable foundations and construction",
+    image: soilCompactionImg
   },
+];
+
+const serviceAreas = [
+  "Tampa",
+  "Land O' Lakes",
+  "Lutz",
+  "Wesley Chapel",
+  "Odessa",
+  "Carrollwood"
 ];
 
 export default function Home() {
@@ -35,97 +56,189 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        title="Home | Your Company Name"
-        description="Your company description goes here. Describe what makes your business unique and why customers should choose you."
+        title="Tampa Land Prep | Professional Land Clearing & Grading Services"
+        description="Professional land preparation services in Tampa, Land O' Lakes, and Lutz. Expert land clearing, grading, leveling, brush removal, and soil compaction."
         ogType="website"
       />
       <Header />
       <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-background to-card py-20 md:py-32">
-          <div className="container mx-auto max-w-4xl px-6 text-center">
+        <section className="relative bg-gradient-to-b from-background to-card py-20 md:py-32">
+          <div 
+            className="absolute inset-0 z-0 opacity-10"
+            style={{
+              backgroundImage: `url(${heroImage})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}
+          />
+          <div className="container relative z-10 mx-auto max-w-4xl px-6 text-center">
             <h1 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-7xl">
-              Welcome to Your Website
+              Professional Land Preparation Services
             </h1>
             <p className="mb-10 text-xl text-muted-foreground md:text-2xl">
-              Replace this with your unique value proposition. Tell visitors what you do and why they should care.
+              Serving Tampa, Land O' Lakes, and Lutz with expert land clearing, grading, and site preparation
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button onClick={openLeadForm} size="lg" className="rounded-full" data-testid="button-hero-cta">
-                Get Started
+                <Phone className="mr-2 h-5 w-5" />
+                Get a Free Quote
               </Button>
-              <Button onClick={() => window.location.href = "/about"} size="lg" variant="outline" className="rounded-full" data-testid="button-hero-learn-more">
-                Learn More
+              <Button asChild size="lg" variant="outline" className="rounded-full" data-testid="button-hero-services">
+                <Link href="/services">Our Services</Link>
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* Services Section */}
         <section className="py-20 md:py-32">
           <div className="container mx-auto max-w-7xl px-6">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
-                Why Choose Us
+                Our Services
               </h2>
               <p className="text-xl text-muted-foreground">
-                The benefits of working with our company
+                Complete land preparation solutions for residential and commercial properties
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {features.map((feature, index) => (
-                <Card key={index} className="text-center" data-testid={`card-feature-${index}`}>
+              {services.map((service, index) => (
+                <Card key={index} className="hover-elevate overflow-hidden" data-testid={`card-service-${index}`}>
+                  <div className="aspect-video w-full overflow-hidden">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
                   <CardHeader>
                     <div className="mb-4 inline-flex justify-center rounded-lg bg-primary/10 p-4">
-                      <feature.icon className="h-8 w-8 text-primary" />
+                      <service.icon className="h-8 w-8 text-primary" />
                     </div>
-                    <CardTitle>{feature.title}</CardTitle>
-                    <CardDescription>{feature.description}</CardDescription>
+                    <CardTitle>{service.title}</CardTitle>
+                    <CardDescription>{service.description}</CardDescription>
                   </CardHeader>
                 </Card>
               ))}
             </div>
+            <div className="mt-12 text-center">
+              <Button asChild size="lg" variant="outline" data-testid="button-view-all-services">
+                <Link href="/services">View All Services</Link>
+              </Button>
+            </div>
           </div>
         </section>
 
-        {/* About Preview Section */}
+        {/* Service Areas Section */}
         <section className="bg-card py-20 md:py-32">
           <div className="container mx-auto max-w-7xl px-6">
             <div className="grid items-center gap-12 lg:grid-cols-2">
               <div>
                 <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
-                  About Our Company
+                  Serving the Greater Tampa Area
                 </h2>
                 <p className="mb-6 text-lg text-muted-foreground">
-                  Add information about your company here. This is a great place to tell your story,
-                  explain your mission, and highlight what makes you different from competitors.
+                  Tampa Land Prep is your trusted partner for professional land preparation services 
+                  throughout the Tampa Bay area. With years of experience and state-of-the-art equipment, 
+                  we deliver exceptional results for residential and commercial projects.
                 </p>
-                <p className="mb-8 text-lg text-muted-foreground">
-                  You can describe your values, your team, your experience, or anything else that
-                  helps visitors understand who you are and why they should trust you.
-                </p>
-                <Button onClick={() => window.location.href = "/about"} size="lg" variant="outline" className="rounded-full" data-testid="button-about-link">
-                  Learn More About Us
+                <div className="mb-8">
+                  <h3 className="mb-4 flex items-center text-xl font-semibold">
+                    <MapPin className="mr-2 h-5 w-5 text-primary" />
+                    Service Areas
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {serviceAreas.map((area, index) => (
+                      <div key={index} className="flex items-center">
+                        <div className="mr-2 h-2 w-2 rounded-full bg-primary" />
+                        <span>{area}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <Button onClick={openLeadForm} size="lg" data-testid="button-service-areas-cta">
+                  Request a Quote
                 </Button>
               </div>
               <div className="flex items-center justify-center">
-                <div className="aspect-square w-full max-w-md rounded-3xl bg-gradient-to-br from-primary/20 to-secondary/20"></div>
+                <img 
+                  src={tampaMap} 
+                  alt="Tampa Florida service area map"
+                  className="w-full max-w-md rounded-3xl shadow-lg"
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* Why Choose Us Section */}
         <section className="py-20 md:py-32">
+          <div className="container mx-auto max-w-7xl px-6">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
+                Why Choose Tampa Land Prep
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Professional service you can trust
+              </p>
+            </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              <Card className="text-center" data-testid="card-benefit-0">
+                <CardHeader>
+                  <CardTitle className="text-4xl font-bold text-primary">15+</CardTitle>
+                  <CardDescription className="text-lg">Years of Experience</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Decades of expertise in land preparation and site development
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="text-center" data-testid="card-benefit-1">
+                <CardHeader>
+                  <CardTitle className="text-4xl font-bold text-primary">100%</CardTitle>
+                  <CardDescription className="text-lg">Licensed & Insured</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Fully licensed, bonded, and insured for your peace of mind
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="text-center" data-testid="card-benefit-2">
+                <CardHeader>
+                  <CardTitle className="text-4xl font-bold text-primary">24/7</CardTitle>
+                  <CardDescription className="text-lg">Customer Support</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    Always available to answer questions and provide support
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="bg-primary py-20 text-primary-foreground md:py-32">
           <div className="container mx-auto max-w-4xl px-6 text-center">
             <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Ready to Get Started?
+              Ready to Start Your Project?
             </h2>
-            <p className="mb-10 text-xl text-muted-foreground">
-              Contact us today to learn how we can help you achieve your goals
+            <p className="mb-10 text-xl opacity-90">
+              Get a free quote today and let us help you prepare your land for success
             </p>
-            <Button onClick={openLeadForm} size="lg" className="rounded-full" data-testid="button-cta-contact">
-              Contact Us
+            <Button 
+              onClick={openLeadForm} 
+              size="lg" 
+              variant="secondary"
+              className="rounded-full" 
+              data-testid="button-cta-contact"
+            >
+              <Phone className="mr-2 h-5 w-5" />
+              Contact Us Now
             </Button>
           </div>
         </section>
