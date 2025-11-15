@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
+import Demolition from "@/pages/Demolition";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import Import from "@/pages/Import";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
+      <Route path="/demolition" component={Demolition} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/import" component={Import} />
