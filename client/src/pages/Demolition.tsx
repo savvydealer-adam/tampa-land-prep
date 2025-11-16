@@ -46,11 +46,6 @@ const projectGallery = [
     title: "Demolition Progress"
   },
   { 
-    image: demolition4, 
-    alt: "Before and after demolition site comparison",
-    title: "Before & After"
-  },
-  { 
     image: demolition2, 
     alt: "Cleared and graded lot after demolition completion",
     title: "Completed Project"
