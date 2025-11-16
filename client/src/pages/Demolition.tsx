@@ -33,27 +33,27 @@ const projectGallery = [
   { 
     image: demolition3, 
     alt: "Excavator performing roof demolition on commercial building",
-    title: "Active Demolition Work"
+    title: "Starting Demolition"
+  },
+  { 
+    image: demolition5, 
+    alt: "Partially demolished building showing interior structural removal",
+    title: "Structural Removal"
   },
   { 
     image: demolition1, 
     alt: "Building demolition in progress with debris removal",
-    title: "Structure Removal"
-  },
-  { 
-    image: demolition5, 
-    alt: "Partially demolished building showing interior walls",
-    title: "Selective Demolition"
+    title: "Demolition Progress"
   },
   { 
     image: demolition4, 
     alt: "Before and after demolition site comparison",
-    title: "Complete Project"
+    title: "Before & After"
   },
   { 
     image: demolition2, 
     alt: "Cleared and graded lot after demolition completion",
-    title: "Finished Site"
+    title: "Completed Project"
   }
 ];
 
