@@ -13,6 +13,11 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
 import Demolition from "@/pages/Demolition";
+import Contact from "@/pages/Contact";
+import ServiceArea from "@/pages/ServiceArea";
+import Gallery from "@/pages/Gallery";
+import FAQ from "@/pages/FAQ";
+import Testimonials from "@/pages/Testimonials";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import Import from "@/pages/Import";
@@ -25,6 +30,11 @@ function Router() {
       <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
       <Route path="/demolition" component={Demolition} />
+      <Route path="/contact" component={Contact} />
+      <Route path="/service-area" component={ServiceArea} />
+      <Route path="/gallery" component={Gallery} />
+      <Route path="/faq" component={FAQ} />
+      <Route path="/testimonials" component={Testimonials} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/import" component={Import} />
