@@ -134,7 +134,7 @@ export default function Testimonials() {
         {/* Stats Section */}
         <section className="bg-card py-20 md:py-32">
           <div className="container mx-auto max-w-7xl px-6">
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2">
               <div className="text-center">
                 <div className="mb-4 font-serif text-5xl font-bold text-primary">100+</div>
                 <div className="text-xl font-semibold">Projects Completed</div>
@@ -144,11 +144,6 @@ export default function Testimonials() {
                 <div className="mb-4 font-serif text-5xl font-bold text-primary">5★</div>
                 <div className="text-xl font-semibold">Customer Rating</div>
                 <div className="text-muted-foreground">Consistently Excellent</div>
-              </div>
-              <div className="text-center">
-                <div className="mb-4 font-serif text-5xl font-bold text-primary">15+</div>
-                <div className="text-xl font-semibold">Years Experience</div>
-                <div className="text-muted-foreground">Trusted Professionals</div>
               </div>
             </div>
           </div>

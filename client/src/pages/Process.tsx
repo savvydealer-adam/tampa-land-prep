@@ -178,7 +178,7 @@ export default function Process() {
                 Why Choose Our Process
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-                We've refined our approach over 15+ years to deliver the best possible experience
+                Our proven approach delivers efficient, professional results every time
               </p>
             </div>
 

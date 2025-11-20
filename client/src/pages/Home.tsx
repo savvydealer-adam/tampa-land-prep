@@ -177,18 +177,7 @@ export default function Home() {
                 Professional service you can trust
               </p>
             </div>
-            <div className="grid gap-8 md:grid-cols-3">
-              <Card className="text-center" data-testid="card-benefit-0">
-                <CardHeader>
-                  <CardTitle className="text-4xl font-bold text-primary">15+</CardTitle>
-                  <CardDescription className="text-lg">Years of Experience</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Decades of expertise in land preparation and site development
-                  </p>
-                </CardContent>
-              </Card>
+            <div className="grid gap-8 md:grid-cols-2">
               <Card className="text-center" data-testid="card-benefit-1">
                 <CardHeader>
                   <CardTitle className="text-4xl font-bold text-primary">100%</CardTitle>

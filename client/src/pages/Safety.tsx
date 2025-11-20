@@ -244,12 +244,7 @@ export default function Safety() {
             <h2 className="mb-8 font-serif text-3xl font-bold sm:text-4xl">
               Our Safety Record
             </h2>
-            <div className="grid gap-8 md:grid-cols-3">
-              <div data-testid="stat-years">
-                <div className="mb-2 font-serif text-5xl font-bold text-primary">15+</div>
-                <div className="text-xl font-semibold">Years</div>
-                <div className="text-sm text-muted-foreground">Safe Operations</div>
-              </div>
+            <div className="grid gap-8 md:grid-cols-2">
               <div data-testid="stat-projects">
                 <div className="mb-2 font-serif text-5xl font-bold text-primary">1000+</div>
                 <div className="text-xl font-semibold">Projects</div>

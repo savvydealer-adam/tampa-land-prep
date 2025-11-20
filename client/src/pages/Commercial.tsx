@@ -224,7 +224,7 @@ export default function Commercial() {
               </h2>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2">
               <Card className="text-center" data-testid="card-project-size">
                 <CardHeader>
                   <div className="mb-2 font-serif text-4xl font-bold text-primary">50+</div>
@@ -232,16 +232,6 @@ export default function Commercial() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">Maximum single project capacity</p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center" data-testid="card-equipment">
-                <CardHeader>
-                  <div className="mb-2 font-serif text-4xl font-bold text-primary">15+</div>
-                  <CardTitle className="text-lg">Equipment</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">Heavy machinery fleet available</p>
                 </CardContent>
               </Card>
 
