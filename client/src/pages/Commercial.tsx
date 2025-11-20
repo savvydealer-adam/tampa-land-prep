@@ -15,7 +15,6 @@ const services = [
       "Large-scale land clearing",
       "Mass grading and earthwork",
       "Drainage system installation",
-      "Retention pond and lake excavation",
       "Road and parking lot preparation",
       "Utility corridor clearing"
     ]
@@ -28,7 +27,6 @@ const services = [
       "Site demolition and clearing",
       "Foundation excavation",
       "Parking lot excavation",
-      "Retention pond excavation",
       "Landscaping preparation",
       "Storm water management"
     ]

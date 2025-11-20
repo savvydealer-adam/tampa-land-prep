@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { Trees, Mountain, Truck, Hammer, Home, Waves, CheckCircle2 } from "lucide-react";
+import { Trees, Mountain, Truck, Home, CheckCircle2 } from "lucide-react";
 import landClearingImg from "@assets/images/land-clearing.jpg";
 import gradingImg from "@assets/images/grading-levelling.jpg";
 import brushRemovalImg from "@assets/images/brush-removal.jpg";
@@ -55,19 +55,6 @@ const services = [
     ]
   },
   {
-    icon: Hammer,
-    title: "Soil Compaction",
-    description: "Professional soil compaction services to create stable, solid foundations for buildings, driveways, and other structures.",
-    image: soilCompactionImg,
-    features: [
-      "Heavy-duty compaction equipment",
-      "Foundation stabilization",
-      "Road base preparation",
-      "Erosion control",
-      "Quality testing and verification"
-    ]
-  },
-  {
     icon: Home,
     title: "Driveway Preparation",
     description: "Complete driveway preparation services including excavation, base installation, and finishing for asphalt, concrete, or gravel driveways.",
@@ -78,20 +65,6 @@ const services = [
       "Proper drainage setup",
       "Grade and slope optimization",
       "Ready for paving or finishing"
-    ]
-  },
-  {
-    icon: Waves,
-    title: "Pond & Lake Excavation",
-    description: "Custom pond and lake excavation for decorative water features, retention ponds, fishing ponds, and stormwater management systems.",
-    image: gradingImg,
-    features: [
-      "Decorative pond excavation",
-      "Retention pond construction",
-      "Fishing pond development",
-      "Lake bed grading and shaping",
-      "Shoreline stabilization",
-      "Stormwater management integration"
     ]
   }
 ];

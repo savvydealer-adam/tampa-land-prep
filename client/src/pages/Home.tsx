@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Truck, Trees, Mountain, Hammer, Waves, Phone, MapPin } from "lucide-react";
+import { Truck, Trees, Mountain, Phone, MapPin } from "lucide-react";
 import heroImage from "@assets/images/arable_agriculture_agricultural_tractor_agricultural_agro_photo_agrartechnik_agricultural_economics_cultivation-1208095.jpg";
 import landClearingImg from "@assets/images/land-clearing.jpg";
 import gradingImg from "@assets/images/grading-levelling.jpg";
@@ -32,18 +32,6 @@ const services = [
     title: "Brush Removal",
     description: "Complete brush and debris removal for clean, ready-to-use land",
     image: brushRemovalImg
-  },
-  {
-    icon: Hammer,
-    title: "Soil Compaction",
-    description: "Professional soil compaction for stable foundations and construction",
-    image: soilCompactionImg
-  },
-  {
-    icon: Waves,
-    title: "Pond & Lake Excavation",
-    description: "Custom pond and lake excavation for decorative features and retention systems",
-    image: gradingImg
   },
 ];
 
