@@ -48,8 +48,7 @@ const projects = [
     category: "Site Preparation",
     images: [
       { src: drivewayPrep, alt: "Driveway preparation and base work", title: "Driveway Preparation" },
-      { src: pic3, alt: "Site preparation for new construction", title: "Construction Prep" },
-      { src: pic4, alt: "Foundation preparation work", title: "Foundation Prep" }
+      { src: pic3, alt: "Site preparation for new construction", title: "Construction Prep" }
     ]
   }
 ];
