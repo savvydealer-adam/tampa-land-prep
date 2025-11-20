@@ -22,12 +22,15 @@ export function Header() {
   const navItems = [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
+    { label: "Residential", href: "/residential" },
+    { label: "Commercial", href: "/commercial" },
     { label: "Gallery", href: "/gallery" },
     { label: "About", href: "/about" },
     { label: "Testimonials", href: "/testimonials" },
     { label: "FAQ", href: "/faq" },
     { label: "Service Area", href: "/service-area" },
     { label: "Contact", href: "/contact" },
+    { label: "Free Quote", href: "/free-quote" },
   ];
 
   return (

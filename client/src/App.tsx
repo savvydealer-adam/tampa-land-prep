@@ -21,6 +21,14 @@ import Testimonials from "@/pages/Testimonials";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import Import from "@/pages/Import";
+import Equipment from "@/pages/Equipment";
+import Process from "@/pages/Process";
+import Insurance from "@/pages/Insurance";
+import Safety from "@/pages/Safety";
+import Commercial from "@/pages/Commercial";
+import Residential from "@/pages/Residential";
+import FreeQuote from "@/pages/FreeQuote";
+import Environmental from "@/pages/Environmental";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -29,7 +37,15 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
       <Route path="/services" component={Services} />
+      <Route path="/residential" component={Residential} />
+      <Route path="/commercial" component={Commercial} />
       <Route path="/demolition" component={Demolition} />
+      <Route path="/equipment" component={Equipment} />
+      <Route path="/process" component={Process} />
+      <Route path="/insurance" component={Insurance} />
+      <Route path="/safety" component={Safety} />
+      <Route path="/environmental" component={Environmental} />
+      <Route path="/free-quote" component={FreeQuote} />
       <Route path="/contact" component={Contact} />
       <Route path="/service-area" component={ServiceArea} />
       <Route path="/gallery" component={Gallery} />
