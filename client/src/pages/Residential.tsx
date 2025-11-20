@@ -58,9 +58,7 @@ const services = [
 ];
 
 const benefits = [
-  "Residential specialists with 15+ years experience",
   "Respect for your property and landscaping",
-  "Same-day or next-day service available",
   "Competitive residential pricing",
   "Complete site cleanup included",
   "Licensed and fully insured",
@@ -166,7 +164,7 @@ export default function Residential() {
                 Why Homeowners Choose Us
               </h2>
               <p className="text-lg text-muted-foreground">
-                Trusted by Tampa Bay area homeowners for over 15 years
+                Trusted by Tampa Bay area homeowners for quality land clearing services
               </p>
             </div>
 
