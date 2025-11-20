@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { Home, Trees, Fence, Droplets, CheckCircle2 } from "lucide-react";
+import { Home, Trees, Fence, Droplets, Waves, CheckCircle2 } from "lucide-react";
 
 const services = [
   {
@@ -41,6 +41,18 @@ const services = [
       "Shed and outbuilding foundations",
       "Fence line clearing",
       "Garden bed preparation"
+    ]
+  },
+  {
+    icon: Waves,
+    title: "Pond & Water Features",
+    description: "Custom pond excavation for decorative and functional water features",
+    features: [
+      "Decorative pond excavation",
+      "Fishing pond construction",
+      "Koi pond development",
+      "Pond liner preparation",
+      "Natural pond restoration"
     ]
   },
   {
