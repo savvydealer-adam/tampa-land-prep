@@ -12,6 +12,7 @@ import gradingImg from "@assets/images/grading-levelling.jpg";
 import brushRemovalImg from "@assets/images/brush-removal.jpg";
 import soilCompactionImg from "@assets/images/soil-compaction.jpg";
 import drivewayPrepImg from "@assets/images/driveway-prep.png";
+import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
 import tampaMap from "@assets/images/Tampa-Fla.webp";
 
 const services = [
@@ -19,7 +20,7 @@ const services = [
     icon: Hammer,
     title: "Demolition",
     description: "Professional building demolition and site remediation services",
-    image: drivewayPrepImg
+    image: demolitionImg
   },
   {
     icon: Trees,
