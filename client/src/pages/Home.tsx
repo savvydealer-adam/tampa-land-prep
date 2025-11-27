@@ -13,7 +13,7 @@ import brushRemovalImg from "@assets/images/brush-removal.jpg";
 import soilCompactionImg from "@assets/images/soil-compaction.jpg";
 import drivewayPrepImg from "@assets/images/driveway-prep.png";
 import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
-import tampaMap from "@assets/images/Tampa-Fla.webp";
+import { FloridaCountyMap } from "@/components/FloridaCountyMap";
 
 const services = [
   {
@@ -163,11 +163,7 @@ export default function Home() {
                 </Button>
               </div>
               <div className="flex items-center justify-center">
-                <img 
-                  src={tampaMap} 
-                  alt="Tampa Florida service area map"
-                  className="w-full max-w-md rounded-3xl shadow-lg"
-                />
+                <FloridaCountyMap className="w-full max-w-lg" />
               </div>
             </div>
           </div>
