@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { MapPin, CheckCircle2 } from "lucide-react";
+import serviceAreasMap from "@assets/service areas_1764272106686.jpg";
 
 const primaryAreas = [
   {
@@ -58,12 +59,34 @@ export default function ServiceArea() {
           </div>
         </section>
 
+        {/* Service Area Map */}
+        <section className="bg-card py-20 md:py-32">
+          <div className="container mx-auto max-w-5xl px-6">
+            <div className="mb-12 text-center">
+              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
+                Counties We Serve
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Proudly serving Hillsborough, Pasco, Pinellas, and Hernando counties
+              </p>
+            </div>
+            <div className="mx-auto max-w-3xl">
+              <img
+                src={serviceAreasMap}
+                alt="Tampa Land Prep service area map showing Hillsborough, Pasco, Pinellas, and Hernando counties highlighted in green"
+                className="w-full rounded-lg shadow-lg"
+                data-testid="img-service-area-map"
+              />
+            </div>
+          </div>
+        </section>
+
         {/* Primary Service Areas */}
         <section className="py-20 md:py-32">
           <div className="container mx-auto max-w-7xl px-6">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                Primary Service Areas
+                Cities & Communities
               </h2>
               <p className="text-xl text-muted-foreground">
                 Providing expert land clearing and site preparation throughout these communities
