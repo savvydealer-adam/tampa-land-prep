@@ -13,7 +13,7 @@ import brushRemovalImg from "@assets/images/brush-removal.jpg";
 import soilCompactionImg from "@assets/images/soil-compaction.jpg";
 import drivewayPrepImg from "@assets/images/driveway-prep.png";
 import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
-import { FloridaCountyMap } from "@/components/FloridaCountyMap";
+import serviceAreasMap from "@assets/service areas_1764272106686.jpg";
 
 const services = [
   {
@@ -163,7 +163,12 @@ export default function Home() {
                 </Button>
               </div>
               <div className="flex items-center justify-center">
-                <FloridaCountyMap className="w-full max-w-lg" />
+                <img
+                  src={serviceAreasMap}
+                  alt="Tampa Land Prep service area map showing Hillsborough, Pasco, Pinellas, and Hernando counties"
+                  className="w-full max-w-lg rounded-lg shadow-lg"
+                  data-testid="img-service-area-map"
+                />
               </div>
             </div>
           </div>
