@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Truck, Trees, Mountain, Phone, MapPin } from "lucide-react";
+import { Truck, Trees, Mountain, Hammer, Phone, MapPin } from "lucide-react";
 import heroImage from "@assets/images/arable_agriculture_agricultural_tractor_agricultural_agro_photo_agrartechnik_agricultural_economics_cultivation-1208095.jpg";
 import landClearingImg from "@assets/images/land-clearing.jpg";
 import gradingImg from "@assets/images/grading-levelling.jpg";
@@ -15,6 +15,12 @@ import drivewayPrepImg from "@assets/images/driveway-prep.png";
 import tampaMap from "@assets/images/Tampa-Fla.webp";
 
 const services = [
+  {
+    icon: Hammer,
+    title: "Demolition",
+    description: "Professional building demolition and site remediation services",
+    image: drivewayPrepImg
+  },
   {
     icon: Trees,
     title: "Land Clearing",
