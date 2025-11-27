@@ -68,7 +68,7 @@ export default function Home() {
           />
           <div className="container relative z-10 mx-auto max-w-4xl px-6 text-center">
             <h1 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-7xl">
-              Professional Land Preparation Services
+              Tampa Land Preparation
             </h1>
             <p className="mb-10 text-xl text-muted-foreground md:text-2xl">
               Serving Tampa, Land O' Lakes, and Lutz with expert land clearing, grading, and site preparation
