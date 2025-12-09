@@ -33,14 +33,14 @@ const services = [
   },
   {
     icon: Fence,
-    title: "Property Improvement",
-    description: "Land preparation for pools, additions, and outdoor living spaces",
+    title: "Outdoor Living Preparation",
+    description: "Land preparation for patios, decks, and outdoor improvements",
     features: [
-      "Pool excavation",
       "Patio and deck site prep",
       "Shed and outbuilding foundations",
       "Fence line clearing",
-      "Garden bed preparation"
+      "Equipment pad preparation",
+      "Fire pit and seating area grading"
     ]
   },
   {
@@ -73,9 +73,9 @@ const projects = [
     description: "1.5-acre lot clearing, grading, and driveway preparation for custom home construction"
   },
   {
-    title: "Backyard Pool",
+    title: "Patio & Outdoor Space",
     location: "Lutz",
-    description: "Pool excavation and patio area grading for residential swimming pool installation"
+    description: "Complete site clearing and grading for patio installation and outdoor living space"
   },
   {
     title: "Drainage Solution",
@@ -96,7 +96,7 @@ export default function Residential() {
     <div className="flex min-h-screen flex-col">
       <SEO
         title="Tampa Land Prep | Residential Land Clearing - Homeowner Services"
-        description="Residential land clearing in Tampa Bay. Lot clearing, home site preparation, pool excavation, and drainage solutions for homeowners. Free quotes."
+        description="Residential land clearing in Tampa Bay. Lot clearing, home site preparation, outdoor living spaces, and drainage solutions for homeowners. Free quotes."
         ogType="website"
       />
       <Header />
@@ -232,14 +232,14 @@ export default function Residential() {
                 </CardContent>
               </Card>
 
-              <Card data-testid="card-pool-installation">
+              <Card data-testid="card-outdoor-living">
                 <CardHeader>
-                  <CardTitle>Pool & Outdoor Living</CardTitle>
+                  <CardTitle>Patios & Outdoor Living</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="mb-3 text-muted-foreground">
-                    Planning a pool, patio, or outdoor kitchen? We excavate for pools, grade for patios and decks, 
-                    and prepare the perfect foundation for your outdoor living space.
+                    Planning a patio, deck, or outdoor kitchen? We grade the perfect foundation for patios and decks, 
+                    prepare equipment pads, and create the ideal setting for your outdoor living space.
                   </p>
                   <p className="text-sm font-semibold text-primary">Typical timeline: 1-3 days</p>
                 </CardContent>
