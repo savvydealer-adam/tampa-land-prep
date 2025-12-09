@@ -10,9 +10,6 @@ import gradingImg from "@assets/images/grading-levelling.jpg";
 import brushRemovalImg from "@assets/images/brush-removal.jpg";
 import soilCompactionImg from "@assets/images/soil-compaction.jpg";
 import drivewayPrepImg from "@assets/images/driveway-prep.png";
-import asphaltImg from "@assets/images/asphalt.png";
-import brickImg from "@assets/images/brick.png";
-import gravelImg from "@assets/images/gravel.png";
 
 const services = [
   {
@@ -69,23 +66,6 @@ const services = [
   }
 ];
 
-const materials = [
-  {
-    title: "Asphalt",
-    description: "Professional asphalt installation and repair for driveways and parking areas",
-    image: asphaltImg
-  },
-  {
-    title: "Brick Pavers",
-    description: "Decorative brick paver installation for patios, walkways, and driveways",
-    image: brickImg
-  },
-  {
-    title: "Gravel",
-    description: "Gravel installation and grading for driveways, pathways, and drainage",
-    image: gravelImg
-  }
-];
 
 export default function Services() {
   const { openLeadForm } = useLeadForm();
@@ -165,36 +145,6 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Materials & Surfacing */}
-        <section className="bg-card py-20 md:py-32">
-          <div className="container mx-auto max-w-7xl px-6">
-            <div className="mb-16 text-center">
-              <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                Materials & Surfacing
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Professional installation of various surface materials
-              </p>
-            </div>
-            <div className="grid gap-8 md:grid-cols-3">
-              {materials.map((material, index) => (
-                <Card key={index} className="hover-elevate overflow-hidden" data-testid={`card-material-${index}`}>
-                  <div className="aspect-video w-full overflow-hidden">
-                    <img 
-                      src={material.image} 
-                      alt={material.title}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <CardHeader>
-                    <CardTitle className="text-xl">{material.title}</CardTitle>
-                    <CardDescription>{material.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Why Choose Us */}
         <section className="py-20 md:py-32">
