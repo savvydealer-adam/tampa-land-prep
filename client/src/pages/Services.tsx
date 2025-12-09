@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { Trees, Mountain, Truck, Home, CheckCircle2 } from "lucide-react";
+import { Building2, Trees, Mountain, Truck, Home, CheckCircle2 } from "lucide-react";
+import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
 import landClearingImg from "@assets/images/land-clearing.jpg";
 import gradingImg from "@assets/images/grading-levelling.jpg";
 import brushRemovalImg from "@assets/images/brush-removal.jpg";
@@ -12,6 +13,19 @@ import soilCompactionImg from "@assets/images/soil-compaction.jpg";
 import drivewayPrepImg from "@assets/images/driveway-prep.png";
 
 const services = [
+  {
+    icon: Building2,
+    title: "Demolition",
+    description: "Professional demolition services for residential and commercial structures. Complete building removal with site preparation and debris cleanup.",
+    image: demolitionImg,
+    features: [
+      "Residential & commercial demolition",
+      "Selective interior demolition",
+      "Structural component removal",
+      "Complete debris removal",
+      "Site grading and cleanup"
+    ]
+  },
   {
     icon: Trees,
     title: "Land Clearing",
@@ -73,8 +87,8 @@ export default function Services() {
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        title="Tampa Land Prep Services | Land Clearing, Grading & Site Preparation"
-        description="Land clearing, grading, excavation & site prep in Tampa Bay. Expert brush removal, soil compaction, driveway prep. Tampa, Land O' Lakes, Lutz."
+        title="Tampa Land Prep Services | Demolition, Land Clearing & Site Preparation"
+        description="Building demolition, land clearing, grading & site prep in Tampa Bay. Expert brush removal, driveway prep. Licensed contractor Tampa, Land O' Lakes, Lutz."
         ogType="website"
       />
       <Header />
