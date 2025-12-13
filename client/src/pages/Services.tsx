@@ -9,7 +9,7 @@ import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
 import homeSitePrepImg from "@assets/image_1765658633013.png";
 import landClearingImg from "@assets/images/land-clearing-new.webp";
 import gradingImg from "@assets/images/grading-new.webp";
-import brushRemovalImg from "@assets/images/brush-removal.jpg";
+import brushRemovalImg from "@assets/images/brush-removal-new.webp";
 import soilCompactionImg from "@assets/images/soil-compaction.jpg";
 import drivewayPrepImg from "@assets/images/driveway-prep-new.webp";
 
