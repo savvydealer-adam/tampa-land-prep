@@ -5,18 +5,24 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Building2, Hammer, Truck, ArrowLeft } from "lucide-react";
+import { Building2, Hammer, Truck, ArrowLeft, Home } from "lucide-react";
 import demolition1 from "@assets/IMG_8568_1763230705199.jpeg";
 import demolition2 from "@assets/IMG_8583_1763230705199.jpeg";
 import demolition3 from "@assets/IMG_8540_1763230705199.jpeg";
 import demolition4 from "@assets/9EDD5C1A-DDCC-494E-AAEA-39750D21F447_1763230705199.jpeg";
 import demolition5 from "@assets/IMG_8559_1763230705199.jpeg";
+import mobileHomeRemoval from "@assets/image_1765659632560.png";
 
 const services = [
   {
     icon: Building2,
     title: "Residential & Commercial",
     description: "Complete building demolition for homes, garages, and commercial structures"
+  },
+  {
+    icon: Home,
+    title: "Mobile Home Removal",
+    description: "Professional mobile home and manufactured housing demolition and removal"
   },
   {
     icon: Hammer,
@@ -35,6 +41,11 @@ const projectGallery = [
     image: demolition3, 
     alt: "Excavator performing roof demolition on commercial building",
     title: "Starting Demolition"
+  },
+  { 
+    image: mobileHomeRemoval, 
+    alt: "Mobile home demolition with excavator and dump trailer",
+    title: "Mobile Home Removal"
   },
   { 
     image: demolition5, 
