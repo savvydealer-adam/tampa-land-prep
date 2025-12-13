@@ -6,6 +6,7 @@ import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Building2, Trees, Mountain, Truck, Home, Shovel, CheckCircle2 } from "lucide-react";
 import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
+import homeSitePrepImg from "@assets/IMG_8540_1763230705199.jpeg";
 import landClearingImg from "@assets/images/land-clearing.jpg";
 import gradingImg from "@assets/images/grading-levelling.jpg";
 import brushRemovalImg from "@assets/images/brush-removal.jpg";
@@ -31,7 +32,7 @@ const services = [
     icon: Shovel,
     title: "Home Site Prep",
     description: "Complete lot preparation for new home construction. We clear, grade, and prepare your property so it's ready for building.",
-    image: soilCompactionImg,
+    image: homeSitePrepImg,
     features: [
       "Lot clearing and tree removal",
       "Foundation excavation",
