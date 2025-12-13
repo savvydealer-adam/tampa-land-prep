@@ -7,7 +7,7 @@ import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Building2, Trees, Mountain, Truck, Home, Shovel, CheckCircle2 } from "lucide-react";
 import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
 import homeSitePrepImg from "@assets/image_1765658633013.png";
-import landClearingImg from "@assets/images/land-clearing.jpg";
+import landClearingImg from "@assets/images/land-clearing-new.webp";
 import gradingImg from "@assets/images/grading-levelling.jpg";
 import brushRemovalImg from "@assets/images/brush-removal.jpg";
 import soilCompactionImg from "@assets/images/soil-compaction.jpg";
