@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { Building2, Trees, Mountain, Truck, Home, Shovel, CheckCircle2 } from "lucide-react";
+import { Link } from "wouter";
+import { Building2, Trees, Mountain, Truck, Home, Shovel, CheckCircle2, ArrowRight } from "lucide-react";
 import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
 import homeSitePrepImg from "@assets/image_1765658633013.png";
 import landClearingImg from "@assets/images/land-clearing-new.webp";
@@ -19,6 +20,7 @@ const services = [
     title: "Demolition",
     description: "Professional demolition services for residential and commercial structures. Complete building removal with site preparation and debris cleanup.",
     image: demolitionImg,
+    href: "/demolition",
     features: [
       "Residential & commercial demolition",
       "Mobile home removal",
@@ -33,6 +35,7 @@ const services = [
     title: "Home Site Prep",
     description: "Complete lot preparation for new home construction. We clear, grade, and prepare your property so it's ready for building.",
     image: homeSitePrepImg,
+    href: "/home-site-prep",
     features: [
       "Lot clearing and tree removal",
       "Foundation excavation",
@@ -46,6 +49,7 @@ const services = [
     title: "Land Clearing",
     description: "Professional land clearing services to remove trees, stumps, vegetation, and debris to prepare your property for development or agriculture.",
     image: landClearingImg,
+    href: "/land-clearing",
     features: [
       "Tree and stump removal",
       "Vegetation clearing",
@@ -59,6 +63,7 @@ const services = [
     title: "Grading & Leveling",
     description: "Expert grading and leveling services to ensure proper drainage, site preparation, and foundation stability for your project.",
     image: gradingImg,
+    href: "/grading-leveling",
     features: [
       "Precision grading and leveling",
       "Drainage solutions",
@@ -72,6 +77,7 @@ const services = [
     title: "Brush Removal",
     description: "Complete brush and undergrowth removal to clean your property and reduce fire hazards while maintaining environmental integrity.",
     image: brushRemovalImg,
+    href: "/brush-removal",
     features: [
       "Brush and undergrowth clearing",
       "Fire hazard reduction",
@@ -85,6 +91,7 @@ const services = [
     title: "Driveway Preparation",
     description: "Complete driveway preparation services including excavation, base installation, and finishing for asphalt, concrete, or gravel driveways.",
     image: drivewayPrepImg,
+    href: "/driveway-prep",
     features: [
       "Driveway excavation",
       "Base material installation",
@@ -158,6 +165,11 @@ export default function Services() {
                             </li>
                           ))}
                         </ul>
+                        <Link href={service.href}>
+                          <Button className="mt-6" variant="outline" data-testid={`button-learn-more-${index}`}>
+                            Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </Link>
                       </CardContent>
                     </div>
                     <div className="order-1 md:order-2">

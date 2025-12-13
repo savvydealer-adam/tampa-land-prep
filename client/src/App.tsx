@@ -13,6 +13,11 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Services from "@/pages/Services";
 import Demolition from "@/pages/Demolition";
+import HomeSitePrep from "@/pages/HomeSitePrep";
+import LandClearing from "@/pages/LandClearing";
+import GradingLeveling from "@/pages/GradingLeveling";
+import BrushRemoval from "@/pages/BrushRemoval";
+import DrivewayPrep from "@/pages/DrivewayPrep";
 import Contact from "@/pages/Contact";
 import ServiceArea from "@/pages/ServiceArea";
 import Gallery from "@/pages/Gallery";
@@ -40,6 +45,11 @@ function Router() {
       <Route path="/residential" component={Residential} />
       <Route path="/commercial" component={Commercial} />
       <Route path="/demolition" component={Demolition} />
+      <Route path="/home-site-prep" component={HomeSitePrep} />
+      <Route path="/land-clearing" component={LandClearing} />
+      <Route path="/grading-leveling" component={GradingLeveling} />
+      <Route path="/brush-removal" component={BrushRemoval} />
+      <Route path="/driveway-prep" component={DrivewayPrep} />
       <Route path="/equipment" component={Equipment} />
       <Route path="/process" component={Process} />
       <Route path="/insurance" component={Insurance} />

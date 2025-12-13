@@ -5,62 +5,71 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Building2, Hammer, Truck, ArrowLeft } from "lucide-react";
-import demolition1 from "@assets/IMG_8568_1763230705199.jpeg";
-import demolition2 from "@assets/IMG_8583_1763230705199.jpeg";
-import demolition3 from "@assets/IMG_8540_1763230705199.jpeg";
-import demolition4 from "@assets/9EDD5C1A-DDCC-494E-AAEA-39750D21F447_1763230705199.jpeg";
-import demolition5 from "@assets/IMG_8559_1763230705199.jpeg";
+import { Mountain, Droplets, Ruler, Building, CheckCircle2, ArrowLeft } from "lucide-react";
+import gradingMain from "@assets/images/grading-new.webp";
+import gradingAlt from "@assets/images/grading-levelling.jpg";
+import soilImg from "@assets/images/soil-compaction.jpg";
 
 const services = [
   {
-    icon: Building2,
-    title: "Residential & Commercial",
-    description: "Complete building demolition for homes, garages, and commercial structures"
+    icon: Mountain,
+    title: "Precision Grading",
+    description: "Accurate grading using laser-guided equipment for perfect results"
   },
   {
-    icon: Hammer,
-    title: "Selective Demolition",
-    description: "Interior demolition and precise structural component removal"
+    icon: Droplets,
+    title: "Drainage Solutions",
+    description: "Proper slope and drainage to prevent water problems"
   },
   {
-    icon: Truck,
-    title: "Complete Cleanup",
-    description: "Debris removal, site clearing, and grading services"
+    icon: Building,
+    title: "Foundation Prep",
+    description: "Level surfaces ready for foundation and construction"
+  },
+  {
+    icon: Ruler,
+    title: "Slope Stabilization",
+    description: "Expert slope management for erosion prevention"
   }
+];
+
+const features = [
+  "Precision laser-guided grading",
+  "Proper drainage slope installation",
+  "Foundation preparation and leveling",
+  "Slope stabilization and erosion control",
+  "Soil compaction for stability",
+  "Cut and fill operations",
+  "Parking lot and driveway grading",
+  "Final grade for landscaping"
 ];
 
 const projectGallery = [
   { 
-    image: demolition3, 
-    alt: "Excavator performing roof demolition on commercial building",
-    title: "Starting Demolition"
+    image: gradingMain, 
+    alt: "Grading equipment leveling a construction site",
+    title: "Site Grading"
   },
   { 
-    image: demolition5, 
-    alt: "Partially demolished building showing interior structural removal",
-    title: "Structural Removal"
+    image: gradingAlt, 
+    alt: "Leveling work in progress for new construction",
+    title: "Foundation Level"
   },
   { 
-    image: demolition1, 
-    alt: "Building demolition in progress with debris removal",
-    title: "Demolition Progress"
-  },
-  { 
-    image: demolition2, 
-    alt: "Cleared and graded lot after demolition completion",
-    title: "Completed Project"
+    image: soilImg, 
+    alt: "Soil compaction after grading is complete",
+    title: "Compaction Work"
   }
 ];
 
-export default function Demolition() {
+export default function GradingLeveling() {
   const { openLeadForm } = useLeadForm();
 
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        title="Tampa Land Prep | Building Demolition & Structure Removal Tampa FL"
-        description="Building demolition services in Tampa Bay. Licensed contractor for residential & commercial structure removal. Complete site clearing & debris removal."
+        title="Grading & Leveling Tampa | Site Preparation | Tampa Land Prep"
+        description="Professional grading and leveling services in Tampa Bay. Foundation prep, drainage solutions, slope stabilization. Licensed contractor Tampa, Lutz, Land O' Lakes."
         ogType="website"
       />
       <Header />
@@ -73,13 +82,13 @@ export default function Demolition() {
               Back to Services
             </Link>
             <h1 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-6xl">
-              Professional Demolition Services
+              Grading & Leveling Services
             </h1>
             <p className="mb-10 text-xl text-muted-foreground">
-              Licensed demolition contractor serving Tampa, Land O' Lakes, Lutz, and surrounding areas
+              Expert grading and leveling for proper drainage and construction-ready sites
             </p>
             <Button onClick={openLeadForm} size="lg" className="rounded-full" data-testid="button-hero-cta">
-              Request a Free Quote
+              Get a Free Estimate
             </Button>
           </div>
         </section>
@@ -89,13 +98,13 @@ export default function Demolition() {
           <div className="container mx-auto max-w-7xl px-6">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                Demolition Services
+                Grading & Leveling Services
               </h2>
               <p className="text-xl text-muted-foreground">
-                Safe, efficient building demolition with complete site cleanup
+                Precision grading for residential and commercial projects
               </p>
             </div>
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {services.map((service, index) => (
                 <Card key={index} className="hover-elevate" data-testid={`card-service-${index}`}>
                   <CardHeader>
@@ -111,18 +120,51 @@ export default function Demolition() {
           </div>
         </section>
 
-        {/* Recent Project Gallery */}
+        {/* Features Section */}
         <section className="bg-card py-20 md:py-32">
+          <div className="container mx-auto max-w-7xl px-6">
+            <div className="grid items-center gap-12 lg:grid-cols-2">
+              <div>
+                <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl">
+                  Why Proper Grading Matters
+                </h2>
+                <p className="mb-8 text-lg text-muted-foreground">
+                  Proper grading is essential for preventing water damage, ensuring structural stability, 
+                  and creating a solid foundation for any construction project. Our precision equipment 
+                  and experienced operators deliver consistent, accurate results.
+                </p>
+                <ul className="space-y-3">
+                  {features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex items-center justify-center">
+                <img
+                  src={gradingMain}
+                  alt="Grading and leveling work in progress"
+                  className="w-full rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section className="py-20 md:py-32">
           <div className="container mx-auto max-w-7xl px-6">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                Recent Project
+                Our Work
               </h2>
               <p className="text-xl text-muted-foreground">
-                Complete building demolition and site clearing
+                See examples of our grading and leveling projects
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-3">
               {projectGallery.map((project, index) => (
                 <Card key={index} className="overflow-hidden hover-elevate" data-testid={`card-project-${index}`}>
                   <div className="aspect-video w-full overflow-hidden">
@@ -145,10 +187,10 @@ export default function Demolition() {
         <section className="bg-primary py-20 text-primary-foreground md:py-32">
           <div className="container mx-auto max-w-4xl px-6 text-center">
             <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Need Demolition Services?
+              Need Grading & Leveling?
             </h2>
             <p className="mb-10 text-xl opacity-90">
-              Get a free estimate for your demolition project today
+              Get a free estimate for your grading project today
             </p>
             <Button 
               onClick={openLeadForm} 

@@ -1,66 +1,75 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
-import { Building2, Hammer, Truck, ArrowLeft } from "lucide-react";
-import demolition1 from "@assets/IMG_8568_1763230705199.jpeg";
-import demolition2 from "@assets/IMG_8583_1763230705199.jpeg";
-import demolition3 from "@assets/IMG_8540_1763230705199.jpeg";
-import demolition4 from "@assets/9EDD5C1A-DDCC-494E-AAEA-39750D21F447_1763230705199.jpeg";
-import demolition5 from "@assets/IMG_8559_1763230705199.jpeg";
+import { Shovel, Trees, Mountain, Home, Droplets, CheckCircle2, ArrowLeft } from "lucide-react";
+import homeSiteImg from "@assets/image_1765658633013.png";
+import gradingImg from "@assets/images/grading-new.webp";
+import landClearingImg from "@assets/images/land-clearing-new.webp";
 
 const services = [
   {
-    icon: Building2,
-    title: "Residential & Commercial",
-    description: "Complete building demolition for homes, garages, and commercial structures"
+    icon: Trees,
+    title: "Lot Clearing",
+    description: "Complete removal of trees, stumps, and vegetation to prepare your building site"
   },
   {
-    icon: Hammer,
-    title: "Selective Demolition",
-    description: "Interior demolition and precise structural component removal"
+    icon: Shovel,
+    title: "Foundation Excavation",
+    description: "Precision excavation work for proper foundation placement and depth"
   },
   {
-    icon: Truck,
-    title: "Complete Cleanup",
-    description: "Debris removal, site clearing, and grading services"
+    icon: Mountain,
+    title: "Grading & Leveling",
+    description: "Expert grading to ensure proper drainage and level building surface"
+  },
+  {
+    icon: Droplets,
+    title: "Drainage Solutions",
+    description: "Installation of drainage systems to protect your future home"
   }
+];
+
+const features = [
+  "Complete lot clearing and tree removal",
+  "Foundation excavation to specifications",
+  "Driveway base preparation",
+  "Yard leveling and final grading",
+  "Drainage solutions and water management",
+  "Soil compaction for stability",
+  "Debris removal and site cleanup",
+  "Ready for builders to begin construction"
 ];
 
 const projectGallery = [
   { 
-    image: demolition3, 
-    alt: "Excavator performing roof demolition on commercial building",
-    title: "Starting Demolition"
+    image: homeSiteImg, 
+    alt: "Home site preparation with excavator clearing land",
+    title: "Site Clearing"
   },
   { 
-    image: demolition5, 
-    alt: "Partially demolished building showing interior structural removal",
-    title: "Structural Removal"
+    image: gradingImg, 
+    alt: "Grading and leveling for new home construction",
+    title: "Foundation Prep"
   },
   { 
-    image: demolition1, 
-    alt: "Building demolition in progress with debris removal",
-    title: "Demolition Progress"
-  },
-  { 
-    image: demolition2, 
-    alt: "Cleared and graded lot after demolition completion",
-    title: "Completed Project"
+    image: landClearingImg, 
+    alt: "Cleared lot ready for home construction",
+    title: "Ready to Build"
   }
 ];
 
-export default function Demolition() {
+export default function HomeSitePrep() {
   const { openLeadForm } = useLeadForm();
 
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        title="Tampa Land Prep | Building Demolition & Structure Removal Tampa FL"
-        description="Building demolition services in Tampa Bay. Licensed contractor for residential & commercial structure removal. Complete site clearing & debris removal."
+        title="Home Site Preparation Tampa | New Construction Lot Prep | Tampa Land Prep"
+        description="Professional home site preparation in Tampa Bay. Lot clearing, foundation excavation, grading & drainage for new home construction. Licensed contractor."
         ogType="website"
       />
       <Header />
@@ -73,13 +82,13 @@ export default function Demolition() {
               Back to Services
             </Link>
             <h1 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-6xl">
-              Professional Demolition Services
+              Home Site Preparation
             </h1>
             <p className="mb-10 text-xl text-muted-foreground">
-              Licensed demolition contractor serving Tampa, Land O' Lakes, Lutz, and surrounding areas
+              Complete lot preparation for new home construction in Tampa, Land O' Lakes, Lutz, and surrounding areas
             </p>
             <Button onClick={openLeadForm} size="lg" className="rounded-full" data-testid="button-hero-cta">
-              Request a Free Quote
+              Get a Free Estimate
             </Button>
           </div>
         </section>
@@ -89,13 +98,13 @@ export default function Demolition() {
           <div className="container mx-auto max-w-7xl px-6">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                Demolition Services
+                What We Provide
               </h2>
               <p className="text-xl text-muted-foreground">
-                Safe, efficient building demolition with complete site cleanup
+                Everything you need to get your property ready for new home construction
               </p>
             </div>
-            <div className="grid gap-8 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {services.map((service, index) => (
                 <Card key={index} className="hover-elevate" data-testid={`card-service-${index}`}>
                   <CardHeader>
@@ -111,18 +120,50 @@ export default function Demolition() {
           </div>
         </section>
 
-        {/* Recent Project Gallery */}
+        {/* Features Section */}
         <section className="bg-card py-20 md:py-32">
+          <div className="container mx-auto max-w-7xl px-6">
+            <div className="grid items-center gap-12 lg:grid-cols-2">
+              <div>
+                <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl">
+                  Complete Site Preparation Services
+                </h2>
+                <p className="mb-8 text-lg text-muted-foreground">
+                  Building a new home starts with proper site preparation. We handle everything from 
+                  initial clearing to final grading, ensuring your property is ready for construction.
+                </p>
+                <ul className="space-y-3">
+                  {features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="flex items-center justify-center">
+                <img
+                  src={homeSiteImg}
+                  alt="Home site preparation in progress"
+                  className="w-full rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section className="py-20 md:py-32">
           <div className="container mx-auto max-w-7xl px-6">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                Recent Project
+                Our Work
               </h2>
               <p className="text-xl text-muted-foreground">
-                Complete building demolition and site clearing
+                See examples of our home site preparation projects
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-3">
               {projectGallery.map((project, index) => (
                 <Card key={index} className="overflow-hidden hover-elevate" data-testid={`card-project-${index}`}>
                   <div className="aspect-video w-full overflow-hidden">
@@ -145,10 +186,10 @@ export default function Demolition() {
         <section className="bg-primary py-20 text-primary-foreground md:py-32">
           <div className="container mx-auto max-w-4xl px-6 text-center">
             <h2 className="mb-6 font-serif text-3xl font-bold sm:text-4xl lg:text-5xl">
-              Need Demolition Services?
+              Ready to Build Your Dream Home?
             </h2>
             <p className="mb-10 text-xl opacity-90">
-              Get a free estimate for your demolition project today
+              Let us prepare your site for construction. Get a free estimate today.
             </p>
             <Button 
               onClick={openLeadForm} 
