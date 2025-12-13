@@ -8,60 +8,74 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "John & Sarah Martinez",
-    location: "Land O' Lakes, FL",
-    service: "Land Clearing",
-    rating: 5,
-    text: "Tampa Land Prep cleared our 2-acre lot quickly and professionally. They removed all the trees and brush, graded the land perfectly, and left the site clean. Highly recommend for anyone preparing land for construction!"
-  },
-  {
-    name: "David Chen",
-    location: "Lutz, FL",
-    service: "Grading & Leveling",
-    rating: 5,
-    text: "Excellent grading work for our new driveway. The team was punctual, professional, and did exactly what they promised. The final grade was perfect and our driveway looks amazing."
-  },
-  {
-    name: "Thompson Construction LLC",
-    location: "Tampa, FL",
-    service: "Commercial Site Prep",
-    rating: 5,
-    text: "We've used Tampa Land Prep on multiple commercial projects. Their equipment is top-notch, their operators are skilled, and they always complete work on schedule. A reliable partner for our development projects."
-  },
-  {
-    name: "Rebecca Williams",
-    location: "Wesley Chapel, FL",
-    service: "Brush Removal",
-    rating: 5,
-    text: "Great experience from start to finish. They gave us a fair quote, showed up when scheduled, and cleared all the overgrown brush from our property in just two days. The lot looks completely transformed!"
-  },
-  {
-    name: "Mike Rodriguez",
+    name: "Simona Brinkman",
     location: "Tampa, FL",
     service: "Building Demolition",
     rating: 5,
-    text: "Needed an old garage demolished and the site cleared. Tampa Land Prep handled everything including permits. Safe, efficient work with complete debris removal. Very satisfied with the results."
+    text: "Did a building demo job in Tampa for me. Brought the whole thing down and left it clean when done. Great guys. Easy to work with. Kept to their word. Recommend highly."
   },
   {
-    name: "Jennifer & Tom Baker",
-    location: "Odessa, FL",
-    service: "Driveway Preparation",
+    name: "Ann Beattie",
+    location: "Tampa, FL",
+    service: "Land Clearing",
     rating: 5,
-    text: "Professional service for our driveway base preparation. They excavated, graded, and compacted the base perfectly. Our paver installer said it was one of the best-prepped bases he'd seen. Thank you!"
+    text: "Tampa land prep, Stephanie was excellent in her ability to clear the backyard of all the stumps and debris left by the tree removal company. She has the equipment to make your yard or land prep anyway you choose to have it look!!"
   },
   {
-    name: "Anderson Properties",
-    location: "Land O' Lakes, FL",
-    service: "Land Clearing & Grading",
+    name: "Kenyatta Johnson",
+    location: "Tampa Bay, FL",
+    service: "Demolition",
     rating: 5,
-    text: "We've worked with several land clearing companies, and Tampa Land Prep is by far the best. Their attention to detail, modern equipment, and competitive pricing make them our go-to for all site work."
+    text: "Tampa Land Prep did such an amazing and professional job with the demolition of our vacant mobile home. Stephanie was fast with replies and had the resources and know how to get the job done quickly."
   },
   {
-    name: "Carlos Mendez",
-    location: "Carrollwood, FL",
-    service: "Selective Demolition",
+    name: "Maria Haddon",
+    location: "Tampa Bay, FL",
+    service: "Land Clearing",
     rating: 5,
-    text: "Tampa Land Prep did interior demolition for our home renovation. They were careful, clean, and protected the areas we wanted to keep. Professional crew that knows what they're doing."
+    text: "Tampa Land Prep are amazing people who tackled our parcel of overgrown brush and dead branches and trees. We weren't able to even walk in the area before. They were prompt and listened to us."
+  },
+  {
+    name: "Geoffrey Smith",
+    location: "Tampa Bay, FL",
+    service: "Land Clearing",
+    rating: 5,
+    text: "Tampa Land Prep exceeded my expectations from start to finish! They were not only on time, but they actually managed to come a day early. The team was polite, professional, and extremely knowledgeable."
+  },
+  {
+    name: "Avery Jordan",
+    location: "Tampa, FL",
+    service: "Grading & Leveling",
+    rating: 5,
+    text: "Had an excellent experience hiring Tampa Land Prep for my backyard regrading project. They were professional, communicated well, and did solid work at a good value. Would recommend."
+  },
+  {
+    name: "Edward Rochelle",
+    location: "Tampa Bay, FL",
+    service: "Land Clearing",
+    rating: 5,
+    text: "Used Tampa land Prep again. A great company to hire. On time. Did a great job. Great communication."
+  },
+  {
+    name: "Kent Ringger",
+    location: "Tampa Bay, FL",
+    service: "Land Clearing",
+    rating: 5,
+    text: "Tampa Land Prep did an amazing job clearing nearly an acre of our land. They stepped in and treated our project like their own, which made all the difference."
+  },
+  {
+    name: "Dave Torregiante",
+    location: "Tampa Bay, FL",
+    service: "Grading & Leveling",
+    rating: 5,
+    text: "Hired Tampa Land Prep to fill and re sod a large depression area in our back yard. They were very responsive, on time and did an amazing job! Very hard workers and cleaned up after they were done."
+  },
+  {
+    name: "Jordan Casal",
+    location: "Tampa Bay, FL",
+    service: "Land Clearing",
+    rating: 5,
+    text: "I had a great experience working with Stephanie and Austin. They go the extra mile and are punctual and honest. Will definitely use their services again."
   }
 ];
 
