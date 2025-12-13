@@ -11,7 +11,7 @@ import landClearingImg from "@assets/images/land-clearing.jpg";
 import gradingImg from "@assets/images/grading-levelling.jpg";
 import brushRemovalImg from "@assets/images/brush-removal.jpg";
 import soilCompactionImg from "@assets/images/soil-compaction.jpg";
-import drivewayPrepImg from "@assets/images/driveway-prep.png";
+import drivewayPrepImg from "@assets/images/driveway-prep-new.webp";
 
 const services = [
   {
