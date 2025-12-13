@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-import { Building2, Trees, Mountain, Truck, Home, CheckCircle2 } from "lucide-react";
+import { Building2, Trees, Mountain, Truck, Home, Shovel, CheckCircle2 } from "lucide-react";
 import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
 import landClearingImg from "@assets/images/land-clearing.jpg";
 import gradingImg from "@assets/images/grading-levelling.jpg";
@@ -20,10 +20,24 @@ const services = [
     image: demolitionImg,
     features: [
       "Residential & commercial demolition",
+      "Mobile home removal",
       "Selective interior demolition",
       "Structural component removal",
       "Complete debris removal",
       "Site grading and cleanup"
+    ]
+  },
+  {
+    icon: Shovel,
+    title: "Home Site Prep",
+    description: "Complete lot preparation for new home construction. We clear, grade, and prepare your property so it's ready for building.",
+    image: soilCompactionImg,
+    features: [
+      "Lot clearing and tree removal",
+      "Foundation excavation",
+      "Driveway base preparation",
+      "Yard leveling and grading",
+      "Drainage solutions"
     ]
   },
   {
