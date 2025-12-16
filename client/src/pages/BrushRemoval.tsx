@@ -146,6 +146,7 @@ export default function BrushRemoval() {
                 <img
                   src={brushMain}
                   alt="Brush removal in progress"
+                  loading="lazy"
                   className="w-full rounded-lg shadow-lg"
                 />
               </div>
@@ -171,6 +172,7 @@ export default function BrushRemoval() {
                     <img 
                       src={project.image} 
                       alt={project.alt}
+                      loading="lazy"
                       className="h-full w-full object-cover"
                     />
                   </div>

@@ -18,11 +18,11 @@ interface SEOProps {
   schemas?: Record<string, any> | Record<string, any>[];
 }
 
-const defaultTitle = "Your Company Name";
+const defaultTitle = "Tampa Land Prep | Land Clearing & Site Preparation";
 const defaultDescription =
-  "Replace this with your company description. Explain what you do and why customers should choose you.";
-const defaultOgImage = "https://yoursite.com/og-image.jpg";
-const siteUrl = "https://yoursite.com";
+  "Professional land clearing, grading, demolition & site preparation services in Tampa, Land O' Lakes, Lutz, and the greater Tampa Bay area. Licensed contractor serving Hillsborough, Pasco, Pinellas & Hernando counties.";
+const defaultOgImage = "https://tampalandprep.com/attached_assets/hero_image_1765927533082.jpg";
+const siteUrl = "https://tampalandprep.com";
 
 export function SEO({
   title,
@@ -54,7 +54,7 @@ export function SEO({
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content={ogImageWidth} />
       <meta property="og:image:height" content={ogImageHeight} />
-      <meta property="og:site_name" content="Your Company Name" />
+      <meta property="og:site_name" content="Tampa Land Prep" />
       <meta property="og:locale" content="en_US" />
 
       <meta name="twitter:card" content="summary_large_image" />
@@ -87,37 +87,79 @@ export function SEO({
 
 export const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": ["Organization", "ProfessionalService"],
-  "@id": "https://yoursite.com/#organization",
-  "name": "Your Company Name",
-  "url": "https://yoursite.com",
+  "@type": ["Organization", "ProfessionalService", "LocalBusiness"],
+  "@id": "https://tampalandprep.com/#organization",
+  "name": "Tampa Land Prep",
+  "url": "https://tampalandprep.com",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://yoursite.com/logo.png",
+    "url": "https://tampalandprep.com/attached_assets/logo-tampaland-prep_1765926841635.png",
   },
   "description":
-    "Replace with your company description. Explain what you do and what makes you unique.",
-  "email": "contact@yourcompany.com",
+    "Professional land clearing, grading, demolition & site preparation services in Tampa Bay. Licensed contractor serving residential and commercial clients.",
+  "email": "contact@tampalandprep.com",
+  "telephone": "+1-813-000-0000",
   "foundingDate": "2020",
   "knowsAbout": [
-    "Your",
-    "Areas of",
-    "Expertise",
+    "Land Clearing",
+    "Site Preparation",
+    "Grading and Leveling",
+    "Demolition",
+    "Brush Removal",
+    "Driveway Preparation",
+    "Home Site Prep",
+    "Excavation"
   ],
-  "areaServed": {
-    "@type": "Country",
-    "name": "United States",
+  "areaServed": [
+    {
+      "@type": "County",
+      "name": "Hillsborough County",
+      "containedIn": "Florida"
+    },
+    {
+      "@type": "County", 
+      "name": "Pasco County",
+      "containedIn": "Florida"
+    },
+    {
+      "@type": "County",
+      "name": "Pinellas County", 
+      "containedIn": "Florida"
+    },
+    {
+      "@type": "County",
+      "name": "Hernando County",
+      "containedIn": "Florida"
+    }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Tampa",
+    "addressRegion": "FL",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "27.9506",
+    "longitude": "-82.4572"
   },
   "contactPoint": [
     {
       "@type": "ContactPoint",
-      "telephone": "+1-555-0000",
+      "telephone": "+1-813-000-0000",
       "contactType": "customer support",
-      "email": "contact@yourcompany.com",
-      "availableLanguage": ["English"],
+      "email": "contact@tampalandprep.com",
+      "availableLanguage": ["English", "Spanish"],
     },
   ],
   "sameAs": [],
+  "priceRange": "$$",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "07:00",
+    "closes": "18:00"
+  }
 };
 
 export function createServiceSchema(service: {
@@ -138,10 +180,28 @@ export function createServiceSchema(service: {
     "provider": {
       "@id": `${siteUrl}/#organization`,
     },
-    "areaServed": {
-      "@type": "Country",
-      "name": "United States",
-    },
+    "areaServed": [
+      {
+        "@type": "County",
+        "name": "Hillsborough County",
+        "containedIn": "Florida"
+      },
+      {
+        "@type": "County", 
+        "name": "Pasco County",
+        "containedIn": "Florida"
+      },
+      {
+        "@type": "County",
+        "name": "Pinellas County", 
+        "containedIn": "Florida"
+      },
+      {
+        "@type": "County",
+        "name": "Hernando County",
+        "containedIn": "Florida"
+      }
+    ],
     ...(service.price && {
       "offers": {
         "@type": "Offer",
@@ -172,7 +232,7 @@ export function createBlogPostSchema(article: {
     "dateModified": article.modifiedDate || article.publishedDate,
     "author": {
       "@type": "Person",
-      "name": article.author || "Your Company Team",
+      "name": article.author || "Tampa Land Prep Team",
     },
     "publisher": {
       "@id": `${siteUrl}/#organization`,

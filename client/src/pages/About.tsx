@@ -108,6 +108,7 @@ export default function About() {
                 <img 
                   src={constructionWorkerImg} 
                   alt="Professional land preparation equipment operator"
+                  loading="lazy"
                   className="w-full max-w-md rounded-3xl shadow-lg"
                 />
               </div>

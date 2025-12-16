@@ -145,6 +145,7 @@ export default function HomeSitePrep() {
                 <img
                   src={homeSiteImg}
                   alt="Home site preparation in progress"
+                  loading="lazy"
                   className="w-full rounded-lg shadow-lg"
                 />
               </div>
@@ -170,6 +171,7 @@ export default function HomeSitePrep() {
                     <img 
                       src={project.image} 
                       alt={project.alt}
+                      loading="lazy"
                       className="h-full w-full object-cover"
                     />
                   </div>

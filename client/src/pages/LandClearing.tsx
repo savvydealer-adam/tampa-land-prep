@@ -151,6 +151,7 @@ export default function LandClearing() {
                 <img
                   src={landClearingMain}
                   alt="Land clearing in progress"
+                  loading="lazy"
                   className="w-full rounded-lg shadow-lg"
                 />
               </div>
@@ -176,6 +177,7 @@ export default function LandClearing() {
                     <img 
                       src={project.image} 
                       alt={project.alt}
+                      loading="lazy"
                       className="h-full w-full object-cover"
                     />
                   </div>

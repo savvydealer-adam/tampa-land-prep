@@ -74,6 +74,7 @@ export default function ServiceArea() {
               <img
                 src={serviceAreasMap}
                 alt="Tampa Land Prep service area map showing Hillsborough, Pasco, Pinellas, and Hernando counties highlighted in green"
+                loading="lazy"
                 className="w-full rounded-lg shadow-lg"
                 data-testid="img-service-area-map"
               />

@@ -7,10 +7,10 @@ import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
 import { Truck, Trees, Mountain, Hammer, Phone, MapPin } from "lucide-react";
 import heroImage from "@assets/hero_image_1765927533082.jpg";
-import landClearingImg from "@assets/images/land-clearing.jpg";
-import gradingImg from "@assets/images/grading-levelling.jpg";
-import brushRemovalImg from "@assets/images/brush-removal.jpg";
-import drivewayPrepImg from "@assets/images/driveway-prep.png";
+import landClearingImg from "@assets/images/land-clearing-new.webp";
+import gradingImg from "@assets/images/grading-new.webp";
+import brushRemovalImg from "@assets/images/brush-removal-new.webp";
+import drivewayPrepImg from "@assets/images/driveway-prep-new.webp";
 import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
 import serviceAreasMap from "@assets/service areas_1764272106686.jpg";
 
@@ -109,6 +109,7 @@ export default function Home() {
                     <img 
                       src={service.image} 
                       alt={service.title}
+                      loading="lazy"
                       className="h-full w-full object-cover"
                     />
                   </div>
@@ -165,6 +166,7 @@ export default function Home() {
                 <img
                   src={serviceAreasMap}
                   alt="Tampa Land Prep service area map showing Hillsborough, Pasco, Pinellas, and Hernando counties"
+                  loading="lazy"
                   className="w-full max-w-lg rounded-lg shadow-lg"
                   data-testid="img-service-area-map"
                 />
