@@ -160,7 +160,7 @@ export function LeadFormModal({ open, onOpenChange }: LeadFormModalProps) {
                       <FormControl>
                         <Input
                           type="tel"
-                          placeholder="(813) 501-3229"
+                          placeholder="(407) 928-4376"
                           {...field}
                           data-testid="input-phone"
                         />

@@ -98,7 +98,7 @@ export const organizationSchema = {
   "description":
     "Professional land clearing, grading, demolition & site preparation services in Tampa Bay. Licensed contractor serving residential and commercial clients.",
   "email": "contact@tampalandprep.com",
-  "telephone": "+1-813-000-0000",
+  "telephone": "+1-407-928-4376",
   "foundingDate": "2020",
   "knowsAbout": [
     "Land Clearing",
@@ -146,7 +146,7 @@ export const organizationSchema = {
   "contactPoint": [
     {
       "@type": "ContactPoint",
-      "telephone": "+1-813-000-0000",
+      "telephone": "+1-407-928-4376",
       "contactType": "customer support",
       "email": "contact@tampalandprep.com",
       "availableLanguage": ["English", "Spanish"],

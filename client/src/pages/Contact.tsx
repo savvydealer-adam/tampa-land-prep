@@ -62,7 +62,7 @@ export default function Contact() {
                         <CardDescription className="mt-2">
                           Call us for immediate assistance
                         </CardDescription>
-                        <p className="mt-3 text-lg font-semibold">(813) XXX-XXXX</p>
+                        <p className="mt-3 text-lg font-semibold">(407) 928-4376</p>
                       </div>
                     </div>
                   </CardHeader>
