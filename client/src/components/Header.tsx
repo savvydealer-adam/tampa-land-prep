@@ -4,7 +4,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import logoImage from "@assets/images/logo-green.png";
+import logoImage from "@assets/logo-tampaland-prep_1765926841635.png";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

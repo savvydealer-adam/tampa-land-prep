@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { MapPin, Phone, Mail } from "lucide-react";
-import logoImage from "@assets/images/logo-green.png";
+import logoImage from "@assets/logo-tampaland-prep_1765926841635.png";
 
 export function Footer() {
   const companyLinks = [
