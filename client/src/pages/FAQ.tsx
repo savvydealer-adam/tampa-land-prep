@@ -12,7 +12,7 @@ const faqs = [
     questions: [
       {
         q: "What services does Tampa Land Prep provide?",
-        a: "We offer comprehensive land preparation services including land clearing, grading and leveling, brush removal, soil compaction, driveway preparation, building demolition, and site preparation for new construction."
+        a: "We offer comprehensive land preparation services including land clearing, grading and leveling, brush removal, driveway preparation, building demolition, and site preparation for new construction."
       },
       {
         q: "What areas do you serve?",

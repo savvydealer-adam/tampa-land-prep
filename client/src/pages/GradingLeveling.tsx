@@ -8,7 +8,7 @@ import { Link } from "wouter";
 import { Mountain, Droplets, Ruler, Building, CheckCircle2, ArrowLeft } from "lucide-react";
 import gradingMain from "@assets/images/grading-new.webp";
 import gradingAlt from "@assets/images/grading-levelling.jpg";
-import soilImg from "@assets/images/soil-compaction.jpg";
+import sitePrepImg from "@assets/image_1765658633013.png";
 
 const services = [
   {
@@ -38,7 +38,7 @@ const features = [
   "Proper drainage slope installation",
   "Foundation preparation and leveling",
   "Slope stabilization and erosion control",
-  "Soil compaction for stability",
+  "Site preparation for construction",
   "Cut and fill operations",
   "Parking lot and driveway grading",
   "Final grade for landscaping"
@@ -56,9 +56,9 @@ const projectGallery = [
     title: "Foundation Level"
   },
   { 
-    image: soilImg, 
-    alt: "Soil compaction after grading is complete",
-    title: "Compaction Work"
+    image: sitePrepImg, 
+    alt: "Site preparation after grading is complete",
+    title: "Site Preparation"
   }
 ];
 

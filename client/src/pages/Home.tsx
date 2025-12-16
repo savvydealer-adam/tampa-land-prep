@@ -10,7 +10,6 @@ import heroImage from "@assets/images/arable_agriculture_agricultural_tractor_ag
 import landClearingImg from "@assets/images/land-clearing.jpg";
 import gradingImg from "@assets/images/grading-levelling.jpg";
 import brushRemovalImg from "@assets/images/brush-removal.jpg";
-import soilCompactionImg from "@assets/images/soil-compaction.jpg";
 import drivewayPrepImg from "@assets/images/driveway-prep.png";
 import demolitionImg from "@assets/IMG_8568_1763230705199.jpeg";
 import serviceAreasMap from "@assets/service areas_1764272106686.jpg";

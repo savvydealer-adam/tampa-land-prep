@@ -37,7 +37,7 @@ const features = [
   "Driveway excavation and clearing",
   "Proper grade and slope for drainage",
   "Base material installation",
-  "Soil compaction for stability",
+  "Base compaction for stability",
   "Ready for asphalt, concrete, or gravel",
   "Culvert installation if needed",
   "Existing driveway removal",

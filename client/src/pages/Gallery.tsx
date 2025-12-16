@@ -7,7 +7,7 @@ import { useLeadForm } from "@/contexts/LeadFormContext";
 import landClearing from "@assets/images/land-clearing.jpg";
 import gradingLeveling from "@assets/images/grading-levelling.jpg";
 import brushRemoval from "@assets/images/brush-removal.jpg";
-import soilCompaction from "@assets/images/soil-compaction.jpg";
+import sitePrepImg from "@assets/image_1765658633013.png";
 import drivewayPrep from "@assets/images/driveway-prep.png";
 import pic1 from "@assets/images/pic-1.png";
 import pic2 from "@assets/images/pic-2.png";
@@ -32,7 +32,7 @@ const projects = [
     images: [
       { src: gradingLeveling, alt: "Precision grading and leveling work", title: "Site Grading" },
       { src: pic2, alt: "Land leveling for construction", title: "Land Leveling" },
-      { src: soilCompaction, alt: "Soil compaction services", title: "Soil Compaction" }
+      { src: sitePrepImg, alt: "Site preparation services", title: "Site Preparation" }
     ]
   },
   {

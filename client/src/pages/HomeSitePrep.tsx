@@ -39,7 +39,7 @@ const features = [
   "Driveway base preparation",
   "Yard leveling and final grading",
   "Drainage solutions and water management",
-  "Soil compaction for stability",
+  "Site preparation for construction",
   "Debris removal and site cleanup",
   "Ready for builders to begin construction"
 ];
