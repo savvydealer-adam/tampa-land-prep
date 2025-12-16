@@ -6,7 +6,7 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 
 // Email configuration from environment variables
 const FROM_EMAIL = process.env.FROM_EMAIL || "noreply@yourdomain.com";
-const TO_EMAIL = process.env.TO_EMAIL || "contact@yourdomain.com";
+const TO_EMAIL = process.env.TO_EMAILTAMPALANDPREP || "contact@tampalandprep.com";
 
 export interface EmailResult {
   success: boolean;
