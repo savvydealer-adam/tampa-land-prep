@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
+import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
 import landClearing from "@assets/images/land-clearing.jpg";
 import gradingLeveling from "@assets/images/grading-levelling.jpg";
 import brushRemoval from "@assets/images/brush-removal.jpg";
@@ -21,6 +23,7 @@ import demolition5 from "@assets/IMG_8559_1763230705199.jpeg";
 const projects = [
   {
     category: "Land Clearing",
+    href: "/land-clearing",
     images: [
       { src: landClearing, alt: "Land clearing project with heavy machinery", title: "Residential Land Clearing" },
       { src: pic1, alt: "Large scale land clearing operation", title: "Commercial Site Clearing" },
@@ -29,6 +32,7 @@ const projects = [
   },
   {
     category: "Grading & Leveling",
+    href: "/grading-leveling",
     images: [
       { src: gradingLeveling, alt: "Precision grading and leveling work", title: "Site Grading" },
       { src: pic2, alt: "Land leveling for construction", title: "Land Leveling" },
@@ -37,6 +41,7 @@ const projects = [
   },
   {
     category: "Demolition Projects",
+    href: "/demolition",
     images: [
       { src: demolition3, alt: "Excavator performing building demolition", title: "Building Demolition" },
       { src: demolition5, alt: "Structural demolition work", title: "Structural Removal" },
@@ -46,6 +51,7 @@ const projects = [
   },
   {
     category: "Site Preparation",
+    href: "/home-site-prep",
     images: [
       { src: drivewayPrep, alt: "Driveway preparation and base work", title: "Driveway Preparation" },
       { src: pic3, alt: "Site preparation for new construction", title: "Construction Prep" }
@@ -91,6 +97,12 @@ export default function Gallery() {
                 <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
                   {category.category}
                 </h2>
+                <Link href={category.href}>
+                  <Button variant="outline" size="sm" className="gap-2" data-testid={`link-service-${categoryIndex}`}>
+                    View Service Details
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {category.images.map((image, imageIndex) => (
