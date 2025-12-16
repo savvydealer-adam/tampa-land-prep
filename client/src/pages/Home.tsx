@@ -6,7 +6,7 @@ import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
 import { Truck, Trees, Mountain, Hammer, Phone, MapPin } from "lucide-react";
-import heroImage from "@assets/images/arable_agriculture_agricultural_tractor_agricultural_agro_photo_agrartechnik_agricultural_economics_cultivation-1208095.jpg";
+import heroImage from "@assets/hero_image_1765927533082.jpg";
 import landClearingImg from "@assets/images/land-clearing.jpg";
 import gradingImg from "@assets/images/grading-levelling.jpg";
 import brushRemovalImg from "@assets/images/brush-removal.jpg";
