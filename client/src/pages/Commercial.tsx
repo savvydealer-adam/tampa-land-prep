@@ -59,13 +59,13 @@ const services = [
 
 const benefits = [
   "Fast mobilization and project completion",
-  "Minimal disruption to surrounding businesses",
+  "Minimal disruption to neighbors and businesses",
   "Comprehensive project management",
-  "Coordination with other contractors",
+  "Coordination with builders and contractors",
   "Licensed, bonded, and insured",
   "OSHA compliant safety protocols",
   "Environmental protection measures",
-  "Flexible scheduling including off-hours work"
+  "Flexible scheduling to meet your timeline"
 ];
 
 const projects = [
@@ -75,9 +75,9 @@ const projects = [
     description: "Complete site clearing, grading, and parking lot preparation for new retail development in Land O' Lakes"
   },
   {
-    type: "Office Complex",
-    size: "8 acres",
-    description: "Demolition of existing structures and site preparation for Class A office building in Tampa"
+    type: "Large Estate Home",
+    size: "5 acres",
+    description: "Full property clearing, driveway preparation, and foundation grading for luxury custom home in Odessa"
   },
   {
     type: "Industrial Park",
@@ -97,8 +97,8 @@ export default function Commercial() {
   return (
     <div className="flex min-h-screen flex-col">
       <SEO
-        title="Tampa Land Prep | Commercial Land Clearing - Development Site Preparation"
-        description="Commercial land clearing and site preparation in Tampa Bay. Retail, office, industrial, and multi-family development projects. Licensed and insured."
+        title="Tampa Land Prep | Commercial & Large-Scale Land Clearing Projects"
+        description="Commercial and large-scale land clearing in Tampa Bay. Retail, office, industrial, multi-family, and large residential estate projects. Licensed and insured."
         ogType="website"
       />
       <Header />
@@ -107,13 +107,13 @@ export default function Commercial() {
         <section className="bg-gradient-to-b from-background to-card py-20 md:py-32">
           <div className="container mx-auto max-w-4xl px-6 text-center">
             <h1 className="mb-6 font-serif text-4xl font-bold sm:text-5xl lg:text-6xl">
-              Commercial Land Clearing
+              Commercial & Large-Scale Projects
             </h1>
             <p className="mb-10 text-xl text-muted-foreground">
-              Professional site preparation for developers, contractors, and commercial property owners throughout Tampa Bay
+              Professional site preparation for developers, contractors, and property owners throughout Tampa Bay. Whether you're building a shopping center or preparing a large residential estate, we have the equipment and expertise to handle projects of any size.
             </p>
             <Button onClick={openLeadForm} size="lg" className="rounded-full" data-testid="button-hero-cta">
-              Request Commercial Quote
+              Request a Quote
             </Button>
           </div>
         </section>
@@ -123,10 +123,10 @@ export default function Commercial() {
           <div className="container mx-auto max-w-7xl px-6">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-3xl font-bold sm:text-4xl">
-                Commercial Services
+                Large-Scale Project Capabilities
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-                Comprehensive land preparation solutions for commercial and industrial projects
+                From commercial developments to large residential estates, we bring the same professional equipment and expertise to every project
               </p>
             </div>
 
