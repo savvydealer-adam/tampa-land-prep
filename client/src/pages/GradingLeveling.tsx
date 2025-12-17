@@ -8,7 +8,7 @@ import { Link } from "wouter";
 import { Mountain, Droplets, Ruler, Building, CheckCircle2, ArrowLeft } from "lucide-react";
 import gradingMain from "@assets/images/grading-new.webp";
 import gradingAlt from "@assets/images/grading-levelling.jpg";
-import sitePrepImg from "@assets/image_1765658633013.png";
+import sitePrepImg from "@assets/image_1765658633013_optimized.webp";
 
 const services = [
   {

@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { MapPin, CheckCircle2 } from "lucide-react";
-import serviceAreasMap from "@assets/service areas_1764272106686.jpg";
+import serviceAreasMap from "@assets/service_areas_optimized.webp";
 
 const primaryAreas = [
   {

@@ -9,16 +9,16 @@ import { ArrowRight } from "lucide-react";
 import landClearing from "@assets/images/land-clearing-new.webp";
 import gradingLeveling from "@assets/images/grading-new.webp";
 import brushRemoval from "@assets/images/brush-removal-new.webp";
-import sitePrepImg from "@assets/image_1765658633013.png";
+import sitePrepImg from "@assets/image_1765658633013_optimized.webp";
 import drivewayPrep from "@assets/images/driveway-prep-new.webp";
 import pic1 from "@assets/images/pic-1.webp";
 import pic2 from "@assets/images/pic-2.webp";
 import pic3 from "@assets/images/pic-3.webp";
 import pic4 from "@assets/images/pic-4.webp";
-import demolition1 from "@assets/IMG_8568_1763230705199.jpeg";
-import demolition2 from "@assets/IMG_8583_1763230705199.jpeg";
-import demolition3 from "@assets/IMG_8540_1763230705199.jpeg";
-import demolition5 from "@assets/IMG_8559_1763230705199.jpeg";
+import demolition1 from "@assets/IMG_8568_optimized.webp";
+import demolition2 from "@assets/IMG_8583_optimized.webp";
+import demolition3 from "@assets/IMG_8540_optimized.webp";
+import demolition5 from "@assets/IMG_8559_optimized.webp";
 
 const projects = [
   {

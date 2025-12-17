@@ -6,12 +6,12 @@ import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
 import { Building2, Hammer, Truck, ArrowLeft, Home } from "lucide-react";
-import demolition1 from "@assets/IMG_8568_1763230705199.jpeg";
-import demolition2 from "@assets/IMG_8583_1763230705199.jpeg";
-import demolition3 from "@assets/IMG_8540_1763230705199.jpeg";
-import demolition4 from "@assets/9EDD5C1A-DDCC-494E-AAEA-39750D21F447_1763230705199.jpeg";
-import demolition5 from "@assets/IMG_8559_1763230705199.jpeg";
-import mobileHomeRemoval from "@assets/image_1765659632560.png";
+import demolition1 from "@assets/IMG_8568_optimized.webp";
+import demolition2 from "@assets/IMG_8583_optimized.webp";
+import demolition3 from "@assets/IMG_8540_optimized.webp";
+import demolition4 from "@assets/9EDD5C1A_optimized.webp";
+import demolition5 from "@assets/IMG_8559_optimized.webp";
+import mobileHomeRemoval from "@assets/image_1765659632560_optimized.webp";
 
 const services = [
   {

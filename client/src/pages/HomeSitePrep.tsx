@@ -6,7 +6,7 @@ import { SEO } from "@/components/SEO";
 import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
 import { Shovel, Trees, Mountain, Home, Droplets, CheckCircle2, ArrowLeft } from "lucide-react";
-import homeSiteImg from "@assets/image_1765658633013.png";
+import homeSiteImg from "@assets/image_1765658633013_optimized.webp";
 import gradingImg from "@assets/images/grading-new.webp";
 import landClearingImg from "@assets/images/land-clearing-new.webp";
 

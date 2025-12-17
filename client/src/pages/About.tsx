@@ -7,10 +7,10 @@ import { useLeadForm } from "@/contexts/LeadFormContext";
 import { Link } from "wouter";
 import { Shield, Truck, Users, Award, MapPin, Phone } from "lucide-react";
 import constructionWorkerImg from "@assets/images/construction-worker.webp";
-import pic1 from "@assets/images/pic-1.png";
-import pic2 from "@assets/images/pic-2.png";
-import pic3 from "@assets/images/pic-3.png";
-import pic4 from "@assets/images/pic-4.png";
+import pic1 from "@assets/images/pic-1.webp";
+import pic2 from "@assets/images/pic-2.webp";
+import pic3 from "@assets/images/pic-3.webp";
+import pic4 from "@assets/images/pic-4.webp";
 
 const values = [
   {
