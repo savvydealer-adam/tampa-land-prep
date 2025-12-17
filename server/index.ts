@@ -6,6 +6,15 @@ import { initializeBlog } from "./blogLoader";
 
 const app = express();
 
+// Redirect non-www to www in production
+app.use((req, res, next) => {
+  const host = req.get('host') || '';
+  if (process.env.NODE_ENV === 'production' && host === 'tampalandprep.com') {
+    return res.redirect(301, `https://www.tampalandprep.com${req.originalUrl}`);
+  }
+  next();
+});
+
 declare module 'http' {
   interface IncomingMessage {
     rawBody: unknown
