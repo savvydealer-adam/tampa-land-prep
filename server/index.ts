@@ -10,11 +10,16 @@ const app = express();
 app.use((req, res, next) => {
   // Get host from X-Forwarded-Host (behind proxy) or Host header
   const forwardedHost = req.headers['x-forwarded-host'];
-  const rawHost = (Array.isArray(forwardedHost) ? forwardedHost[0] : forwardedHost) || req.get('host') || '';
+  const hostHeader = req.get('host');
+  const rawHost = (Array.isArray(forwardedHost) ? forwardedHost[0] : forwardedHost) || hostHeader || '';
   // Normalize: lowercase and strip port if present
   const host = rawHost.toLowerCase().split(':')[0];
   
+  // Debug logging for domain redirect
+  console.log(`[Redirect Check] NODE_ENV: ${process.env.NODE_ENV}, x-forwarded-host: ${forwardedHost}, host header: ${hostHeader}, normalized host: ${host}`);
+  
   if (process.env.NODE_ENV === 'production' && host === 'tampalandprep.com') {
+    console.log(`[Redirect] Redirecting from ${host} to www.tampalandprep.com`);
     return res.redirect(301, `https://www.tampalandprep.com${req.originalUrl}`);
   }
   next();
