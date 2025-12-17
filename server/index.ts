@@ -8,7 +8,12 @@ const app = express();
 
 // Redirect non-www to www in production
 app.use((req, res, next) => {
-  const host = req.get('host') || '';
+  // Get host from X-Forwarded-Host (behind proxy) or Host header
+  const forwardedHost = req.headers['x-forwarded-host'];
+  const rawHost = (Array.isArray(forwardedHost) ? forwardedHost[0] : forwardedHost) || req.get('host') || '';
+  // Normalize: lowercase and strip port if present
+  const host = rawHost.toLowerCase().split(':')[0];
+  
   if (process.env.NODE_ENV === 'production' && host === 'tampalandprep.com') {
     return res.redirect(301, `https://www.tampalandprep.com${req.originalUrl}`);
   }
