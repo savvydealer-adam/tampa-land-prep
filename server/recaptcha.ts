@@ -1,4 +1,12 @@
-export async function verifyRecaptchaToken(token: string): Promise<boolean> {
+// Minimum score threshold for reCAPTCHA v3
+// 0.0 = very likely bot, 1.0 = very likely human
+// 0.5 provides good spam protection while allowing most legitimate users
+const RECAPTCHA_SCORE_THRESHOLD = 0.5;
+
+// Valid actions that we expect from the frontend
+const VALID_ACTIONS = ['lead_form_submit', 'demo_booking_submit'];
+
+export async function verifyRecaptchaToken(token: string, expectedAction?: string): Promise<boolean> {
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
   
   if (!secretKey) {
@@ -28,17 +36,36 @@ export async function verifyRecaptchaToken(token: string): Promise<boolean> {
       success: data.success,
       score: data.score,
       action: data.action,
+      hostname: data.hostname,
       errors: data['error-codes'],
     });
 
-    // For reCAPTCHA v3, check score (0.0 - 1.0, higher is better)
-    // 0.3 threshold balances security with user experience
-    // Scores: 0.0 = very likely bot, 1.0 = very likely human
-    if (data.success && data.score !== undefined) {
-      return data.score >= 0.3;
+    // Check if verification was successful
+    if (!data.success) {
+      console.log("[reCAPTCHA] Verification failed - success=false");
+      return false;
     }
 
-    return data.success;
+    // Verify the action matches what we expect (prevents token reuse attacks)
+    if (expectedAction && data.action !== expectedAction) {
+      console.log(`[reCAPTCHA] Action mismatch: expected ${expectedAction}, got ${data.action}`);
+      return false;
+    }
+
+    // Check if action is in our valid list
+    if (data.action && !VALID_ACTIONS.includes(data.action)) {
+      console.log(`[reCAPTCHA] Invalid action: ${data.action}`);
+      return false;
+    }
+
+    // For reCAPTCHA v3, check score
+    if (data.score !== undefined) {
+      const passed = data.score >= RECAPTCHA_SCORE_THRESHOLD;
+      console.log(`[reCAPTCHA] Score check: ${data.score} >= ${RECAPTCHA_SCORE_THRESHOLD} = ${passed}`);
+      return passed;
+    }
+
+    return true;
   } catch (error) {
     console.error("[reCAPTCHA] Verification failed:", error);
     return false;

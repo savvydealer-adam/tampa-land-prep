@@ -41,7 +41,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const isValidRecaptcha = await verifyRecaptchaToken(recaptchaToken);
+      const isValidRecaptcha = await verifyRecaptchaToken(recaptchaToken, 'lead_form_submit');
       if (!isValidRecaptcha) {
         console.log("[Lead Form] reCAPTCHA verification failed");
         return res.status(400).json({ 
@@ -115,7 +115,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const isValidRecaptcha = await verifyRecaptchaToken(recaptchaToken);
+      const isValidRecaptcha = await verifyRecaptchaToken(recaptchaToken, 'demo_booking_submit');
       if (!isValidRecaptcha) {
         console.log("[Demo Booking] reCAPTCHA verification failed");
         return res.status(400).json({ 
