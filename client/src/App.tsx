@@ -34,6 +34,12 @@ import Commercial from "@/pages/Commercial";
 import Residential from "@/pages/Residential";
 import FreeQuote from "@/pages/FreeQuote";
 import Environmental from "@/pages/Environmental";
+import MobileHomeRemoval from "@/pages/demolition/MobileHomeRemoval";
+import CommercialDemolition from "@/pages/demolition/CommercialDemolition";
+import ResidentialDemolition from "@/pages/demolition/ResidentialDemolition";
+import ConcreteRemoval from "@/pages/demolition/ConcreteRemoval";
+import InteriorDemolition from "@/pages/demolition/InteriorDemolition";
+import PoolRemoval from "@/pages/demolition/PoolRemoval";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -45,6 +51,12 @@ function Router() {
       <Route path="/residential" component={Residential} />
       <Route path="/commercial" component={Commercial} />
       <Route path="/demolition" component={Demolition} />
+      <Route path="/demolition/mobile-home-removal" component={MobileHomeRemoval} />
+      <Route path="/demolition/commercial" component={CommercialDemolition} />
+      <Route path="/demolition/residential" component={ResidentialDemolition} />
+      <Route path="/demolition/concrete-removal" component={ConcreteRemoval} />
+      <Route path="/demolition/interior" component={InteriorDemolition} />
+      <Route path="/demolition/pool-removal" component={PoolRemoval} />
       <Route path="/home-site-prep" component={HomeSitePrep} />
       <Route path="/land-clearing" component={LandClearing} />
       <Route path="/grading-leveling" component={GradingLeveling} />
